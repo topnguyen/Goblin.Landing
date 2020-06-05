@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Goblin.Landing.Controllers
 {
-    public class HomeController : BaseController
+    public class WorkController : BaseController
     {
-        [Route(Endpoints.Home)]
+        [Route(Endpoints.Work)]
         [HttpGet]
         public IActionResult Index()
         {
