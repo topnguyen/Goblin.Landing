@@ -1,0 +1,7 @@
+﻿{
+  "ConnectionStrings": {
+    "Development": "Data Source=localhost,1433;Initial Catalog=Landing;User ID=sa;Password=Password123;Application Name=Goblin.Landing;Trusted_Connection=False;MultipleActiveResultSets=True",
+    "Staging": "Data Source=.;Initial Catalog=Landing;User ID=Goblin.Landing;Password=Goblin.Landing;Application Name=Goblin.Landing;Trusted_Connection=False;MultipleActiveResultSets=True",
+    "Production": "Data Source=.;Initial Catalog=Landing;User ID=Landing;Password=Goblin.Landing;Application Name=Goblin.Landing;Trusted_Connection=False;MultipleActiveResultSets=True"
+  }
+}

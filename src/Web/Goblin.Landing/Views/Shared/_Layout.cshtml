@@ -1,0 +1,98 @@
+@using Elect.Web.HttpUtils
+@using Elect.Web.Models
+@{
+    var referer = Context.Request.Headers[HeaderKey.Referer].ToString()?.Trim('/');
+
+    var domain = Context.Request.GetDomain()?.Trim('/');
+
+    var isReload = referer?.StartsWith(domain) != true;
+}
+
+@if (isReload)
+{
+    <html>
+    <head>
+        @{
+            await Html.RenderPartialAsync("_Meta").ConfigureAwait(true);
+        }
+    </head>
+    <body class="document-body">
+    <div id="document-content">
+        @await RenderSectionAsync("Styles", false).ConfigureAwait(true)
+        @{
+            IgnoreBody();
+        }
+        <div class="document-script">
+            <div class="document-main-script-start"></div>
+            <script>
+                    location.replace(location.href.split("#")[0]);
+                </script>
+            @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
+            <div class="document-main-script-end"></div>
+        </div>
+    </div>
+    </body>
+    </html>
+}
+else
+{
+    var isGoblinAjaxify = string.Compare(Context.Request.Headers[HeaderKey.XRequestedWith], "Elect.Web.Ajaxify", StringComparison.OrdinalIgnoreCase) == 0;
+
+    if (isGoblinAjaxify)
+    {
+        <text>
+            <html>
+            <head>
+                @{
+                    await Html.RenderPartialAsync("_Meta").ConfigureAwait(true);
+                }
+            </head>
+            <body class="document-body">
+                <div id="document-content">
+                    @await RenderSectionAsync("Styles", false).ConfigureAwait(true)
+                    @{
+                        @RenderBody()
+                    }
+                    <div class="document-script">
+                        <div class="document-main-script-start"></div>
+                        @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
+                        <div class="document-main-script-end"></div>
+                    </div>
+                </div>
+            </body>
+            </html>
+        </text>
+    }
+    else
+    {
+        <text>
+            <!DOCTYPE html>
+            <html lang="en-US">
+            <head>
+                @{
+                    await Html.RenderPartialAsync("_Meta").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("_Favicon").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("Assets/_TopScript").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("Assets/_Style").ConfigureAwait(true);
+                }
+            </head>
+            <body class="document-body">
+                <div class="container">
+                    <div id="document-content">
+                        @await RenderSectionAsync("Styles", false).ConfigureAwait(true)
+                        @RenderBody()
+                        @{
+                            await Html.RenderPartialAsync("Assets/_BottomScript").ConfigureAwait(true);
+                        }
+                        <div class="document-script">
+                            <div class="document-main-script-start"></div>
+                            @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
+                            <div class="document-main-script-end"></div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>
+        </text>
+    }
+}
