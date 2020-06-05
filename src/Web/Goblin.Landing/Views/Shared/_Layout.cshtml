@@ -25,8 +25,8 @@
         <div class="document-script">
             <div class="document-main-script-start"></div>
             <script>
-                    location.replace(location.href.split("#")[0]);
-                </script>
+                location.replace(location.href.split("#")[0]);
+            </script>
             @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
             <div class="document-main-script-end"></div>
         </div>
@@ -55,7 +55,10 @@ else
                     }
                     <div class="document-script">
                         <div class="document-main-script-start"></div>
-                        @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
+                            @{
+                               await Html.RenderPartialAsync("Assets/_PerRequestScript").ConfigureAwait(true);
+                            }
+                            @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
                         <div class="document-main-script-end"></div>
                     </div>
                 </div>
@@ -77,20 +80,29 @@ else
                 }
             </head>
             <body class="document-body">
-                <div class="container">
-                    <div id="document-content">
-                        @await RenderSectionAsync("Styles", false).ConfigureAwait(true)
-                        @RenderBody()
+                <div class="loader">
+                    <div class="loading-animation"></div>
+                </div>
+                @{
+                    await Html.RenderPartialAsync("_Header").ConfigureAwait(true);
+                }
+                <div id="document-content">
+                    @await RenderSectionAsync("Styles", false).ConfigureAwait(true)
+                    @RenderBody()
+
+                    <div class="document-script">
+                        <div class="document-main-script-start"></div>
                         @{
-                            await Html.RenderPartialAsync("Assets/_BottomScript").ConfigureAwait(true);
+                            await Html.RenderPartialAsync("Assets/_PerRequestScript").ConfigureAwait(true);
                         }
-                        <div class="document-script">
-                            <div class="document-main-script-start"></div>
-                            @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
-                            <div class="document-main-script-end"></div>
-                        </div>
+                        @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
+                        <div class="document-main-script-end"></div>
                     </div>
                 </div>
+                @{
+                    await Html.RenderPartialAsync("_Footer").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("Assets/_BottomScript").ConfigureAwait(true);
+                }
             </body>
             </html>
         </text>

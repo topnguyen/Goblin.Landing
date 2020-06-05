@@ -28,7 +28,7 @@ import mrUtil from './util';
 
 (() => {
   if (typeof $ === 'undefined') {
-    throw new TypeError('Medium Rare JavaScript requires jQuery. jQuery must be included before theme.js.');
+    throw new TypeError('Goblin JavaScript requires jQuery. jQuery must be included before theme.js.');
   }
 })();
 

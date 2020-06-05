@@ -41,7 +41,7 @@ const mrMaps = (($) => {
   };
 
   const Default = {
-    MARKER_IMAGE_URL: 'assets/img/map-marker.png',
+    MARKER_IMAGE_URL: 'img/map-marker.png',
     MAP: {
       disableDefaultUI: true,
       draggable: true,

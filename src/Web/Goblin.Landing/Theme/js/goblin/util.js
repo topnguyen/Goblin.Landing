@@ -2,7 +2,7 @@
 //
 // Util
 //
-// Medium Rare utility functions
+// Goblin utility functions
 // v 1.2.0
 
 import jQuery from 'jquery';

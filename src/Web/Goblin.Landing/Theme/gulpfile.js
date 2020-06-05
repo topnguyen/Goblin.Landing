@@ -86,7 +86,7 @@ getPaths = () => {
             folder: 'scss',
             all: 'scss/**/*',
             root: 'scss/*.scss',
-            themeScss: ['scss/theme.scss', '!scss/user.scss', '!scss/user-variables.scss'],
+            themeScss: ['scss/goblin.scss', '!scss/user.scss', '!scss/user-variables.scss'],
         },
         dist: {
             packageFolder: '',
@@ -112,7 +112,7 @@ gulp.task('Build Scss', function () {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(paths.dist.css))
         .pipe(browserSync.stream({
-            match: "**/theme*.css"
+            match: "**/goblin*.css"
         }));
 });
 
@@ -133,7 +133,7 @@ gulp.task('Minify Scss', function () {
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(paths.dist.css))
         .pipe(browserSync.stream({
-            match: "**/theme*.css"
+            match: "**/goblin*.css"
         }));
 });
 
@@ -184,10 +184,10 @@ gulp.task('Build Goblin JS', async (done) => {
         .pipe(eslint())
         .pipe(eslint.format());
 
-    let fileDest = 'theme.js';
+    let fileDest = 'goblin.js';
     const banner = `/*!
   * ${theme.name}
-  * Copyright 2018-${year} Medium Rare (${theme.purchase_link})
+  * Copyright 2018-${year} Goblin (${theme.purchase_link})
   */`;
     const external = [...theme.scripts.external];
     const plugins = [
@@ -223,7 +223,7 @@ gulp.task('Build Goblin JS', async (done) => {
         banner,
         globals,
         format: 'umd',
-        name: 'theme',
+        name: 'goblin',
         sourcemap: true,
         sourcemapFile: path.resolve(__dirname, `./${paths.dist.js}${path.sep}${fileDest}.map`),
     });
