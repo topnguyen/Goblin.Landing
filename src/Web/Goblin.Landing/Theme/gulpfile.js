@@ -77,9 +77,9 @@ getPaths = () => {
                 ],
                 index: "./js/bootstrap/index.js"
             },
-            topnguyen: {
-                all: "js/topnguyen/**/*.js",
-                index: "js/topnguyen/index.js",
+            goblin: {
+                all: "js/goblin/**/*.js",
+                index: "js/goblin/index.js",
             }
         },
         scss: {
@@ -178,9 +178,9 @@ gulp.task('Build Bootstrap and jQuery Bootstrap', async (done) => {
     done();
 });
 
-// Build topnguyen js
-gulp.task('Build Top Nguyen JS', async (done) => {
-    gulp.src(paths.js.topnguyen.all)
+// Build goblin js
+gulp.task('Build Goblin JS', async (done) => {
+    gulp.src(paths.js.goblin.all)
         .pipe(eslint())
         .pipe(eslint.format());
 
@@ -205,7 +205,7 @@ gulp.task('Build Top Nguyen JS', async (done) => {
     const globals = theme.scripts.globals;
 
     const bundle = await rollup.rollup({
-        input: paths.js.topnguyen.index,
+        input: paths.js.goblin.index,
         external,
         plugins,
         onwarn: function (warning) {
@@ -233,4 +233,4 @@ gulp.task('Build Top Nguyen JS', async (done) => {
 });
 
 // BUILD ALL
-gulp.task('build', gulp.series(gulp.series('Build Scss', 'Minify Scss', 'Build Bootstrap and jQuery Bootstrap', 'Build Top Nguyen JS')));
+gulp.task('build', gulp.series(gulp.series('Build Scss', 'Minify Scss', 'Build Bootstrap and jQuery Bootstrap', 'Build Goblin JS')));

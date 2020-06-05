@@ -1,5 +1,5 @@
 /*!
-  * Jumpstart Bootstrap Theme
+  * Goblin Theme
   * Copyright 2018-2020 Medium Rare (undefined)
   */
 (function (global, factory) {
