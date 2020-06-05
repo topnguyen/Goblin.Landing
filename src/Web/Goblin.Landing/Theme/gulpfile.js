@@ -187,7 +187,7 @@ gulp.task('Build Goblin JS', async (done) => {
     let fileDest = 'goblin.js';
     const banner = `/*!
   * ${theme.name}
-  * Copyright 2018-${year} Goblin (${theme.purchase_link})
+  * Copyright 2018-${year} Goblin
   */`;
     const external = [...theme.scripts.external];
     const plugins = [

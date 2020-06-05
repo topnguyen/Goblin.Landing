@@ -1,6 +1,6 @@
 /*!
   * Goblin Theme
-  * Copyright 2018-2020 Medium Rare (undefined)
+  * Copyright 2018-2020 Goblin
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('aos'), require('jquery'), require('jquery-countdown'), require('scrollmonitor'), require('flickity'), require('ion-rangeslider'), require('isotope-layout'), require('jarallax'), require('plyr'), require('prismjs'), require('smooth-scroll'), require('@tanem/svg-injector'), require('twitter-fetcher'), require('typed.js')) :
@@ -7566,7 +7566,7 @@
 
   (function () {
     if (typeof $ === 'undefined') {
-      throw new TypeError('Medium Rare JavaScript requires jQuery. jQuery must be included before theme.js.');
+      throw new TypeError('Goblin JavaScript requires jQuery. jQuery must be included before theme.js.');
     }
   })();
 
