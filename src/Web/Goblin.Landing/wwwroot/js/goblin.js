@@ -3,19 +3,21 @@
   * Copyright 2018-2020 Goblin
   */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('aos'), require('jquery'), require('jquery-countdown'), require('scrollmonitor'), require('flickity'), require('ion-rangeslider'), require('isotope-layout'), require('jarallax'), require('plyr'), require('prismjs'), require('smooth-scroll'), require('@tanem/svg-injector'), require('typed.js')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'aos', 'jquery', 'jquery-countdown', 'scrollmonitor', 'flickity', 'ion-rangeslider', 'isotope-layout', 'jarallax', 'plyr', 'prismjs', 'smooth-scroll', '@tanem/svg-injector', 'typed.js'], factory) :
-  (global = global || self, factory(global.goblin = {}, global.AOS, global.jQuery, null, global.scrollMonitor, global.Flickity, null, global.Isotope, global.jarallax, global.Plyr, global.Prism, global.SmoothScroll, global.SVGInjector, global.Typed));
-}(this, (function (exports, AOS, jQuery$1, jqueryCountdown, scrollMonitor, flickity, ionRangeslider, Isotope, jarallax$1, Plyr, Prism, SmoothScroll, svgInjector, Typed) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('aos'), require('jquery'), require('jquery-countdown'), require('scrollmonitor'), require('flickity'), require('ion-rangeslider'), require('isotope-layout'), require('jarallax'), require('plyr'), require('prismjs'), require('smooth-scroll'), require('@tanem/svg-injector'), require('twitter-fetcher'), require('typed.js')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'aos', 'jquery', 'jquery-countdown', 'scrollmonitor', 'flickity', 'ion-rangeslider', 'isotope-layout', 'jarallax', 'plyr', 'prismjs', 'smooth-scroll', '@tanem/svg-injector', 'twitter-fetcher', 'typed.js'], factory) :
+  (global = global || self, factory(global.goblin = {}, global.AOS, global.jQuery, null, global.scrollMonitor, global.Flickity, null, global.Isotope, global.jarallax, global.Plyr, global.Prism, global.SmoothScroll, global.SVGInjector, global.twitterFetcher, global.Typed));
+}(this, (function (exports, AOS, jQuery$1, jqueryCountdown, scrollMonitor, Flickity, ionRangeslider, Isotope$1, jarallax$1, Plyr, Prism, SmoothScroll, svgInjector, twitterFetcher, Typed) { 'use strict';
 
   AOS = AOS && AOS.hasOwnProperty('default') ? AOS['default'] : AOS;
   jQuery$1 = jQuery$1 && jQuery$1.hasOwnProperty('default') ? jQuery$1['default'] : jQuery$1;
   scrollMonitor = scrollMonitor && scrollMonitor.hasOwnProperty('default') ? scrollMonitor['default'] : scrollMonitor;
-  Isotope = Isotope && Isotope.hasOwnProperty('default') ? Isotope['default'] : Isotope;
+  Flickity = Flickity && Flickity.hasOwnProperty('default') ? Flickity['default'] : Flickity;
+  Isotope$1 = Isotope$1 && Isotope$1.hasOwnProperty('default') ? Isotope$1['default'] : Isotope$1;
   jarallax$1 = jarallax$1 && jarallax$1.hasOwnProperty('default') ? jarallax$1['default'] : jarallax$1;
   Plyr = Plyr && Plyr.hasOwnProperty('default') ? Plyr['default'] : Plyr;
   Prism = Prism && Prism.hasOwnProperty('default') ? Prism['default'] : Prism;
   SmoothScroll = SmoothScroll && SmoothScroll.hasOwnProperty('default') ? SmoothScroll['default'] : SmoothScroll;
+  twitterFetcher = twitterFetcher && twitterFetcher.hasOwnProperty('default') ? twitterFetcher['default'] : twitterFetcher;
   Typed = Typed && Typed.hasOwnProperty('default') ? Typed['default'] : Typed;
 
   //
@@ -4128,7 +4130,7 @@
      * Check for isotope dependency
      * isotope - https://github.com/metafizzy/isotope
      */
-    if (typeof Isotope === 'undefined') {
+    if (typeof Isotope$1 === 'undefined') {
       throw new Error('goblinIsotope requires isotope.pkgd.js (https://github.com/metafizzy/isotope)');
     }
     /**
@@ -4349,7 +4351,7 @@
         this.options.layoutMode = this.attributes.layoutMode || Options.DEFAULT_LAYOUT;
         this.options.filter = defaultFilterSelector;
         this.options.sortAscending[Options.ORIGINAL_ORDER] = defaultSortAscending;
-        this.isotope = new Isotope(this.element, this.options);
+        this.isotope = new Isotope$1(this.element, this.options);
         this.activeFilter = getFilter(this.attributes.isotopeId, defaultFilter);
         toggleActive(this.activeFilter, true);
       };
@@ -4441,6 +4443,492 @@
       });
     }
   })(jQuery$1);
+
+  var goblinMapstyle = [{
+    featureType: 'administrative.country',
+    elementType: 'labels.text',
+    stylers: [{
+      lightness: '29'
+    }]
+  }, {
+    featureType: 'administrative.province',
+    elementType: 'labels.text.fill',
+    stylers: [{
+      lightness: '-12'
+    }, {
+      color: '#796340'
+    }]
+  }, {
+    featureType: 'administrative.locality',
+    elementType: 'labels.text.fill',
+    stylers: [{
+      lightness: '15'
+    }, {
+      saturation: '15'
+    }]
+  }, {
+    featureType: 'landscape.man_made',
+    elementType: 'geometry',
+    stylers: [{
+      visibility: 'on'
+    }, {
+      color: '#fbf5ed'
+    }]
+  }, {
+    featureType: 'landscape.natural',
+    elementType: 'geometry',
+    stylers: [{
+      visibility: 'on'
+    }, {
+      color: '#fbf5ed'
+    }]
+  }, {
+    featureType: 'poi',
+    elementType: 'labels',
+    stylers: [{
+      visibility: 'off'
+    }]
+  }, {
+    featureType: 'poi.attraction',
+    elementType: 'all',
+    stylers: [{
+      visibility: 'on'
+    }, {
+      lightness: '30'
+    }, {
+      saturation: '-41'
+    }, {
+      gamma: '0.84'
+    }]
+  }, {
+    featureType: 'poi.attraction',
+    elementType: 'labels',
+    stylers: [{
+      visibility: 'on'
+    }]
+  }, {
+    featureType: 'poi.business',
+    elementType: 'all',
+    stylers: [{
+      visibility: 'off'
+    }]
+  }, {
+    featureType: 'poi.business',
+    elementType: 'labels',
+    stylers: [{
+      visibility: 'off'
+    }]
+  }, {
+    featureType: 'poi.medical',
+    elementType: 'geometry',
+    stylers: [{
+      color: '#fbd3da'
+    }]
+  }, {
+    featureType: 'poi.medical',
+    elementType: 'labels',
+    stylers: [{
+      visibility: 'on'
+    }]
+  }, {
+    featureType: 'poi.park',
+    elementType: 'geometry',
+    stylers: [{
+      color: '#b0e9ac'
+    }, {
+      visibility: 'on'
+    }]
+  }, {
+    featureType: 'poi.park',
+    elementType: 'labels',
+    stylers: [{
+      visibility: 'on'
+    }]
+  }, {
+    featureType: 'poi.park',
+    elementType: 'labels.text.fill',
+    stylers: [{
+      hue: '#68ff00'
+    }, {
+      lightness: '-24'
+    }, {
+      gamma: '1.59'
+    }]
+  }, {
+    featureType: 'poi.sports_complex',
+    elementType: 'all',
+    stylers: [{
+      visibility: 'on'
+    }]
+  }, {
+    featureType: 'poi.sports_complex',
+    elementType: 'geometry',
+    stylers: [{
+      saturation: '10'
+    }, {
+      color: '#c3eb9a'
+    }]
+  }, {
+    featureType: 'road',
+    elementType: 'geometry.stroke',
+    stylers: [{
+      visibility: 'on'
+    }, {
+      lightness: '30'
+    }, {
+      color: '#e7ded6'
+    }]
+  }, {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: [{
+      visibility: 'on'
+    }, {
+      saturation: '-39'
+    }, {
+      lightness: '28'
+    }, {
+      gamma: '0.86'
+    }]
+  }, {
+    featureType: 'road.highway',
+    elementType: 'geometry.fill',
+    stylers: [{
+      color: '#ffe523'
+    }, {
+      visibility: 'on'
+    }]
+  }, {
+    featureType: 'road.highway',
+    elementType: 'geometry.stroke',
+    stylers: [{
+      visibility: 'on'
+    }, {
+      saturation: '0'
+    }, {
+      gamma: '1.44'
+    }, {
+      color: '#fbc28b'
+    }]
+  }, {
+    featureType: 'road.highway',
+    elementType: 'labels',
+    stylers: [{
+      visibility: 'on'
+    }, {
+      saturation: '-40'
+    }]
+  }, {
+    featureType: 'road.arterial',
+    elementType: 'geometry',
+    stylers: [{
+      color: '#fed7a5'
+    }]
+  }, {
+    featureType: 'road.arterial',
+    elementType: 'geometry.fill',
+    stylers: [{
+      visibility: 'on'
+    }, {
+      gamma: '1.54'
+    }, {
+      color: '#fbe38b'
+    }]
+  }, {
+    featureType: 'road.local',
+    elementType: 'geometry.fill',
+    stylers: [{
+      color: '#ffffff'
+    }, {
+      visibility: 'on'
+    }, {
+      gamma: '2.62'
+    }, {
+      lightness: '10'
+    }]
+  }, {
+    featureType: 'road.local',
+    elementType: 'geometry.stroke',
+    stylers: [{
+      visibility: 'on'
+    }, {
+      weight: '0.50'
+    }, {
+      gamma: '1.04'
+    }]
+  }, {
+    featureType: 'transit.station.airport',
+    elementType: 'geometry.fill',
+    stylers: [{
+      color: '#dee3fb'
+    }]
+  }, {
+    featureType: 'water',
+    elementType: 'geometry',
+    stylers: [{
+      saturation: '46'
+    }, {
+      color: '#a4e1ff'
+    }]
+  }];
+
+  var goblinMaps = function ($) {
+    /**
+     * ------------------------------------------------------------------------
+     * Constants
+     * ------------------------------------------------------------------------
+     */
+    var NAME = 'goblinMaps';
+    var VERSION = '1.1.0';
+    var DATA_KEY = 'goblin.maps';
+    var EVENT_KEY = "." + DATA_KEY;
+    var JQUERY_NO_CONFLICT = $.fn[NAME];
+    var Selector = {
+      MAP: '[data-maps-api-key]',
+      MARKER: 'div.map-marker',
+      STYLE: 'div.map-style',
+      MARKER_ADDRESS: 'data-address',
+      MARKER_LATLNG: 'data-latlong',
+      MARKER_IMAGE: 'data-marker-image',
+      MARKER_TITLE: 'data-marker-title',
+      INFOWindow: 'div.info-window'
+    };
+    var String = {
+      MARKER_TITLE: ''
+    };
+    var Event = {
+      MAP_LOADED: "loaded" + EVENT_KEY
+    };
+    var Default = {
+      MARKER_IMAGE_URL: 'img/map-marker.png',
+      MAP: {
+        disableDefaultUI: true,
+        draggable: true,
+        scrollwheel: false,
+        zoom: 17,
+        zoomControl: false
+      }
+    }; // goblinMapstyle should be defined in a js file included prior to maps.js
+    // The data should be an array of style overrides as per snazzymaps.com.
+
+    Default.MAP.styles = typeof goblinMapstyle !== typeof undefined ? goblinMapstyle : undefined;
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
+    var Map = /*#__PURE__*/function () {
+      function Map(element) {
+        // The current map element
+        this.element = element;
+        this.$element = $(element);
+        this.markers = [];
+        this.geocoder = new google.maps.Geocoder();
+        this.markerElements = this.$element.find(Selector.MARKER);
+        this.styleElement = this.$element.find(Selector.STYLE).first();
+        this.initMap();
+        this.createMarkers();
+      } // version getter
+
+
+      Map.init = function init() {
+        var mapsOnPage = $.makeArray($(Selector.MAP));
+        /* eslint-disable no-plusplus */
+
+        for (var i = mapsOnPage.length; i--;) {
+          var $map = $(mapsOnPage[i]);
+          Map.jQueryInterface.call($map, $map.data());
+        }
+      };
+
+      var _proto = Map.prototype;
+
+      _proto.initMap = function initMap() {
+        var _this = this;
+
+        var mapElement = this.element;
+        var mapInstance = this.$element;
+        var showZoomControl = typeof mapInstance.attr('data-zoom-controls') !== typeof undefined;
+        var zoomControlPos = typeof mapInstance.attr('data-zoom-controls') !== typeof undefined ? mapInstance.attr('data-zoom-controls') : false;
+        var latlong = typeof mapInstance.attr('data-latlong') !== typeof undefined ? mapInstance.attr('data-latlong') : false;
+        var latitude = latlong ? parseFloat(latlong.substr(0, latlong.indexOf(','))) : false;
+        var longitude = latlong ? parseFloat(latlong.substr(latlong.indexOf(',') + 1)) : false;
+        var address = mapInstance.attr('data-address') || '';
+        var mapOptions = null; // let markerOptions = null;
+
+        var mapAo = {}; // Attribute overrides - allows data attributes on the map to override global options
+
+        try {
+          mapAo.styles = this.styleElement.length ? JSON.parse(this.styleElement.html().trim()) : undefined;
+        } catch (error) {
+          throw new Error(error);
+        }
+
+        mapAo.zoom = mapInstance.attr('data-map-zoom') ? parseInt(mapInstance.attr('data-map-zoom'), 10) : undefined;
+        mapAo.zoomControl = showZoomControl;
+        mapAo.zoomControlOptions = zoomControlPos !== false ? {
+          position: google.maps.ControlPosition[zoomControlPos]
+        } : undefined;
+        mapOptions = jQuery.extend({}, Default.MAP, mapAo);
+        this.map = new google.maps.Map(mapElement, mapOptions);
+        google.maps.event.addListenerOnce(this.map, 'center_changed', function () {
+          // Map has been centered.
+          var loadedEvent = $.Event(Event.MAP_LOADED, {
+            map: _this.map
+          });
+          mapInstance.trigger(loadedEvent);
+        });
+
+        if (typeof latitude !== typeof undefined && latitude !== '' && latitude !== false && typeof longitude !== typeof undefined && longitude !== '' && longitude !== false) {
+          this.map.setCenter(new google.maps.LatLng(latitude, longitude));
+        } else if (address !== '') {
+          this.geocodeAddress(address, Map.centerMap, this, this.map);
+        } else {
+          throw new Error('No valid address or latitude/longitude pair provided for map.');
+        }
+      };
+
+      _proto.geocodeAddress = function geocodeAddress(address, callback, thisMap, args) {
+        this.geocoder.geocode({
+          address: address
+        }, function (results, status) {
+          if (status !== google.maps.GeocoderStatus.OK) {
+            throw new Error("There was a problem geocoding the address \"" + address + "\".");
+          } else {
+            callback(results, thisMap, args);
+          }
+        });
+      };
+
+      Map.centerMap = function centerMap(geocodeResults, thisMap) {
+        thisMap.map.setCenter(geocodeResults[0].geometry.location);
+      };
+
+      Map.moveMarker = function moveMarker(geocodeResults, thisMap, gMarker) {
+        gMarker.setPosition(geocodeResults[0].geometry.location);
+      };
+
+      _proto.createMarkers = function createMarkers() {
+        var _this2 = this;
+
+        Default.MARKER = {
+          icon: {
+            url: this.$element.attr(Selector.MARKER_IMAGE) || Default.MARKER_IMAGE_URL,
+            scaledSize: new google.maps.Size(50, 50)
+          },
+          title: String.MARKER_TITLE,
+          optimised: false
+        };
+        this.markerElements.each(function (index, marker) {
+          var gMarker;
+          var $marker = $(marker);
+          var markerAddress = $marker.attr(Selector.MARKER_ADDRESS);
+          var markerLatLng = $marker.attr(Selector.MARKER_LATLNG);
+          var infoWindow = $marker.find(Selector.INFOWindow);
+          var markerAo = {
+            title: $marker.attr(Selector.MARKER_TITLE)
+          };
+          markerAo.icon = typeof $marker.attr(Selector.MARKER_IMAGE) !== typeof undefined ? {
+            url: $marker.attr(Selector.MARKER_IMAGE),
+            scaledSize: new google.maps.Size(50, 50)
+          } : undefined;
+          var markerOptions = jQuery.extend({}, Default.MARKER, markerAo);
+          gMarker = new google.maps.Marker(jQuery.extend({}, markerOptions, {
+            map: _this2.map
+          }));
+
+          if (infoWindow.length) {
+            var gInfoWindow = new google.maps.InfoWindow({
+              content: infoWindow.first().html(),
+              maxWidth: parseInt(infoWindow.attr('data-max-width') || '250', 10)
+            });
+            gMarker.addListener('click', function () {
+              gInfoWindow.open(_this2.map, gMarker);
+            });
+          } // Set marker position
+
+
+          if (markerLatLng) {
+            if (/(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)/.test(markerLatLng)) {
+              gMarker.setPosition(new google.maps.LatLng(parseFloat(markerLatLng.substr(0, markerLatLng.indexOf(','))), parseFloat(markerLatLng.substr(markerLatLng.indexOf(',') + 1))));
+              _this2.markers[index] = gMarker;
+            }
+          } else if (markerAddress) {
+            _this2.geocodeAddress(markerAddress, Map.moveMarker, _this2, gMarker);
+
+            _this2.markers[index] = gMarker;
+          } else {
+            gMarker = null;
+            throw new Error("Invalid data-address or data-latlong provided for marker " + (index + 1));
+          }
+        });
+      };
+
+      Map.jQueryInterface = function jQueryInterface() {
+        return this.each(function jqEachMap() {
+          var $element = $(this);
+          var data = $element.data(DATA_KEY);
+
+          if (!data) {
+            data = new Map(this);
+            $element.data(DATA_KEY, data);
+          }
+        });
+      };
+
+      _createClass(Map, null, [{
+        key: "VERSION",
+        get: function get() {
+          return VERSION;
+        }
+      }]);
+
+      return Map;
+    }(); // END Class definition
+
+    /**
+     * ------------------------------------------------------------------------
+     * Initialise by data attribute
+     * ------------------------------------------------------------------------
+     */
+    // Load Google MAP API JS with callback to initialise when fully loaded
+
+
+    if (document.querySelector('[data-maps-api-key]') && !document.querySelector('.gMapsAPI')) {
+      if ($('[data-maps-api-key]').length) {
+        var apiKey = $('[data-maps-api-key]:first').attr('data-maps-api-key') || '';
+
+        if (apiKey !== '') {
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&callback=theme.goblinMaps.init";
+          script.className = 'gMapsAPI';
+          document.body.appendChild(script);
+        }
+      }
+    }
+    /**
+     * ------------------------------------------------------------------------
+     * jQuery
+     * ------------------------------------------------------------------------
+     */
+
+    /* eslint-disable no-param-reassign */
+
+
+    $.fn[NAME] = Map.jQueryInterface;
+    $.fn[NAME].Constructor = Map;
+
+    $.fn[NAME].noConflict = function MapNoConflict() {
+      $.fn[NAME] = JQUERY_NO_CONFLICT;
+      return Map.jQueryInterface;
+    };
+    /* eslint-enable no-param-reassign */
+
+
+    return Map;
+  }(jQuery);
 
   var goblinOverlayNav = function ($) {
     /**
@@ -6190,6 +6678,198 @@
     }
   });
 
+  var goblinTwitterFetcher = function ($) {
+    /**
+     * Check for twitterFetcher dependency
+     * twitterFetcher - https://github.com/jasonmayes/Twitter-Post-Fetcher
+     */
+    if (typeof twitterFetcher === 'undefined') {
+      throw new Error('goblinTwitterFetcher requires twitterFetcher.js (https://github.com/jasonmayes/Twitter-Post-Fetcher)');
+    }
+    /**
+     * ------------------------------------------------------------------------
+     * Constants
+     * ------------------------------------------------------------------------
+     */
+
+
+    var NAME = 'goblinTwitterFetcher';
+    var VERSION = '1.0.0';
+    var DATA_KEY = 'goblin.twitterFetcher';
+    var EVENT_KEY = "." + DATA_KEY;
+    var DATA_API_KEY = '.data-api';
+    var JQUERY_NO_CONFLICT = $.fn[NAME];
+    var Event = {
+      LOAD_DATA_API: "load" + EVENT_KEY + DATA_API_KEY,
+      RESIZE: "resize" + EVENT_KEY,
+      READY: "ready" + EVENT_KEY,
+      APPEND: "tweetAppended" + EVENT_KEY
+    };
+    var Selector = {
+      DATA_ATTR: 'twitter-fetcher',
+      DATA_TWITTER_FETCHER: '[data-twitter-fetcher]',
+      DATA_TWITTER: 'data-twitter',
+      USER: '.user',
+      TWEET: '.tweet',
+      TIME_POSTED: '.timePosted',
+      INTERACT: '.interact'
+    };
+    var Defaults = {
+      USERNAME: 'twitter',
+      MAX_TWEETS: 6
+    };
+    var Options = {
+      USERNAME: 'username',
+      MAX_TWEETS: 'max-tweets',
+      FLICKITY: 'flickity',
+      SLIDER: 'twitterFlickity',
+      ISOTOPE: 'isotope'
+    };
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
+    var TwitterFetcher = /*#__PURE__*/function () {
+      function TwitterFetcher(element) {
+        var $element = $(element);
+        this.element = element;
+        this.element.id = "tweets-" + new Date().getTime();
+        this.username = $element.data(Options.USERNAME).replace('@', '') || Defaults.USERNAME;
+        this.maxTweets = parseInt($element.data(Options.MAX_TWEETS), 10) || Defaults.MAX_TWEETS; // Check if data-twitter-slider is options object, plain attribute or not present.
+
+        this.slider = this.element.getAttribute(Selector.DATA_TWITTER + "-" + Options.FLICKITY) !== null;
+        this.slider = this.slider && typeof $element.data(Options.SLIDER) === 'object' ? $element.data(Options.SLIDER) : this.slider; // Check if data-twitter-isotope is present.
+
+        this.isotope = this.element.getAttribute(Selector.DATA_TWITTER + "-" + Options.ISOTOPE) !== null;
+        this.initTwitterFeed();
+      } // getters
+
+
+      var _proto = TwitterFetcher.prototype;
+
+      _proto.initTwitterFeed = function initTwitterFeed() {
+        var _this = this;
+
+        this.config = {
+          profile: {
+            screenName: this.username
+          },
+          domId: this.element.id,
+          maxTweets: this.maxTweets,
+          enableLinks: true,
+          showUser: true,
+          showTime: true,
+          dateFunction: '',
+          showRetweet: false,
+          customCallback: function customCallback(tweets) {
+            var $element = $(_this.element);
+            var html;
+            var template = $element.children().first().detach();
+            var x = tweets.length;
+            var n = 0;
+
+            while (n < x) {
+              var tweetContent = $('<div>').append($(tweets[n]));
+              var templateClone = template.clone();
+              templateClone.find(Selector.TWEET).html(tweetContent.find(Selector.TWEET).html());
+              templateClone.find(Selector.USER).html(tweetContent.find(Selector.USER).html());
+              templateClone.find(Selector.TIME_POSTED).html(tweetContent.find(Selector.TIME_POSTED).html());
+              templateClone.find(Selector.INTERACT).html(tweetContent.find(Selector.INTERACT).html());
+              $element.append(templateClone);
+              n += 1; // Fire an event when each tweet is added to the div
+
+              var appendEvent = $.Event(Event.APPEND);
+              appendEvent.appendedElement = templateClone;
+              appendEvent.goblinTwitterFetcher = _this;
+              $(_this.element).trigger(appendEvent);
+            }
+
+            if (_this.slider === true || typeof _this.slider === 'object') {
+              // Check for Flickity dependency
+              if (typeof Flickity === 'undefined') {
+                throw new Error('goblinTwitterFetcher requires flickity.js (https://github.com/metafizzy/flickity)');
+              } else {
+                $element.data('flickity', new Flickity(_this.element, _this.slider));
+              }
+            } else if (_this.isotope === true) {
+              // Check for Isotope dependency
+              if (typeof Isotope === 'undefined') {
+                throw new Error('goblinTwitterFetcher requires isotope.js (https://github.com/metafizzy/isotope)');
+              } else {
+                $(_this.element).goblinIsotope();
+              }
+            } // Fire an event for tweets ready
+
+
+            var readyEvent = $.Event(Event.READY);
+            readyEvent.goblinTwitterFetcher = _this;
+            $(_this.element).trigger(readyEvent);
+            return html;
+          }
+        };
+        twitterFetcher.fetch(this.config);
+      };
+
+      TwitterFetcher.jQueryInterface = function jQueryInterface() {
+        return this.each(function jqEachTwitterFetcher() {
+          var $element = $(this);
+          var data = $element.data(DATA_KEY);
+
+          if (!data) {
+            data = new TwitterFetcher(this);
+            $element.data(DATA_KEY, data);
+          }
+        });
+      };
+
+      _createClass(TwitterFetcher, null, [{
+        key: "VERSION",
+        get: function get() {
+          return VERSION;
+        }
+      }]);
+
+      return TwitterFetcher;
+    }();
+    /**
+     * ------------------------------------------------------------------------
+     * Initialise by data attribute
+     * ------------------------------------------------------------------------
+     */
+
+
+    $(window).on(Event.LOAD_DATA_API, function () {
+      var twitterFetcherElements = $.makeArray($(Selector.DATA_TWITTER_FETCHER));
+      /* eslint-disable no-plusplus */
+
+      for (var i = twitterFetcherElements.length; i--;) {
+        var $twitterFetcher = $(twitterFetcherElements[i]);
+        TwitterFetcher.jQueryInterface.call($twitterFetcher, $twitterFetcher.data());
+      }
+    });
+    /**
+     * ------------------------------------------------------------------------
+     * jQuery
+     * ------------------------------------------------------------------------
+     */
+
+    /* eslint-disable no-param-reassign */
+
+    $.fn[NAME] = TwitterFetcher.jQueryInterface;
+    $.fn[NAME].Constructor = TwitterFetcher;
+
+    $.fn[NAME].noConflict = function TwitterFetcherNoConflict() {
+      $.fn[NAME] = JQUERY_NO_CONFLICT;
+      return TwitterFetcher.jQueryInterface;
+    };
+    /* eslint-enable no-param-reassign */
+
+
+    return TwitterFetcher;
+  }(jQuery$1);
+
   var goblinTypedText = function ($) {
     /**
      * Check for typedText dependency
@@ -6321,23 +7001,7 @@
     if (typeof $ === 'undefined') {
       throw new TypeError('Goblin JavaScript requires jQuery. jQuery must be included before theme.js.');
     }
-  })(); // Elect Callback
-
-
-  elect.ajaxify.fnAfterRedirect = function (url) {
-    console.log(goblinCountdown.DATA_API_KEY); // $(window).trigger(goblinCountdown.DATA_API_KEY);
-    // $(window).trigger(goblinCountup.DATA_API_KEY);
-    // $(window).trigger(goblinDropdownGrid.DATA_API_KEY);
-    // $(window).trigger(goblinFlatpickr.DATA_API_KEY);
-    // $(window).trigger(goblinIonRangeSlider.DATA_API_KEY);
-    // $(window).trigger(goblinIsotope.DATA_API_KEY);
-    // $(window).trigger(goblinOverlayNav.DATA_API_KEY);
-    // $(window).trigger(goblinReadingPosition.DATA_API_KEY);
-    // $(window).trigger(goblinSmoothScroll.DATA_API_KEY);
-    // $(window).trigger(goblinSticky.DATA_API_KEY);
-    // $(window).trigger(goblinTypedText.DATA_API_KEY);
-    // $(window).trigger(goblinUtil.DATA_API_KEY);
-  };
+  })();
 
   exports.goblinCountdown = goblinCountdown;
   exports.goblinCountup = goblinCountup;
@@ -6345,10 +7009,13 @@
   exports.goblinFlatpickr = goblinFlatpickr;
   exports.goblinIonRangeSlider = goblinIonRangeSlider;
   exports.goblinIsotope = goblinIsotope;
+  exports.goblinMaps = goblinMaps;
+  exports.goblinMapsStyle = goblinMapstyle;
   exports.goblinOverlayNav = goblinOverlayNav;
   exports.goblinReadingPosition = goblinReadingPosition;
   exports.goblinSmoothScroll = goblinSmoothScroll;
   exports.goblinSticky = goblinSticky;
+  exports.goblinTwitterFetcher = goblinTwitterFetcher;
   exports.goblinTypedText = goblinTypedText;
   exports.goblinUtil = goblinUtil;
 

@@ -10,8 +10,8 @@ import './flickity';
 import goblinIonRangeSlider from './ion-rangeslider';
 import goblinIsotope from './isotope';
 import './jarallax';
-// import goblinMapsStyle from './maps-style';
-// import goblinMaps from './maps';
+import goblinMapsStyle from './maps-style';
+import goblinMaps from './maps';
 import goblinOverlayNav from './overlay-nav';
 import './navigation';
 import './plyr';
@@ -21,7 +21,7 @@ import goblinReadingPosition from './reading-position';
 import goblinSmoothScroll from './smooth-scroll';
 import goblinSticky from './sticky';
 import './svg-injector';
-// import goblinTwitterFetcher from './twitter-fetcher';
+import goblinTwitterFetcher from './twitter-fetcher';
 import goblinTypedText from './typed-text';
 import goblinUtil from './util';
 
@@ -38,13 +38,13 @@ export {
   goblinFlatpickr,
   goblinIonRangeSlider,
   goblinIsotope,
-  // goblinMapsStyle,
-  // goblinMaps,
+  goblinMapsStyle,
+  goblinMaps,
   goblinOverlayNav,
   goblinReadingPosition,
   goblinSmoothScroll,
   goblinSticky,
-  // goblinTwitterFetcher,
+  goblinTwitterFetcher,
   goblinTypedText,
   goblinUtil,
 };
