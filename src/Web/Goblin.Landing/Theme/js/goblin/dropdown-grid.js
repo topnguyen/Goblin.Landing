@@ -7,18 +7,18 @@
 // (https://github.com/twbs/bootstrap/blob/master/LICENSE)
 
 import jQuery from 'jquery';
-import mrUtil from './util';
+import goblinUtil from './util';
 
-const mrDropdownGrid = (($) => {
+const goblinDropdownGrid = (($) => {
   /**
    * ------------------------------------------------------------------------
    * Constants
    * ------------------------------------------------------------------------
    */
 
-  const NAME = 'mrDropdownGrid';
+  const NAME = 'goblinDropdownGrid';
   const VERSION = '1.0.0';
-  const DATA_KEY = 'mr.dropdownGrid';
+  const DATA_KEY = 'goblin.dropdownGrid';
   const EVENT_KEY = `.${DATA_KEY}`;
   const DATA_API_KEY = '.data-api';
   const JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -176,7 +176,7 @@ const mrDropdownGrid = (($) => {
 
     updatePosition(winWidth) {
       const windowWidth = winWidth || window.innerWidth;
-      const trigger = mrDropdownGrid.getDimensionsFromElement(this.element);
+      const trigger = goblinDropdownGrid.getDimensionsFromElement(this.element);
       this.positionContainer(trigger.offsetLeft);
       this.positionContent(windowWidth, trigger.offsetLeft);
     }
@@ -193,13 +193,13 @@ const mrDropdownGrid = (($) => {
       if (this.content) {
         let leftValue;
         // let topValue;
-        const contentRect = mrDropdownGrid.getDimensionsFromElement(this.content);
+        const contentRect = goblinDropdownGrid.getDimensionsFromElement(this.content);
         const contentWidth = contentRect.width;
 
         // If submenu, the left of the content needs to sit to the side of the trigger's content
         if (this.isSubmenu) {
           this.getParentMenu();
-          const parentContent = mrDropdownGrid.getDimensionsFromElement(this.parentMenu.content);
+          const parentContent = goblinDropdownGrid.getDimensionsFromElement(this.parentMenu.content);
           // Calculate X Offset
           if (parentContent.offsetLeft + parentContent.width + contentWidth <= windowWidth) {
             // Submenu can fit next to parent menu
@@ -312,7 +312,7 @@ const mrDropdownGrid = (($) => {
     }
 
     static getDimensionsFromElement(element) {
-      if (element && mrUtil.isElement(element)) {
+      if (element && goblinUtil.isElement(element)) {
         const rect = element.getBoundingClientRect();
         rect.offsetLeft = Math.round((rect.left + window.pageXOffset)
           - document.documentElement.clientLeft);
@@ -341,7 +341,7 @@ const mrDropdownGrid = (($) => {
         toggles = document.querySelectorAll(Selector.DATA_TOGGLE);
       }
 
-      mrUtil.forEach(toggles, (index, toggle) => {
+      goblinUtil.forEach(toggles, (index, toggle) => {
         const parent = DropdownGrid.getParentFromElement(toggle);
         const context = $(toggle).data(DATA_KEY);
         const relatedTarget = {
@@ -525,4 +525,4 @@ const mrDropdownGrid = (($) => {
   return DropdownGrid;
 })(jQuery);
 
-export default mrDropdownGrid;
+export default goblinDropdownGrid;

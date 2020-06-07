@@ -11,7 +11,7 @@ import { SVGInjector } from '@tanem/svg-injector';
 SVGInjector(document.querySelectorAll('[data-inject-svg]'), {
   afterEach(err, svg) {
     if (typeof jarallax === 'function') {
-      svg.dispatchEvent(new CustomEvent('injected.mr.SVGInjector', { bubbles: true }));
+      svg.dispatchEvent(new CustomEvent('injected.goblin.SVGInjector', { bubbles: true }));
     }
   },
 });

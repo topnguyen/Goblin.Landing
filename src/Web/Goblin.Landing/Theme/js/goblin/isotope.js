@@ -7,15 +7,15 @@
 
 import jQuery from 'jquery';
 import Isotope from 'isotope-layout';
-import mrUtil from './util';
+import goblinUtil from './util';
 
-const mrIsotope = (($) => {
+const goblinIsotope = (($) => {
   /**
    * Check for isotope dependency
    * isotope - https://github.com/metafizzy/isotope
    */
   if (typeof Isotope === 'undefined') {
-    throw new Error('mrIsotope requires isotope.pkgd.js (https://github.com/metafizzy/isotope)');
+    throw new Error('goblinIsotope requires isotope.pkgd.js (https://github.com/metafizzy/isotope)');
   }
 
   /**
@@ -24,9 +24,9 @@ const mrIsotope = (($) => {
    * ------------------------------------------------------------------------
    */
 
-  const NAME = 'mrIsotope';
+  const NAME = 'goblinIsotope';
   const VERSION = '1.0.0';
-  const DATA_KEY = 'mr.isotope';
+  const DATA_KEY = 'goblin.isotope';
   const EVENT_KEY = `.${DATA_KEY}`;
   const DATA_API_KEY = '.data-api';
   const JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -91,7 +91,7 @@ const mrIsotope = (($) => {
   // sets active class of provided elements on or off
   function toggleActive(filters, active) {
     if (filters) {
-      mrUtil.forEach(filters, (index, filter) => {
+      goblinUtil.forEach(filters, (index, filter) => {
         if (filter && typeof filter.classList !== typeof undefined) {
           if (active) {
             filter.classList.add(Css.ACTIVE);
@@ -138,7 +138,7 @@ const mrIsotope = (($) => {
     initFilters() {
       // Get all filter links
       const filters = getFilters(this.attributes.isotopeId, Selector.FILTER_INITIALISED);
-      mrUtil.forEach(filters, (index, filter) => {
+      goblinUtil.forEach(filters, (index, filter) => {
         const filterValue = filter.attributes[Selector.FILTER]
           && filter.attributes[Selector.FILTER].value;
 
@@ -167,7 +167,7 @@ const mrIsotope = (($) => {
       const sorters = getSorters(this.attributes.isotopeId);
       const defaultSort = this.attributes.defaultSort || Options.ORIGINAL_ORDER;
 
-      mrUtil.forEach(sorters, (index, sorter) => {
+      goblinUtil.forEach(sorters, (index, sorter) => {
         // Get options from attributes
         // Done this way for brevity (previous way was too wordy)
         const sa = sorter.attributes;
@@ -287,4 +287,4 @@ const mrIsotope = (($) => {
   return IsotopeWrapper;
 })(jQuery);
 
-export default mrIsotope;
+export default goblinIsotope;

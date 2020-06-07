@@ -10,13 +10,13 @@ import jQuery from 'jquery';
 import Typed from 'typed.js';
 import scrollMonitor from 'scrollmonitor';
 
-const mrTypedText = (($) => {
+const goblinTypedText = (($) => {
   /**
    * Check for typedText dependency
    * typedText - https://github.com/mattboldt/typed.js/
    */
   if (typeof Typed !== 'function') {
-    throw new Error('mrTypedText requires typed.js (https://github.com/mattboldt/typed.js/)');
+    throw new Error('goblinTypedText requires typed.js (https://github.com/mattboldt/typed.js/)');
   }
 
   /**
@@ -24,7 +24,7 @@ const mrTypedText = (($) => {
    * scrollMonitor - https://github.com/stutrek/scrollMonitor
    */
   if (typeof scrollMonitor === 'undefined') {
-    throw new Error('mrTypedText requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
+    throw new Error('goblinTypedText requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
   }
 
   /**
@@ -33,9 +33,9 @@ const mrTypedText = (($) => {
    * ------------------------------------------------------------------------
    */
 
-  const NAME = 'mrTypedText';
+  const NAME = 'goblinTypedText';
   const VERSION = '1.0.0';
-  const DATA_KEY = 'mr.typedText';
+  const DATA_KEY = 'goblin.typedText';
   const EVENT_KEY = `.${DATA_KEY}`;
   const DATA_API_KEY = '.data-api';
   const JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -121,4 +121,4 @@ const mrTypedText = (($) => {
   return TypedText;
 })(jQuery);
 
-export default mrTypedText;
+export default goblinTypedText;

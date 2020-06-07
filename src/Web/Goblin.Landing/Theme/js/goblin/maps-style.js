@@ -1,4 +1,4 @@
-const mrMapStyle = [
+const goblinMapstyle = [
   {
     featureType: 'administrative.country',
     elementType: 'labels.text',
@@ -140,4 +140,4 @@ const mrMapStyle = [
     stylers: [{ saturation: '46' }, { color: '#a4e1ff' }],
   }];
 
-export default mrMapStyle;
+export default goblinMapstyle;

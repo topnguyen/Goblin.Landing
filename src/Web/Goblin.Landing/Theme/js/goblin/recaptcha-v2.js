@@ -5,12 +5,12 @@
 // Handles initialization and validation of recaptcha widgets
 
 /* global grecaptcha */
-import mrUtil from './util';
+import goblinUtil from './util';
 
 const mrRecaptchav2 = (($) => {
-  // Check mrUtil is present and correct version
-  if (!(mrUtil && mrUtil.version >= '1.2.0')) {
-    throw new Error('mrUtil >= version 1.2.0 is required.');
+  // Check goblinUtil is present and correct version
+  if (!(goblinUtil && goblinUtil.version >= '1.2.0')) {
+    throw new Error('goblinUtil >= version 1.2.0 is required.');
   }
 
   /**
@@ -21,7 +21,7 @@ const mrRecaptchav2 = (($) => {
 
   const NAME = 'mrRecaptchav2';
   const VERSION = '1.0.0';
-  const DATA_KEY = 'mr.recaptchav2';
+  const DATA_KEY = 'goblin.recaptchav2';
   // const EVENT_KEY = `.${DATA_KEY}`;
   // const DATA_API_KEY = '.data-api';
   const JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -128,7 +128,7 @@ const mrRecaptchav2 = (($) => {
     }
 
     static getRecaptchaFromForm(form) {
-      if (mrUtil.isElement(form)) {
+      if (goblinUtil.isElement(form)) {
         const captchaElement = form.querySelector(Selector.DATA_RECAPTCHA);
         if (captchaElement) {
           const data = $(captchaElement).data(DATA_KEY);
@@ -142,7 +142,7 @@ const mrRecaptchav2 = (($) => {
 
     static set apiReady(ready) {
       if (ready === true && apiReady === false) {
-        mrUtil.forEach(Recaptchav2.instances, (index, instance) => {
+        goblinUtil.forEach(Recaptchav2.instances, (index, instance) => {
           instance.init();
         });
       }
@@ -174,7 +174,7 @@ const mrRecaptchav2 = (($) => {
   $(document).ready(() => {
     const Recaptchav2Elements = $.makeArray($(Selector.DATA_RECAPTCHA));
     if (Recaptchav2Elements.length > 0) {
-      mrUtil.getScript(RemoteScript.RECAPTCHAV2);
+      goblinUtil.getScript(RemoteScript.RECAPTCHAV2);
 
       /* eslint-disable no-plusplus */
       for (let i = Recaptchav2Elements.length; i--;) {

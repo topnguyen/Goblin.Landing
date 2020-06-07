@@ -1,30 +1,29 @@
 
 import './aos';
 import './background-images';
-import mrCountdown from './countdown';
-import mrCountup from './countup';
-import mrDropdownGrid from './dropdown-grid';
+import goblinCountdown from './countdown';
+import goblinCountup from './countup';
+import goblinDropdownGrid from './dropdown-grid';
 import './fade-page';
-import mrFlatpickr from './flatpickr';
+import goblinFlatpickr from './flatpickr';
 import './flickity';
-import mrFormEmail from './form-email';
-import mrIonRangeSlider from './ion-rangeslider';
-import mrIsotope from './isotope';
+import goblinIonRangeSlider from './ion-rangeslider';
+import goblinIsotope from './isotope';
 import './jarallax';
-import mrMapsStyle from './maps-style';
-import mrMaps from './maps';
-import mrOverlayNav from './overlay-nav';
+// import goblinMapsStyle from './maps-style';
+// import goblinMaps from './maps';
+import goblinOverlayNav from './overlay-nav';
 import './navigation';
 import './plyr';
 import './popovers';
 import './prism';
-import mrReadingPosition from './reading-position';
-import mrSmoothScroll from './smooth-scroll';
-import mrSticky from './sticky';
+import goblinReadingPosition from './reading-position';
+import goblinSmoothScroll from './smooth-scroll';
+import goblinSticky from './sticky';
 import './svg-injector';
-import mrTwitterFetcher from './twitter-fetcher';
-import mrTypedText from './typed-text';
-import mrUtil from './util';
+// import goblinTwitterFetcher from './twitter-fetcher';
+import goblinTypedText from './typed-text';
+import goblinUtil from './util';
 
 (() => {
   if (typeof $ === 'undefined') {
@@ -33,20 +32,19 @@ import mrUtil from './util';
 })();
 
 export {
-  mrCountdown,
-  mrCountup,
-  mrDropdownGrid,
-  mrFlatpickr,
-  mrFormEmail,
-  mrIonRangeSlider,
-  mrIsotope,
-  mrMapsStyle,
-  mrMaps,
-  mrOverlayNav,
-  mrReadingPosition,
-  mrSmoothScroll,
-  mrSticky,
-  mrTwitterFetcher,
-  mrTypedText,
-  mrUtil,
+  goblinCountdown,
+  goblinCountup,
+  goblinDropdownGrid,
+  goblinFlatpickr,
+  goblinIonRangeSlider,
+  goblinIsotope,
+  // goblinMapsStyle,
+  // goblinMaps,
+  goblinOverlayNav,
+  goblinReadingPosition,
+  goblinSmoothScroll,
+  goblinSticky,
+  // goblinTwitterFetcher,
+  goblinTypedText,
+  goblinUtil,
 };

@@ -8,13 +8,13 @@
 import jQuery from 'jquery';
 import scrollMonitor from 'scrollmonitor';
 
-const mrSticky = (($) => {
+const goblinSticky = (($) => {
   /**
    * Check for scrollMonitor dependency
    * scrollMonitor - https://github.com/stutrek/scrollMonitor
    */
   if (typeof scrollMonitor === 'undefined') {
-    throw new Error('mrSticky requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
+    throw new Error('goblinSticky requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
   }
 
   /**
@@ -23,9 +23,9 @@ const mrSticky = (($) => {
    * ------------------------------------------------------------------------
    */
 
-  const NAME = 'mrSticky';
+  const NAME = 'goblinSticky';
   const VERSION = '1.4.0';
-  const DATA_KEY = 'mr.sticky';
+  const DATA_KEY = 'goblin.sticky';
   const EVENT_KEY = `.${DATA_KEY}`;
   const DATA_API_KEY = '.data-api';
   const JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -309,4 +309,4 @@ const mrSticky = (($) => {
   return Sticky;
 })(jQuery);
 
-export default mrSticky;
+export default goblinSticky;

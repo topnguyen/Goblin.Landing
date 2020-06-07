@@ -7,7 +7,7 @@
 
 import jQuery from 'jquery';
 
-const mrUtil = (($) => {
+const goblinUtil = (($) => {
   const VERSION = '1.2.0';
 
   const Tagname = {
@@ -50,7 +50,7 @@ const mrUtil = (($) => {
           for (let i = 0; i < array.length; i += 1) {
             callback.call(scope, i, array[i]); // passes back stuff we need
           }
-        } else if (array[0] || mrUtil.isElement(array)) { callback.call(scope, 0, array); }
+        } else if (array[0] || goblinUtil.isElement(array)) { callback.call(scope, 0, array); }
       }
     },
 
@@ -121,4 +121,4 @@ const mrUtil = (($) => {
   return Util;
 })(jQuery);
 
-export default mrUtil;
+export default goblinUtil;

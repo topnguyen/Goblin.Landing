@@ -6,18 +6,18 @@
 //
 
 /* global google */
-import mrMapStyle from './maps-style';
+import goblinMapstyle from './maps-style';
 
-const mrMaps = (($) => {
+const goblinMaps = (($) => {
   /**
    * ------------------------------------------------------------------------
    * Constants
    * ------------------------------------------------------------------------
    */
 
-  const NAME = 'mrMaps';
+  const NAME = 'goblinMaps';
   const VERSION = '1.1.0';
-  const DATA_KEY = 'mr.maps';
+  const DATA_KEY = 'goblin.maps';
   const EVENT_KEY = `.${DATA_KEY}`;
   const JQUERY_NO_CONFLICT = $.fn[NAME];
 
@@ -51,9 +51,9 @@ const mrMaps = (($) => {
     },
   };
 
-  // mrMapStyle should be defined in a js file included prior to maps.js
+  // goblinMapstyle should be defined in a js file included prior to maps.js
   // The data should be an array of style overrides as per snazzymaps.com.
-  Default.MAP.styles = typeof mrMapStyle !== typeof undefined ? mrMapStyle : undefined;
+  Default.MAP.styles = typeof goblinMapstyle !== typeof undefined ? goblinMapstyle : undefined;
 
   /**
    * ------------------------------------------------------------------------
@@ -239,7 +239,7 @@ const mrMaps = (($) => {
       if (apiKey !== '') {
         const script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=theme.mrMaps.init`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=theme.goblinMaps.init`;
         script.className = 'gMapsAPI';
         document.body.appendChild(script);
       }
@@ -263,4 +263,4 @@ const mrMaps = (($) => {
   return Map;
 })(jQuery);
 
-export default mrMaps;
+export default goblinMaps;

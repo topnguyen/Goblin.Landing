@@ -6,15 +6,15 @@
 // for sticking elements to the top of viewport while scrolling
 
 import scrollMonitor from 'scrollmonitor';
-import mrUtil from './util';
+import goblinUtil from './util';
 
-const mrReadingPosition = (($) => {
+const goblinReadingPosition = (($) => {
   /**
    * Check for scrollMonitor dependency
    * scrollMonitor - https://github.com/stutrek/scrollMonitor
    */
   if (typeof scrollMonitor === 'undefined') {
-    throw new Error('mrReadingPosition requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
+    throw new Error('goblinReadingPosition requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
   }
 
   /**
@@ -23,9 +23,9 @@ const mrReadingPosition = (($) => {
    * ------------------------------------------------------------------------
    */
 
-  const NAME = 'mrReadingPosition';
+  const NAME = 'goblinReadingPosition';
   const VERSION = '1.0.0';
-  const DATA_KEY = 'mr.readingPosition';
+  const DATA_KEY = 'goblin.readingPosition';
   const EVENT_KEY = `.${DATA_KEY}`;
   const DATA_API_KEY = '.data-api';
   const JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -109,20 +109,20 @@ const mrReadingPosition = (($) => {
     }
 
     initBarValues() {
-      mrUtil.forEach(this.progressBars, (index, bar) => {
+      goblinUtil.forEach(this.progressBars, (index, bar) => {
         bar.setAttribute(Selector.MAX, Value.BAR_MAX);
       });
     }
 
     setValue(scrollPosition) {
       this.recalculatePercentage(scrollPosition);
-      mrUtil.forEach(this.progressBars, (index, bar) => {
+      goblinUtil.forEach(this.progressBars, (index, bar) => {
         bar.setAttribute(Selector.VALUE, this.articlePositionPercent);
       });
     }
 
     toggleBars(show) {
-      mrUtil.forEach(this.progressBars, (index, bar) => {
+      goblinUtil.forEach(this.progressBars, (index, bar) => {
         if (show) { bar.classList.remove(Css.HIDDEN); } else { bar.classList.add(Css.HIDDEN); }
       });
     }
@@ -213,4 +213,4 @@ const mrReadingPosition = (($) => {
   return ReadingPosition;
 })(jQuery);
 
-export default mrReadingPosition;
+export default goblinReadingPosition;

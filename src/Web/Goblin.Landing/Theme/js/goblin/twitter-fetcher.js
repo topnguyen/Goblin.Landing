@@ -9,13 +9,13 @@ import jQuery from 'jquery';
 import twitterFetcher from 'twitter-fetcher';
 import Flickity from 'flickity';
 
-const mrTwitterFetcher = (($) => {
+const goblinTwitterFetcher = (($) => {
   /**
    * Check for twitterFetcher dependency
    * twitterFetcher - https://github.com/jasonmayes/Twitter-Post-Fetcher
    */
   if (typeof twitterFetcher === 'undefined') {
-    throw new Error('mrTwitterFetcher requires twitterFetcher.js (https://github.com/jasonmayes/Twitter-Post-Fetcher)');
+    throw new Error('goblinTwitterFetcher requires twitterFetcher.js (https://github.com/jasonmayes/Twitter-Post-Fetcher)');
   }
 
   /**
@@ -24,9 +24,9 @@ const mrTwitterFetcher = (($) => {
    * ------------------------------------------------------------------------
    */
 
-  const NAME = 'mrTwitterFetcher';
+  const NAME = 'goblinTwitterFetcher';
   const VERSION = '1.0.0';
-  const DATA_KEY = 'mr.twitterFetcher';
+  const DATA_KEY = 'goblin.twitterFetcher';
   const EVENT_KEY = `.${DATA_KEY}`;
   const DATA_API_KEY = '.data-api';
   const JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -128,29 +128,29 @@ const mrTwitterFetcher = (($) => {
             // Fire an event when each tweet is added to the div
             const appendEvent = $.Event(Event.APPEND);
             appendEvent.appendedElement = templateClone;
-            appendEvent.mrTwitterFetcher = this;
+            appendEvent.goblinTwitterFetcher = this;
             $(this.element).trigger(appendEvent);
           }
 
           if (this.slider === true || typeof this.slider === 'object') {
             // Check for Flickity dependency
             if (typeof Flickity === 'undefined') {
-              throw new Error('mrTwitterFetcher requires flickity.js (https://github.com/metafizzy/flickity)');
+              throw new Error('goblinTwitterFetcher requires flickity.js (https://github.com/metafizzy/flickity)');
             } else {
               $element.data('flickity', new Flickity(this.element, this.slider));
             }
           } else if (this.isotope === true) {
             // Check for Isotope dependency
             if (typeof Isotope === 'undefined') {
-              throw new Error('mrTwitterFetcher requires isotope.js (https://github.com/metafizzy/isotope)');
+              throw new Error('goblinTwitterFetcher requires isotope.js (https://github.com/metafizzy/isotope)');
             } else {
-              $(this.element).mrIsotope();
+              $(this.element).goblinIsotope();
             }
           }
 
           // Fire an event for tweets ready
           const readyEvent = $.Event(Event.READY);
-          readyEvent.mrTwitterFetcher = this;
+          readyEvent.goblinTwitterFetcher = this;
           $(this.element).trigger(readyEvent);
           return html;
         },
@@ -204,4 +204,4 @@ const mrTwitterFetcher = (($) => {
   return TwitterFetcher;
 })(jQuery);
 
-export default mrTwitterFetcher;
+export default goblinTwitterFetcher;

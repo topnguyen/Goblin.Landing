@@ -3,21 +3,19 @@
   * Copyright 2018-2020 Goblin
   */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('aos'), require('jquery'), require('jquery-countdown'), require('scrollmonitor'), require('flickity'), require('ion-rangeslider'), require('isotope-layout'), require('jarallax'), require('plyr'), require('prismjs'), require('smooth-scroll'), require('@tanem/svg-injector'), require('twitter-fetcher'), require('typed.js')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'aos', 'jquery', 'jquery-countdown', 'scrollmonitor', 'flickity', 'ion-rangeslider', 'isotope-layout', 'jarallax', 'plyr', 'prismjs', 'smooth-scroll', '@tanem/svg-injector', 'twitter-fetcher', 'typed.js'], factory) :
-  (global = global || self, factory(global.goblin = {}, global.AOS, global.jQuery, null, global.scrollMonitor, global.Flickity, null, global.Isotope, global.jarallax, global.Plyr, global.Prism, global.SmoothScroll, global.SVGInjector, global.twitterFetcher, global.Typed));
-}(this, (function (exports, AOS, jQuery$1, jqueryCountdown, scrollMonitor, Flickity, ionRangeslider, Isotope$1, jarallax$1, Plyr, Prism, SmoothScroll, svgInjector, twitterFetcher, Typed) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('aos'), require('jquery'), require('jquery-countdown'), require('scrollmonitor'), require('flickity'), require('ion-rangeslider'), require('isotope-layout'), require('jarallax'), require('plyr'), require('prismjs'), require('smooth-scroll'), require('@tanem/svg-injector'), require('typed.js')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'aos', 'jquery', 'jquery-countdown', 'scrollmonitor', 'flickity', 'ion-rangeslider', 'isotope-layout', 'jarallax', 'plyr', 'prismjs', 'smooth-scroll', '@tanem/svg-injector', 'typed.js'], factory) :
+  (global = global || self, factory(global.goblin = {}, global.AOS, global.jQuery, null, global.scrollMonitor, global.Flickity, null, global.Isotope, global.jarallax, global.Plyr, global.Prism, global.SmoothScroll, global.SVGInjector, global.Typed));
+}(this, (function (exports, AOS, jQuery$1, jqueryCountdown, scrollMonitor, flickity, ionRangeslider, Isotope, jarallax$1, Plyr, Prism, SmoothScroll, svgInjector, Typed) { 'use strict';
 
   AOS = AOS && AOS.hasOwnProperty('default') ? AOS['default'] : AOS;
   jQuery$1 = jQuery$1 && jQuery$1.hasOwnProperty('default') ? jQuery$1['default'] : jQuery$1;
   scrollMonitor = scrollMonitor && scrollMonitor.hasOwnProperty('default') ? scrollMonitor['default'] : scrollMonitor;
-  Flickity = Flickity && Flickity.hasOwnProperty('default') ? Flickity['default'] : Flickity;
-  Isotope$1 = Isotope$1 && Isotope$1.hasOwnProperty('default') ? Isotope$1['default'] : Isotope$1;
+  Isotope = Isotope && Isotope.hasOwnProperty('default') ? Isotope['default'] : Isotope;
   jarallax$1 = jarallax$1 && jarallax$1.hasOwnProperty('default') ? jarallax$1['default'] : jarallax$1;
   Plyr = Plyr && Plyr.hasOwnProperty('default') ? Plyr['default'] : Plyr;
   Prism = Prism && Prism.hasOwnProperty('default') ? Prism['default'] : Prism;
   SmoothScroll = SmoothScroll && SmoothScroll.hasOwnProperty('default') ? SmoothScroll['default'] : SmoothScroll;
-  twitterFetcher = twitterFetcher && twitterFetcher.hasOwnProperty('default') ? twitterFetcher['default'] : twitterFetcher;
   Typed = Typed && Typed.hasOwnProperty('default') ? Typed['default'] : Typed;
 
   //
@@ -60,13 +58,13 @@
     return Constructor;
   }
 
-  var mrCountdown = function ($) {
+  var goblinCountdown = function ($) {
     /**
      * Check for countdown dependency
      * countdown - https://github.com/hilios/jQuery.countdown/
      */
     if (typeof $.fn.countdown !== 'function') {
-      throw new Error('mrCountdown requires jquery.countdown.js (https://github.com/hilios/jQuery.countdown/)');
+      throw new Error('goblinCountdown requires jquery.countdown.js (https://github.com/hilios/jQuery.countdown/)');
     }
     /**
      * ------------------------------------------------------------------------
@@ -75,9 +73,9 @@
      */
 
 
-    var NAME = 'mrCountdown';
+    var NAME = 'goblinCountdown';
     var VERSION = '1.1.0';
-    var DATA_KEY = 'mr.countdown';
+    var DATA_KEY = 'goblin.countdown';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -371,13 +369,13 @@
 
   var __assign=undefined&&undefined.__assign||function(){return (__assign=Object.assign||function(t){for(var i,a=1,s=arguments.length;a<s;a++)for(var n in i=arguments[a])Object.prototype.hasOwnProperty.call(i,n)&&(t[n]=i[n]);return t}).apply(this,arguments)},CountUp=function(){function t(t,i,a){var s=this;this.target=t,this.endVal=i,this.options=a,this.version="2.0.5",this.defaults={startVal:0,decimalPlaces:0,duration:2,useEasing:!0,useGrouping:!0,smartEasingThreshold:999,smartEasingAmount:333,separator:",",decimal:".",prefix:"",suffix:""},this.finalEndVal=null,this.useEasing=!0,this.countDown=!1,this.error="",this.startVal=0,this.paused=!0,this.count=function(t){s.startTime||(s.startTime=t);var i=t-s.startTime;s.remaining=s.duration-i,s.useEasing?s.countDown?s.frameVal=s.startVal-s.easingFn(i,0,s.startVal-s.endVal,s.duration):s.frameVal=s.easingFn(i,s.startVal,s.endVal-s.startVal,s.duration):s.countDown?s.frameVal=s.startVal-(s.startVal-s.endVal)*(i/s.duration):s.frameVal=s.startVal+(s.endVal-s.startVal)*(i/s.duration),s.countDown?s.frameVal=s.frameVal<s.endVal?s.endVal:s.frameVal:s.frameVal=s.frameVal>s.endVal?s.endVal:s.frameVal,s.frameVal=Math.round(s.frameVal*s.decimalMult)/s.decimalMult,s.printValue(s.frameVal),i<s.duration?s.rAF=requestAnimationFrame(s.count):null!==s.finalEndVal?s.update(s.finalEndVal):s.callback&&s.callback();},this.formatNumber=function(t){var i,a,n,e,r,o=t<0?"-":"";if(i=Math.abs(t).toFixed(s.options.decimalPlaces),n=(a=(i+="").split("."))[0],e=a.length>1?s.options.decimal+a[1]:"",s.options.useGrouping){r="";for(var l=0,h=n.length;l<h;++l)0!==l&&l%3==0&&(r=s.options.separator+r),r=n[h-l-1]+r;n=r;}return s.options.numerals&&s.options.numerals.length&&(n=n.replace(/[0-9]/g,function(t){return s.options.numerals[+t]}),e=e.replace(/[0-9]/g,function(t){return s.options.numerals[+t]})),o+s.options.prefix+n+e+s.options.suffix},this.easeOutExpo=function(t,i,a,s){return a*(1-Math.pow(2,-10*t/s))*1024/1023+i},this.options=__assign(__assign({},this.defaults),a),this.formattingFn=this.options.formattingFn?this.options.formattingFn:this.formatNumber,this.easingFn=this.options.easingFn?this.options.easingFn:this.easeOutExpo,this.startVal=this.validateValue(this.options.startVal),this.frameVal=this.startVal,this.endVal=this.validateValue(i),this.options.decimalPlaces=Math.max(this.options.decimalPlaces),this.decimalMult=Math.pow(10,this.options.decimalPlaces),this.resetDuration(),this.options.separator=String(this.options.separator),this.useEasing=this.options.useEasing,""===this.options.separator&&(this.options.useGrouping=!1),this.el="string"==typeof t?document.getElementById(t):t,this.el?this.printValue(this.startVal):this.error="[CountUp] target is null or undefined";}return t.prototype.determineDirectionAndSmartEasing=function(){var t=this.finalEndVal?this.finalEndVal:this.endVal;this.countDown=this.startVal>t;var i=t-this.startVal;if(Math.abs(i)>this.options.smartEasingThreshold){this.finalEndVal=t;var a=this.countDown?1:-1;this.endVal=t+a*this.options.smartEasingAmount,this.duration=this.duration/2;}else this.endVal=t,this.finalEndVal=null;this.finalEndVal?this.useEasing=!1:this.useEasing=this.options.useEasing;},t.prototype.start=function(t){this.error||(this.callback=t,this.duration>0?(this.determineDirectionAndSmartEasing(),this.paused=!1,this.rAF=requestAnimationFrame(this.count)):this.printValue(this.endVal));},t.prototype.pauseResume=function(){this.paused?(this.startTime=null,this.duration=this.remaining,this.startVal=this.frameVal,this.determineDirectionAndSmartEasing(),this.rAF=requestAnimationFrame(this.count)):cancelAnimationFrame(this.rAF),this.paused=!this.paused;},t.prototype.reset=function(){cancelAnimationFrame(this.rAF),this.paused=!0,this.resetDuration(),this.startVal=this.validateValue(this.options.startVal),this.frameVal=this.startVal,this.printValue(this.startVal);},t.prototype.update=function(t){cancelAnimationFrame(this.rAF),this.startTime=null,this.endVal=this.validateValue(t),this.endVal!==this.frameVal&&(this.startVal=this.frameVal,this.finalEndVal||this.resetDuration(),this.determineDirectionAndSmartEasing(),this.rAF=requestAnimationFrame(this.count));},t.prototype.printValue=function(t){var i=this.formattingFn(t);"INPUT"===this.el.tagName?this.el.value=i:"text"===this.el.tagName||"tspan"===this.el.tagName?this.el.textContent=i:this.el.innerHTML=i;},t.prototype.ensureNumber=function(t){return "number"==typeof t&&!isNaN(t)},t.prototype.validateValue=function(t){var i=Number(t);return this.ensureNumber(i)?i:(this.error="[CountUp] invalid start or end value: "+t,null)},t.prototype.resetDuration=function(){this.startTime=null,this.duration=1e3*Number(this.options.duration),this.remaining=this.duration;},t}();
 
-  var mrCountup = function ($) {
+  var goblinCountup = function ($) {
     /**
      * Check for scrollMonitor dependency
      * scrollMonitor - https://github.com/stutrek/scrollMonitor
      */
     if (typeof scrollMonitor === 'undefined') {
-      throw new Error('mrCountup requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
+      throw new Error('goblinCountup requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
     }
     /**
      * ------------------------------------------------------------------------
@@ -386,9 +384,9 @@
      */
 
 
-    var NAME = 'mrCountup';
+    var NAME = 'goblinCountup';
     var VERSION = '1.1.0';
-    var DATA_KEY = 'mr.countup';
+    var DATA_KEY = 'goblin.countup';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -533,7 +531,7 @@
 
   //
 
-  var mrUtil = function ($) {
+  var goblinUtil = function ($) {
     var VERSION = '1.2.0';
     var Tagname = {
       SCRIPT: 'script'
@@ -573,7 +571,7 @@
             for (var i = 0; i < array.length; i += 1) {
               callback.call(scope, i, array[i]); // passes back stuff we need
             }
-          } else if (array[0] || mrUtil.isElement(array)) {
+          } else if (array[0] || goblinUtil.isElement(array)) {
             callback.call(scope, 0, array);
           }
         }
@@ -647,15 +645,15 @@
     return Util;
   }(jQuery$1);
 
-  var mrDropdownGrid = function ($) {
+  var goblinDropdownGrid = function ($) {
     /**
      * ------------------------------------------------------------------------
      * Constants
      * ------------------------------------------------------------------------
      */
-    var NAME = 'mrDropdownGrid';
+    var NAME = 'goblinDropdownGrid';
     var VERSION = '1.0.0';
-    var DATA_KEY = 'mr.dropdownGrid';
+    var DATA_KEY = 'goblin.dropdownGrid';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $.fn[NAME]; // KeyboardEvent.which value for Escape (Esc) key
@@ -802,7 +800,7 @@
 
       _proto.updatePosition = function updatePosition(winWidth) {
         var windowWidth = winWidth || window.innerWidth;
-        var trigger = mrDropdownGrid.getDimensionsFromElement(this.element);
+        var trigger = goblinDropdownGrid.getDimensionsFromElement(this.element);
         this.positionContainer(trigger.offsetLeft);
         this.positionContent(windowWidth, trigger.offsetLeft);
       };
@@ -819,12 +817,12 @@
         if (this.content) {
           var leftValue; // let topValue;
 
-          var contentRect = mrDropdownGrid.getDimensionsFromElement(this.content);
+          var contentRect = goblinDropdownGrid.getDimensionsFromElement(this.content);
           var contentWidth = contentRect.width; // If submenu, the left of the content needs to sit to the side of the trigger's content
 
           if (this.isSubmenu) {
             this.getParentMenu();
-            var parentContent = mrDropdownGrid.getDimensionsFromElement(this.parentMenu.content); // Calculate X Offset
+            var parentContent = goblinDropdownGrid.getDimensionsFromElement(this.parentMenu.content); // Calculate X Offset
 
             if (parentContent.offsetLeft + parentContent.width + contentWidth <= windowWidth) {
               // Submenu can fit next to parent menu
@@ -941,7 +939,7 @@
       };
 
       DropdownGrid.getDimensionsFromElement = function getDimensionsFromElement(element) {
-        if (element && mrUtil.isElement(element)) {
+        if (element && goblinUtil.isElement(element)) {
           var rect = element.getBoundingClientRect();
           rect.offsetLeft = Math.round(rect.left + window.pageXOffset - document.documentElement.clientLeft);
           return rect;
@@ -968,7 +966,7 @@
           toggles = document.querySelectorAll(Selector.DATA_TOGGLE);
         }
 
-        mrUtil.forEach(toggles, function (index, toggle) {
+        goblinUtil.forEach(toggles, function (index, toggle) {
           var parent = DropdownGrid.getParentFromElement(toggle);
           var context = $(toggle).data(DATA_KEY);
           var relatedTarget = {
@@ -3794,12 +3792,12 @@
   }));
   });
 
-  var mrFlatpickr = function ($) {
+  var goblinFlatpickr = function ($) {
     /**
      * Check for flatpickr dependency
      */
     if (typeof flatpickr === 'undefined') {
-      throw new Error('mrFlatpickr requires flatpickr.js (https://github.com/flatpickr/flatpickr)');
+      throw new Error('goblinFlatpickr requires flatpickr.js (https://github.com/flatpickr/flatpickr)');
     }
     /**
      * ------------------------------------------------------------------------
@@ -3808,9 +3806,9 @@
      */
 
 
-    var NAME = 'mrFlatpickr';
+    var NAME = 'goblinFlatpickr';
     var VERSION = '1.0.0';
-    var DATA_KEY = 'mr.flatpickr';
+    var DATA_KEY = 'goblin.flatpickr';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -3916,585 +3914,18 @@
     });
   })();
 
-  var mrRecaptchav2 = function ($) {
-    // Check mrUtil is present and correct version
-    if (!(mrUtil && mrUtil.version >= '1.2.0')) {
-      throw new Error('mrUtil >= version 1.2.0 is required.');
-    }
-    /**
-     * ------------------------------------------------------------------------
-     * Constants
-     * ------------------------------------------------------------------------
-     */
-
-
-    var NAME = 'mrRecaptchav2';
-    var VERSION = '1.0.0';
-    var DATA_KEY = 'mr.recaptchav2'; // const EVENT_KEY = `.${DATA_KEY}`;
-    // const DATA_API_KEY = '.data-api';
-
-    var JQUERY_NO_CONFLICT = $.fn[NAME];
-    var RECAPTCHA_CALLBACK = 'mrRecaptchav2Init';
-    var RemoteScript = {
-      RECAPTCHAV2: "https://www.google.com/recaptcha/api.js?onload=" + RECAPTCHA_CALLBACK + "&render=explicit"
-    };
-    var Selector = {
-      DATA_RECAPTCHA: '[data-recaptcha]',
-      FORM: 'form'
-    };
-    var Options = {
-      INVISIBLE: 'invisible'
-    }; // "static" properties
-
-    var instances = [];
-    var apiReady = false;
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-    var Recaptchav2 = /*#__PURE__*/function () {
-      function Recaptchav2(element) {
-        this.element = element;
-        this.form = this.getForm();
-        this.isReady = false;
-        this.isValid = false;
-        this.options = $(this.element).data();
-        this.invisible = this.options.size === Options.INVISIBLE;
-        this.id = null; // Save instance into static property array
-
-        instances.push(this);
-      } // getters
-
-
-      var _proto = Recaptchav2.prototype;
-
-      _proto.init = function init() {
-        var _this = this;
-
-        if (this.element.innerHTML.replace(/[\s\xA0]+/g, '') === '') {
-          this.id = grecaptcha.render(this.element, {
-            sitekey: this.options.sitekey,
-            theme: this.options.theme,
-            size: this.options.size,
-            badge: this.options.badge,
-            tabindex: this.options.tabindex,
-            callback: function callback() {
-              _this.validate();
-            },
-            'expired-callback': function expiredCallback() {
-              _this.invalidate();
-            }
-          });
-          this.isReady = true;
-        }
-      };
-
-      _proto.validate = function validate() {
-        this.isValid = true;
-
-        if (this.invisible && this.form) {
-          $(this.form).trigger('submit');
-        }
-      };
-
-      _proto.invalidate = function invalidate() {
-        this.isValid = false;
-      };
-
-      _proto.checkValidity = function checkValidity() {
-        if (this.isReady && this.isValid) {
-          return true;
-        }
-
-        return false;
-      };
-
-      _proto.execute = function execute() {
-        if (this.isReady && this.invisible) {
-          grecaptcha.execute(this.id);
-        }
-      };
-
-      _proto.reset = function reset() {
-        if (this.isReady) {
-          grecaptcha.reset(this.id);
-          this.isValid = false;
-        }
-      };
-
-      _proto.getForm = function getForm() {
-        var closestForm = $(this.element).closest(Selector.FORM);
-        return closestForm.length ? closestForm.get(0) : null;
-      };
-
-      Recaptchav2.getRecaptchaFromForm = function getRecaptchaFromForm(form) {
-        if (mrUtil.isElement(form)) {
-          var captchaElement = form.querySelector(Selector.DATA_RECAPTCHA);
-
-          if (captchaElement) {
-            var data = $(captchaElement).data(DATA_KEY);
-            return data || null;
-          }
-
-          return null;
-        }
-
-        throw new TypeError('Form argument passed to getRecaptchaFromForm is not an element.');
-      };
-
-      Recaptchav2.jQueryInterface = function jQueryInterface() {
-        return this.each(function jqEachRecaptchav2() {
-          var $element = $(this);
-          var data = $element.data(DATA_KEY);
-
-          if (!data) {
-            data = new Recaptchav2(this);
-            $element.data(DATA_KEY, data);
-          }
-        });
-      };
-
-      _createClass(Recaptchav2, null, [{
-        key: "VERSION",
-        get: function get() {
-          return VERSION;
-        }
-      }, {
-        key: "ready",
-        get: function get() {
-          return apiReady;
-        }
-      }, {
-        key: "instances",
-        get: function get() {
-          return instances;
-        }
-      }, {
-        key: "apiReady",
-        set: function set(ready) {
-          if (ready === true && apiReady === false) {
-            mrUtil.forEach(Recaptchav2.instances, function (index, instance) {
-              instance.init();
-            });
-          }
-
-          apiReady = true;
-        }
-      }]);
-
-      return Recaptchav2;
-    }();
-
-    window.mrRecaptchav2Init = function () {
-      mrRecaptchav2.apiReady = true;
-    };
-    /**
-     * ------------------------------------------------------------------------
-     * Initialise API javascript if recaptcha widgets are found
-     * ------------------------------------------------------------------------
-     */
-
-
-    $(document).ready(function () {
-      var Recaptchav2Elements = $.makeArray($(Selector.DATA_RECAPTCHA));
-
-      if (Recaptchav2Elements.length > 0) {
-        mrUtil.getScript(RemoteScript.RECAPTCHAV2);
-        /* eslint-disable no-plusplus */
-
-        for (var i = Recaptchav2Elements.length; i--;) {
-          var $Recaptchav2 = $(Recaptchav2Elements[i]);
-          Recaptchav2.jQueryInterface.call($Recaptchav2, $Recaptchav2.data());
-        }
-      }
-    });
-    /**
-     * ------------------------------------------------------------------------
-     * jQuery
-     * ------------------------------------------------------------------------
-     */
-
-    /* eslint-disable no-param-reassign */
-
-    $.fn[NAME] = Recaptchav2.jQueryInterface;
-    $.fn[NAME].Constructor = Recaptchav2;
-
-    $.fn[NAME].noConflict = function Recaptchav2NoConflict() {
-      $.fn[NAME] = JQUERY_NO_CONFLICT;
-      return Recaptchav2.jQueryInterface;
-    };
-    /* eslint-enable no-param-reassign */
-
-
-    return Recaptchav2;
-  }(jQuery);
-
-  var mrFormEmail = function ($) {
-    // Check mrUtil is present and correct version
-    if (!(mrUtil && mrUtil.version >= '1.2.0')) {
-      throw new Error('mrUtil >= version 1.2.0 is required.');
-    }
-    /**
-     * ------------------------------------------------------------------------
-     * Constants
-     * ------------------------------------------------------------------------
-     */
-
-
-    var NAME = 'mrFormEmail';
-    var VERSION = '1.0.1';
-    var DATA_KEY = 'mr.formEmail';
-    var EVENT_KEY = "." + DATA_KEY;
-    var DATA_API_KEY = '.data-api';
-    var JQUERY_NO_CONFLICT = $.fn[NAME];
-    var ClassName = {
-      LOADING: 'btn-loading-animate',
-      WAS_VALIDATED: 'was-validated',
-      D_NONE: 'd-none'
-    };
-    var Attribute = {
-      ACTION: 'action',
-      DISABLED: 'disabled',
-      FEEDBACK_DELAY: 'data-feedback-delay',
-      SUCCESS_REDIRECT: 'data-success-redirect'
-    };
-    var Selector = {
-      DATA_ATTR: 'form-email',
-      DATA_FORM_EMAIL: '[data-form-email]',
-      DATA_SUCCESS: '[data-success-message]',
-      DATA_ERROR: '[data-error-message]',
-      SUBMIT_BUTTON: 'button[type="submit"]',
-      SPAN: 'span',
-      ALL_INPUTS: 'input,textarea,select',
-      INITIALLY_DISABLED: 'initially-disabled'
-    };
-    var Event = {
-      SENT: "sent" + EVENT_KEY,
-      LOAD_DATA_API: "load" + EVENT_KEY + DATA_API_KEY,
-      SUBMIT: 'submit'
-    };
-    var Options = {
-      LOADING_TEXT: 'data-loading-text'
-    };
-    var Default = {
-      LOADING_TEXT: 'Sending',
-      FORM_ACTION: 'forms/mail.php',
-      FEEDBACK_DELAY: 5000,
-      ERROR_TEXT: 'Form submission error'
-    };
-    var Status = {
-      SUCCESS: 'success',
-      ERROR: 'error'
-    };
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-    var FormEmail = /*#__PURE__*/function () {
-      function FormEmail(element) {
-        this.form = element;
-        this.action = this.form.getAttribute(Attribute.ACTION) || Default.FORM_ACTION; // Returns an object containing the feedback
-
-        this.feedback = this.getFeedbackElements(); // Get any recaptcha instances in the form - returns array of instances or null
-
-        this.getRecaptcha(); // Get submit button, inner span and loading text.
-
-        this.initSubmitButton(); // const $element = $(element);
-
-        this.setSubmitEvent();
-      } // getters
-
-
-      var _proto = FormEmail.prototype;
-
-      _proto.submitForm = function submitForm() {
-        // Hide feedback messages for fresh submit
-        this.hideAllFeedback(); // Submit form if validateForm returns true
-
-        if (this.validateForm()) {
-          this.ajaxSubmit();
-        }
-      };
-
-      _proto.validateForm = function validateForm() {
-        var formIsValid = this.form.checkValidity();
-
-        if (this.recaptcha) {
-          if (this.recaptcha.invisible) {
-            if (formIsValid && !this.recaptcha.checkValidity()) {
-              this.recaptcha.execute();
-              return false;
-            } // invalidate if captcha is found and is not valid, otherwise keep original value
-
-          } else if (this.recaptcha.checkValidity() === false) {
-            formIsValid = false;
-          }
-        }
-
-        if (!formIsValid) {
-          // Cancel timeout so error message will stay shown
-          clearTimeout(this.feedbackTimeout); // Allow BS validation styles to take effect
-
-          this.form.classList.add(ClassName.WAS_VALIDATED);
-          this.showFeedback(Status.ERROR, this.validationErrorMessage);
-          return false;
-        }
-
-        this.form.classList.remove(ClassName.WAS_VALIDATED);
-        return true;
-      };
-
-      _proto.ajaxSubmit = function ajaxSubmit() {
-        var $form = $(this.form);
-        var formData = $form.serializeArray();
-        formData.push({
-          name: 'url',
-          value: window.location.href
-        });
-        jQuery$1.ajax({
-          context: this,
-          data: formData,
-          dataType: 'json',
-          error: this.showFeedback,
-          success: this.processResponse,
-          type: 'POST',
-          url: this.action
-        });
-        this.toggleFormLoading(true);
-      };
-
-      _proto.initSubmitButton = function initSubmitButton() {
-        if (!this.submitButton) {
-          this.submitButton = this.form.querySelector(Selector.SUBMIT_BUTTON);
-        }
-
-        this.submitButtonSpan = this.submitButton.querySelector(Selector.SPAN);
-        this.loadingText = this.submitButton.getAttribute(Options.LOADING_TEXT) || Default.LOADING_TEXT;
-        this.originalSubmitText = this.submitButtonSpan.textContent;
-        return this.submitButton;
-      };
-
-      _proto.processResponse = function processResponse(response) {
-        var _this = this;
-
-        var success = response.status === Status.SUCCESS; // Form is no longer in a 'loading' state
-
-        this.toggleFormLoading(false); // Recaptcha will need to be solved again
-
-        if (this.recaptcha) {
-          this.recaptcha.reset();
-        } // Trigger an event so users can fire Analytics scripts upon success
-
-
-        $(this.form).trigger($.Event(Event.SENT)); // Redirect upon success if data-attribute is set
-
-        var successRedirect = this.form.getAttribute(Attribute.SUCCESS_REDIRECT);
-
-        if (success && successRedirect && successRedirect !== '') {
-          window.location = successRedirect;
-        } else if (success) {
-          this.form.reset(); // Hide all feedback and hold a reference to the timeout
-          // to cancel it when necessary.
-
-          this.feedbackTimeout = setTimeout(function () {
-            return _this.hideAllFeedback();
-          }, this.feedbackDelay);
-        } //  Show ERROR feedback message if not redirecting
-
-
-        if (!successRedirect) {
-          this.showFeedback(response.status, response.message);
-        } // Detailed error message will be shown in Console if provided
-
-
-        if (response.errorDetail) {
-          /* eslint-disable no-console */
-          console.error(response.errorName || Default.ERROR_TEXT, response.errorDetail.indexOf('{') === 0 ? JSON.parse(response.errorDetail) : response.errorDetail);
-          /* eslint-enable no-console */
-        }
-      };
-
-      _proto.showFeedback = function showFeedback(status, text, errorHTTP) {
-        // Form is no longer in a 'loading' state
-        this.toggleFormLoading(false); // If this is an ajax error from jQuery, 'status' will be
-        // an object with statusText property
-
-        if (typeof status === 'object' && status.statusText) {
-          clearTimeout(this.feedbackTimeout);
-          this.feedback.error.innerHTML = (errorHTTP || text) + ": <em>\"" + this.action + "\"</em> (" + status.status + " " + text + ")";
-          this.feedback.error.classList.remove(ClassName.D_NONE);
-        } else {
-          this.feedback[status].innerHTML = text;
-          this.feedback[status].classList.remove(ClassName.D_NONE);
-        }
-      };
-
-      _proto.hideAllFeedback = function hideAllFeedback() {
-        this.feedback.success.classList.add(ClassName.D_NONE);
-        this.feedback.error.classList.add(ClassName.D_NONE);
-      };
-
-      _proto.getFeedbackElements = function getFeedbackElements() {
-        if (!this.feedback) {
-          this.feedback = {
-            success: this.form.querySelector(Selector.DATA_SUCCESS),
-            error: this.form.querySelector(Selector.DATA_ERROR)
-          }; // Store the error alert's original text to be used as validation error message
-
-          this.validationErrorMessage = this.feedback.error.innerHTML;
-          var feedbackDelay = this.form.getAttribute(Attribute.FEEDBACK_DELAY) || Default.FEEDBACK_DELAY;
-          this.feedbackDelay = parseInt(feedbackDelay, 10);
-          this.feedbackTimeout = null;
-        }
-
-        return this.feedback;
-      };
-
-      _proto.getRecaptcha = function getRecaptcha() {
-        if (this.form.querySelector(mrUtil.selector.RECAPTCHA)) {
-          // Check mrUtil is present and correct version
-          if (!mrRecaptchav2) {
-            throw new Error('mrRecaptcha.js is required to handle the reCAPTCHA element in this form.');
-          } else {
-            // Returns an array of mrRecaptcha instances or null
-            this.recaptcha = mrRecaptchav2.getRecaptchaFromForm(this.form);
-          }
-        }
-      };
-
-      _proto.toggleFormLoading = function toggleFormLoading(loading) {
-        this.toggleSubmitButtonLoading(loading);
-        FormEmail.toggleDisabled(this.form.querySelectorAll(Selector.ALL_INPUTS), loading);
-      };
-
-      _proto.toggleSubmitButtonLoading = function toggleSubmitButtonLoading(loading) {
-        this.toggleSubmitButtonText(loading);
-        this.toggleSubmitButtonAnimation(loading);
-        FormEmail.toggleDisabled(this.submitButton, loading);
-      };
-
-      _proto.toggleSubmitButtonAnimation = function toggleSubmitButtonAnimation(animate) {
-        // If animate is true, add the class, else remove it.
-        this.submitButton.classList[animate ? 'add' : 'remove'](ClassName.LOADING);
-      };
-
-      _proto.toggleSubmitButtonText = function toggleSubmitButtonText(loading) {
-        // If loading, set text to loading text, else return to original text.
-        this.submitButtonSpan.textContent = loading ? this.loadingText : this.originalSubmitText;
-      };
-
-      FormEmail.toggleDisabled = function toggleDisabled(elements, disabled) {
-        mrUtil.forEach(elements, function (index, element) {
-          if (disabled) {
-            // Toggle to disabled
-            if (element.getAttribute(Attribute.DISABLED) !== null) {
-              element.classList.add(Selector.INITIALLY_DISABLED);
-            } else {
-              element.setAttribute(Attribute.DISABLED, '');
-            }
-          } // Toggle to enabled
-          // Only enable if input is found not to be deliberately disabled
-
-
-          if (!disabled && !element.classList.contains(Selector.INITIALLY_DISABLED)) {
-            element.removeAttribute(Attribute.DISABLED);
-          }
-        });
-      };
-
-      FormEmail.getInstanceFromForm = function getInstanceFromForm(form) {
-        if (mrUtil.isElement(form)) {
-          var data = $(form).data(DATA_KEY);
-          return data || null;
-        }
-
-        throw new TypeError('Form argument passed to getInstanceFromForm is not an element.');
-      };
-
-      _proto.setSubmitEvent = function setSubmitEvent() {
-        var _this2 = this;
-
-        $(this.form).on(Event.SUBMIT, function (event) {
-          event.preventDefault();
-
-          _this2.submitForm();
-        });
-      };
-
-      FormEmail.jQueryInterface = function jQueryInterface() {
-        return this.each(function jqEachFormEmail() {
-          var $element = $(this);
-          var data = $element.data(DATA_KEY);
-
-          if (!data) {
-            data = new FormEmail(this);
-            $element.data(DATA_KEY, data);
-          }
-        });
-      };
-
-      _createClass(FormEmail, null, [{
-        key: "VERSION",
-        get: function get() {
-          return VERSION;
-        }
-      }]);
-
-      return FormEmail;
-    }();
-    /**
-     * ------------------------------------------------------------------------
-     * Initialise by data attribute
-     * ------------------------------------------------------------------------
-     */
-
-
-    $(window).on(Event.LOAD_DATA_API, function () {
-      var FormEmailElements = $.makeArray($(Selector.DATA_FORM_EMAIL));
-      /* eslint-disable no-plusplus */
-
-      for (var i = FormEmailElements.length; i--;) {
-        var $FormEmail = $(FormEmailElements[i]);
-        FormEmail.jQueryInterface.call($FormEmail, $FormEmail.data());
-      }
-    });
-    /**
-     * ------------------------------------------------------------------------
-     * jQuery
-     * ------------------------------------------------------------------------
-     */
-
-    /* eslint-disable no-param-reassign */
-
-    $.fn[NAME] = FormEmail.jQueryInterface;
-    $.fn[NAME].Constructor = FormEmail;
-
-    $.fn[NAME].noConflict = function FormEmailNoConflict() {
-      $.fn[NAME] = JQUERY_NO_CONFLICT;
-      return FormEmail.jQueryInterface;
-    };
-    /* eslint-enable no-param-reassign */
-
-
-    return FormEmail;
-  }(jQuery$1);
-
-  var mrIonRangeSlider = function ($) {
+  var goblinIonRangeSlider = function ($) {
     /**
      * Check for Ion rangeSlider dependency
      * https://github.com/IonDen/ion.rangeSlider
      */
     if (typeof $.fn.ionRangeSlider !== 'function') {
-      throw new Error('mrIonRangeSlider requires ion.rangeSlider.js (https://github.com/IonDen/ion.rangeSlider)');
-    } // Check mrUtil is present and correct version
+      throw new Error('goblinIonRangeSlider requires ion.rangeSlider.js (https://github.com/IonDen/ion.rangeSlider)');
+    } // Check goblinUtil is present and correct version
 
 
-    if (!(mrUtil && mrUtil.version >= '1.2.0')) {
-      throw new Error('mrUtil >= version 1.2.0 is required.');
+    if (!(goblinUtil && goblinUtil.version >= '1.2.0')) {
+      throw new Error('goblinUtil >= version 1.2.0 is required.');
     }
     /**
      * ------------------------------------------------------------------------
@@ -4503,9 +3934,9 @@
      */
 
 
-    var NAME = 'mrIonRangeSlider';
+    var NAME = 'goblinIonRangeSlider';
     var VERSION = '1.0.0';
-    var DATA_KEY = 'mr.ionRangeSlider';
+    var DATA_KEY = 'goblin.ionRangeSlider';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -4562,11 +3993,11 @@
 
         $(this.element).ionRangeSlider({
           skin: Options.SKIN_DEFAULT,
-          onStart: mrUtil.getFuncFromString(options.onStart),
-          onFinish: mrUtil.getFuncFromString(options.onFinish),
+          onStart: goblinUtil.getFuncFromString(options.onStart),
+          onFinish: goblinUtil.getFuncFromString(options.onFinish),
           onChange: this.handleChange,
           scope: this,
-          onUpdate: mrUtil.getFuncFromString(options.onUpdate)
+          onUpdate: goblinUtil.getFuncFromString(options.onUpdate)
         });
         this.rangeSlider = $(this.element).data(ION_RANGE_SLIDER_KEY);
       } // HandleChange then also calls the user's callback
@@ -4574,19 +4005,19 @@
 
       _proto.handleChange = function handleChange(data) {
         if (this.fromElement && this.fromElement.length > 0) {
-          mrIonRangeSlider.updateValue(this.fromElement, data.from_value || data.from);
+          goblinIonRangeSlider.updateValue(this.fromElement, data.from_value || data.from);
         }
 
         if (this.toElement && this.toElement.length > 0) {
-          mrIonRangeSlider.updateValue(this.toElement, data.to_value || data.to);
+          goblinIonRangeSlider.updateValue(this.toElement, data.to_value || data.to);
         }
 
         if (this.unitElement && this.unitElement.length > 0) {
           var value = parseInt(data.from_value, 10) || data.value;
-          mrIonRangeSlider.updateValue(this.unitElement, value > 1 ? this.options.unitPlural : this.options.unitSingle);
+          goblinIonRangeSlider.updateValue(this.unitElement, value > 1 ? this.options.unitPlural : this.options.unitSingle);
         }
 
-        var userChangeFunction = mrUtil.getFuncFromString(this.options.onChange);
+        var userChangeFunction = goblinUtil.getFuncFromString(this.options.onChange);
 
         if (userChangeFunction) {
           userChangeFunction(data);
@@ -4598,7 +4029,7 @@
       _proto.setToUpdateEvent = function setToUpdateEvent(collection) {
         var _this = this;
 
-        mrUtil.forEach(collection, function (index, element) {
+        goblinUtil.forEach(collection, function (index, element) {
           if (element.tagName.toUpperCase() === Selector.INPUT && element.type === Selector.TEXT) {
             element.addEventListener(Event.CHANGE, function () {
               _this.rangeSlider.update({
@@ -4614,7 +4045,7 @@
       _proto.setFromUpdateEvent = function setFromUpdateEvent(collection) {
         var _this2 = this;
 
-        mrUtil.forEach(collection, function (index, element) {
+        goblinUtil.forEach(collection, function (index, element) {
           if (element.tagName.toUpperCase() === Selector.INPUT && element.type === Selector.TEXT) {
             element.addEventListener(Event.CHANGE, function () {
               _this2.rangeSlider.update({
@@ -4626,7 +4057,7 @@
       };
 
       IonRangeSlider.updateValue = function updateValue(collection, value) {
-        mrUtil.forEach(collection, function (index, element) {
+        goblinUtil.forEach(collection, function (index, element) {
           var updateElement = element; // If element is an input, set the value instead of textContent
 
           var updateMethod = element.tagName.toUpperCase() === Selector.INPUT ? 'value' : 'textContent';
@@ -4692,13 +4123,13 @@
     return IonRangeSlider;
   }(jQuery$1);
 
-  var mrIsotope = function ($) {
+  var goblinIsotope = function ($) {
     /**
      * Check for isotope dependency
      * isotope - https://github.com/metafizzy/isotope
      */
-    if (typeof Isotope$1 === 'undefined') {
-      throw new Error('mrIsotope requires isotope.pkgd.js (https://github.com/metafizzy/isotope)');
+    if (typeof Isotope === 'undefined') {
+      throw new Error('goblinIsotope requires isotope.pkgd.js (https://github.com/metafizzy/isotope)');
     }
     /**
      * ------------------------------------------------------------------------
@@ -4707,9 +4138,9 @@
      */
 
 
-    var NAME = 'mrIsotope';
+    var NAME = 'goblinIsotope';
     var VERSION = '1.0.0';
-    var DATA_KEY = 'mr.isotope';
+    var DATA_KEY = 'goblin.isotope';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -4773,7 +4204,7 @@
 
     function toggleActive(filters, active) {
       if (filters) {
-        mrUtil.forEach(filters, function (index, filter) {
+        goblinUtil.forEach(filters, function (index, filter) {
           if (filter && typeof filter.classList !== typeof undefined) {
             if (active) {
               filter.classList.add(Css.ACTIVE);
@@ -4818,7 +4249,7 @@
 
         // Get all filter links
         var filters = getFilters(this.attributes.isotopeId, Selector.FILTER_INITIALISED);
-        mrUtil.forEach(filters, function (index, filter) {
+        goblinUtil.forEach(filters, function (index, filter) {
           var filterValue = filter.attributes[Selector.FILTER] && filter.attributes[Selector.FILTER].value; // Find all other filters matching this value to be de/activated on click
 
           _this.filters[filterValue] = getFilter(_this.attributes.isotopeId, filterValue); // Set up filter click event
@@ -4849,7 +4280,7 @@
         // Get all sorters linked to current isotope-id
         var sorters = getSorters(this.attributes.isotopeId);
         var defaultSort = this.attributes.defaultSort || Options.ORIGINAL_ORDER;
-        mrUtil.forEach(sorters, function (index, sorter) {
+        goblinUtil.forEach(sorters, function (index, sorter) {
           // Get options from attributes
           // Done this way for brevity (previous way was too wordy)
           var sa = sorter.attributes;
@@ -4918,7 +4349,7 @@
         this.options.layoutMode = this.attributes.layoutMode || Options.DEFAULT_LAYOUT;
         this.options.filter = defaultFilterSelector;
         this.options.sortAscending[Options.ORIGINAL_ORDER] = defaultSortAscending;
-        this.isotope = new Isotope$1(this.element, this.options);
+        this.isotope = new Isotope(this.element, this.options);
         this.activeFilter = getFilter(this.attributes.isotopeId, defaultFilter);
         toggleActive(this.activeFilter, true);
       };
@@ -4988,10 +4419,10 @@
       $('.alert-dismissible').on('closed.bs.alert', function () {
         jarallax$1(document.querySelectorAll('[data-jarallax],[data-jarallax-video]'), 'onScroll');
       });
-      $(document).on('resized.mr.overlayNav', function () {
+      $(document).on('resized.goblin.overlayNav', function () {
         jarallax$1(document.querySelectorAll('[data-jarallax],[data-jarallax-video]'), 'onResize');
       });
-      document.addEventListener('injected.mr.SVGInjector', function () {
+      document.addEventListener('injected.goblin.SVGInjector', function () {
         jarallax$1(document.querySelectorAll('[data-jarallax],[data-jarallax-video]'), 'onResize');
       });
       var jarallaxOptions = {
@@ -5001,7 +4432,7 @@
       $(window).on('load', function () {
         jarallax$1(document.querySelectorAll('[data-jarallax]'), jarallaxOptions);
         var jarallaxDelay = document.querySelectorAll('[data-jarallax-video-delay]');
-        mrUtil.forEach(jarallaxDelay, function (index, elem) {
+        goblinUtil.forEach(jarallaxDelay, function (index, elem) {
           var source = elem.getAttribute('data-jarallax-video-delay');
           elem.removeAttribute('data-jarallax-video-delay');
           elem.setAttribute('data-jarallax-video', source);
@@ -5011,501 +4442,15 @@
     }
   })(jQuery$1);
 
-  var mrMapStyle = [{
-    featureType: 'administrative.country',
-    elementType: 'labels.text',
-    stylers: [{
-      lightness: '29'
-    }]
-  }, {
-    featureType: 'administrative.province',
-    elementType: 'labels.text.fill',
-    stylers: [{
-      lightness: '-12'
-    }, {
-      color: '#796340'
-    }]
-  }, {
-    featureType: 'administrative.locality',
-    elementType: 'labels.text.fill',
-    stylers: [{
-      lightness: '15'
-    }, {
-      saturation: '15'
-    }]
-  }, {
-    featureType: 'landscape.man_made',
-    elementType: 'geometry',
-    stylers: [{
-      visibility: 'on'
-    }, {
-      color: '#fbf5ed'
-    }]
-  }, {
-    featureType: 'landscape.natural',
-    elementType: 'geometry',
-    stylers: [{
-      visibility: 'on'
-    }, {
-      color: '#fbf5ed'
-    }]
-  }, {
-    featureType: 'poi',
-    elementType: 'labels',
-    stylers: [{
-      visibility: 'off'
-    }]
-  }, {
-    featureType: 'poi.attraction',
-    elementType: 'all',
-    stylers: [{
-      visibility: 'on'
-    }, {
-      lightness: '30'
-    }, {
-      saturation: '-41'
-    }, {
-      gamma: '0.84'
-    }]
-  }, {
-    featureType: 'poi.attraction',
-    elementType: 'labels',
-    stylers: [{
-      visibility: 'on'
-    }]
-  }, {
-    featureType: 'poi.business',
-    elementType: 'all',
-    stylers: [{
-      visibility: 'off'
-    }]
-  }, {
-    featureType: 'poi.business',
-    elementType: 'labels',
-    stylers: [{
-      visibility: 'off'
-    }]
-  }, {
-    featureType: 'poi.medical',
-    elementType: 'geometry',
-    stylers: [{
-      color: '#fbd3da'
-    }]
-  }, {
-    featureType: 'poi.medical',
-    elementType: 'labels',
-    stylers: [{
-      visibility: 'on'
-    }]
-  }, {
-    featureType: 'poi.park',
-    elementType: 'geometry',
-    stylers: [{
-      color: '#b0e9ac'
-    }, {
-      visibility: 'on'
-    }]
-  }, {
-    featureType: 'poi.park',
-    elementType: 'labels',
-    stylers: [{
-      visibility: 'on'
-    }]
-  }, {
-    featureType: 'poi.park',
-    elementType: 'labels.text.fill',
-    stylers: [{
-      hue: '#68ff00'
-    }, {
-      lightness: '-24'
-    }, {
-      gamma: '1.59'
-    }]
-  }, {
-    featureType: 'poi.sports_complex',
-    elementType: 'all',
-    stylers: [{
-      visibility: 'on'
-    }]
-  }, {
-    featureType: 'poi.sports_complex',
-    elementType: 'geometry',
-    stylers: [{
-      saturation: '10'
-    }, {
-      color: '#c3eb9a'
-    }]
-  }, {
-    featureType: 'road',
-    elementType: 'geometry.stroke',
-    stylers: [{
-      visibility: 'on'
-    }, {
-      lightness: '30'
-    }, {
-      color: '#e7ded6'
-    }]
-  }, {
-    featureType: 'road',
-    elementType: 'labels',
-    stylers: [{
-      visibility: 'on'
-    }, {
-      saturation: '-39'
-    }, {
-      lightness: '28'
-    }, {
-      gamma: '0.86'
-    }]
-  }, {
-    featureType: 'road.highway',
-    elementType: 'geometry.fill',
-    stylers: [{
-      color: '#ffe523'
-    }, {
-      visibility: 'on'
-    }]
-  }, {
-    featureType: 'road.highway',
-    elementType: 'geometry.stroke',
-    stylers: [{
-      visibility: 'on'
-    }, {
-      saturation: '0'
-    }, {
-      gamma: '1.44'
-    }, {
-      color: '#fbc28b'
-    }]
-  }, {
-    featureType: 'road.highway',
-    elementType: 'labels',
-    stylers: [{
-      visibility: 'on'
-    }, {
-      saturation: '-40'
-    }]
-  }, {
-    featureType: 'road.arterial',
-    elementType: 'geometry',
-    stylers: [{
-      color: '#fed7a5'
-    }]
-  }, {
-    featureType: 'road.arterial',
-    elementType: 'geometry.fill',
-    stylers: [{
-      visibility: 'on'
-    }, {
-      gamma: '1.54'
-    }, {
-      color: '#fbe38b'
-    }]
-  }, {
-    featureType: 'road.local',
-    elementType: 'geometry.fill',
-    stylers: [{
-      color: '#ffffff'
-    }, {
-      visibility: 'on'
-    }, {
-      gamma: '2.62'
-    }, {
-      lightness: '10'
-    }]
-  }, {
-    featureType: 'road.local',
-    elementType: 'geometry.stroke',
-    stylers: [{
-      visibility: 'on'
-    }, {
-      weight: '0.50'
-    }, {
-      gamma: '1.04'
-    }]
-  }, {
-    featureType: 'transit.station.airport',
-    elementType: 'geometry.fill',
-    stylers: [{
-      color: '#dee3fb'
-    }]
-  }, {
-    featureType: 'water',
-    elementType: 'geometry',
-    stylers: [{
-      saturation: '46'
-    }, {
-      color: '#a4e1ff'
-    }]
-  }];
-
-  var mrMaps = function ($) {
+  var goblinOverlayNav = function ($) {
     /**
      * ------------------------------------------------------------------------
      * Constants
      * ------------------------------------------------------------------------
      */
-    var NAME = 'mrMaps';
+    var NAME = 'goblinOverlayNav';
     var VERSION = '1.1.0';
-    var DATA_KEY = 'mr.maps';
-    var EVENT_KEY = "." + DATA_KEY;
-    var JQUERY_NO_CONFLICT = $.fn[NAME];
-    var Selector = {
-      MAP: '[data-maps-api-key]',
-      MARKER: 'div.map-marker',
-      STYLE: 'div.map-style',
-      MARKER_ADDRESS: 'data-address',
-      MARKER_LATLNG: 'data-latlong',
-      MARKER_IMAGE: 'data-marker-image',
-      MARKER_TITLE: 'data-marker-title',
-      INFOWindow: 'div.info-window'
-    };
-    var String = {
-      MARKER_TITLE: ''
-    };
-    var Event = {
-      MAP_LOADED: "loaded" + EVENT_KEY
-    };
-    var Default = {
-      MARKER_IMAGE_URL: 'img/map-marker.png',
-      MAP: {
-        disableDefaultUI: true,
-        draggable: true,
-        scrollwheel: false,
-        zoom: 17,
-        zoomControl: false
-      }
-    }; // mrMapStyle should be defined in a js file included prior to maps.js
-    // The data should be an array of style overrides as per snazzymaps.com.
-
-    Default.MAP.styles = typeof mrMapStyle !== typeof undefined ? mrMapStyle : undefined;
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-    var Map = /*#__PURE__*/function () {
-      function Map(element) {
-        // The current map element
-        this.element = element;
-        this.$element = $(element);
-        this.markers = [];
-        this.geocoder = new google.maps.Geocoder();
-        this.markerElements = this.$element.find(Selector.MARKER);
-        this.styleElement = this.$element.find(Selector.STYLE).first();
-        this.initMap();
-        this.createMarkers();
-      } // version getter
-
-
-      Map.init = function init() {
-        var mapsOnPage = $.makeArray($(Selector.MAP));
-        /* eslint-disable no-plusplus */
-
-        for (var i = mapsOnPage.length; i--;) {
-          var $map = $(mapsOnPage[i]);
-          Map.jQueryInterface.call($map, $map.data());
-        }
-      };
-
-      var _proto = Map.prototype;
-
-      _proto.initMap = function initMap() {
-        var _this = this;
-
-        var mapElement = this.element;
-        var mapInstance = this.$element;
-        var showZoomControl = typeof mapInstance.attr('data-zoom-controls') !== typeof undefined;
-        var zoomControlPos = typeof mapInstance.attr('data-zoom-controls') !== typeof undefined ? mapInstance.attr('data-zoom-controls') : false;
-        var latlong = typeof mapInstance.attr('data-latlong') !== typeof undefined ? mapInstance.attr('data-latlong') : false;
-        var latitude = latlong ? parseFloat(latlong.substr(0, latlong.indexOf(','))) : false;
-        var longitude = latlong ? parseFloat(latlong.substr(latlong.indexOf(',') + 1)) : false;
-        var address = mapInstance.attr('data-address') || '';
-        var mapOptions = null; // let markerOptions = null;
-
-        var mapAo = {}; // Attribute overrides - allows data attributes on the map to override global options
-
-        try {
-          mapAo.styles = this.styleElement.length ? JSON.parse(this.styleElement.html().trim()) : undefined;
-        } catch (error) {
-          throw new Error(error);
-        }
-
-        mapAo.zoom = mapInstance.attr('data-map-zoom') ? parseInt(mapInstance.attr('data-map-zoom'), 10) : undefined;
-        mapAo.zoomControl = showZoomControl;
-        mapAo.zoomControlOptions = zoomControlPos !== false ? {
-          position: google.maps.ControlPosition[zoomControlPos]
-        } : undefined;
-        mapOptions = jQuery.extend({}, Default.MAP, mapAo);
-        this.map = new google.maps.Map(mapElement, mapOptions);
-        google.maps.event.addListenerOnce(this.map, 'center_changed', function () {
-          // Map has been centered.
-          var loadedEvent = $.Event(Event.MAP_LOADED, {
-            map: _this.map
-          });
-          mapInstance.trigger(loadedEvent);
-        });
-
-        if (typeof latitude !== typeof undefined && latitude !== '' && latitude !== false && typeof longitude !== typeof undefined && longitude !== '' && longitude !== false) {
-          this.map.setCenter(new google.maps.LatLng(latitude, longitude));
-        } else if (address !== '') {
-          this.geocodeAddress(address, Map.centerMap, this, this.map);
-        } else {
-          throw new Error('No valid address or latitude/longitude pair provided for map.');
-        }
-      };
-
-      _proto.geocodeAddress = function geocodeAddress(address, callback, thisMap, args) {
-        this.geocoder.geocode({
-          address: address
-        }, function (results, status) {
-          if (status !== google.maps.GeocoderStatus.OK) {
-            throw new Error("There was a problem geocoding the address \"" + address + "\".");
-          } else {
-            callback(results, thisMap, args);
-          }
-        });
-      };
-
-      Map.centerMap = function centerMap(geocodeResults, thisMap) {
-        thisMap.map.setCenter(geocodeResults[0].geometry.location);
-      };
-
-      Map.moveMarker = function moveMarker(geocodeResults, thisMap, gMarker) {
-        gMarker.setPosition(geocodeResults[0].geometry.location);
-      };
-
-      _proto.createMarkers = function createMarkers() {
-        var _this2 = this;
-
-        Default.MARKER = {
-          icon: {
-            url: this.$element.attr(Selector.MARKER_IMAGE) || Default.MARKER_IMAGE_URL,
-            scaledSize: new google.maps.Size(50, 50)
-          },
-          title: String.MARKER_TITLE,
-          optimised: false
-        };
-        this.markerElements.each(function (index, marker) {
-          var gMarker;
-          var $marker = $(marker);
-          var markerAddress = $marker.attr(Selector.MARKER_ADDRESS);
-          var markerLatLng = $marker.attr(Selector.MARKER_LATLNG);
-          var infoWindow = $marker.find(Selector.INFOWindow);
-          var markerAo = {
-            title: $marker.attr(Selector.MARKER_TITLE)
-          };
-          markerAo.icon = typeof $marker.attr(Selector.MARKER_IMAGE) !== typeof undefined ? {
-            url: $marker.attr(Selector.MARKER_IMAGE),
-            scaledSize: new google.maps.Size(50, 50)
-          } : undefined;
-          var markerOptions = jQuery.extend({}, Default.MARKER, markerAo);
-          gMarker = new google.maps.Marker(jQuery.extend({}, markerOptions, {
-            map: _this2.map
-          }));
-
-          if (infoWindow.length) {
-            var gInfoWindow = new google.maps.InfoWindow({
-              content: infoWindow.first().html(),
-              maxWidth: parseInt(infoWindow.attr('data-max-width') || '250', 10)
-            });
-            gMarker.addListener('click', function () {
-              gInfoWindow.open(_this2.map, gMarker);
-            });
-          } // Set marker position
-
-
-          if (markerLatLng) {
-            if (/(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)/.test(markerLatLng)) {
-              gMarker.setPosition(new google.maps.LatLng(parseFloat(markerLatLng.substr(0, markerLatLng.indexOf(','))), parseFloat(markerLatLng.substr(markerLatLng.indexOf(',') + 1))));
-              _this2.markers[index] = gMarker;
-            }
-          } else if (markerAddress) {
-            _this2.geocodeAddress(markerAddress, Map.moveMarker, _this2, gMarker);
-
-            _this2.markers[index] = gMarker;
-          } else {
-            gMarker = null;
-            throw new Error("Invalid data-address or data-latlong provided for marker " + (index + 1));
-          }
-        });
-      };
-
-      Map.jQueryInterface = function jQueryInterface() {
-        return this.each(function jqEachMap() {
-          var $element = $(this);
-          var data = $element.data(DATA_KEY);
-
-          if (!data) {
-            data = new Map(this);
-            $element.data(DATA_KEY, data);
-          }
-        });
-      };
-
-      _createClass(Map, null, [{
-        key: "VERSION",
-        get: function get() {
-          return VERSION;
-        }
-      }]);
-
-      return Map;
-    }(); // END Class definition
-
-    /**
-     * ------------------------------------------------------------------------
-     * Initialise by data attribute
-     * ------------------------------------------------------------------------
-     */
-    // Load Google MAP API JS with callback to initialise when fully loaded
-
-
-    if (document.querySelector('[data-maps-api-key]') && !document.querySelector('.gMapsAPI')) {
-      if ($('[data-maps-api-key]').length) {
-        var apiKey = $('[data-maps-api-key]:first').attr('data-maps-api-key') || '';
-
-        if (apiKey !== '') {
-          var script = document.createElement('script');
-          script.type = 'text/javascript';
-          script.src = "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&callback=theme.mrMaps.init";
-          script.className = 'gMapsAPI';
-          document.body.appendChild(script);
-        }
-      }
-    }
-    /**
-     * ------------------------------------------------------------------------
-     * jQuery
-     * ------------------------------------------------------------------------
-     */
-
-    /* eslint-disable no-param-reassign */
-
-
-    $.fn[NAME] = Map.jQueryInterface;
-    $.fn[NAME].Constructor = Map;
-
-    $.fn[NAME].noConflict = function MapNoConflict() {
-      $.fn[NAME] = JQUERY_NO_CONFLICT;
-      return Map.jQueryInterface;
-    };
-    /* eslint-enable no-param-reassign */
-
-
-    return Map;
-  }(jQuery);
-
-  var mrOverlayNav = function ($) {
-    /**
-     * ------------------------------------------------------------------------
-     * Constants
-     * ------------------------------------------------------------------------
-     */
-    var NAME = 'mrOverlayNav';
-    var VERSION = '1.1.0';
-    var DATA_KEY = 'mr.overlayNav';
+    var DATA_KEY = 'goblin.overlayNav';
     var EVENT_KEY = "." + DATA_KEY;
     var JQUERY_NO_CONFLICT = $.fn[NAME];
     var Event = {
@@ -5610,7 +4555,7 @@
         var _this3 = this;
 
         var images = this.container.querySelectorAll(Selector.IMAGE);
-        mrUtil.forEach(images, function (index, image) {
+        goblinUtil.forEach(images, function (index, image) {
           image.addEventListener(Event.IMAGE_LOAD, function () {
             return _this3.updateValues();
           });
@@ -5726,13 +4671,13 @@
   //
   Prism.highlightAll();
 
-  var mrReadingPosition = function ($) {
+  var goblinReadingPosition = function ($) {
     /**
      * Check for scrollMonitor dependency
      * scrollMonitor - https://github.com/stutrek/scrollMonitor
      */
     if (typeof scrollMonitor === 'undefined') {
-      throw new Error('mrReadingPosition requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
+      throw new Error('goblinReadingPosition requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
     }
     /**
      * ------------------------------------------------------------------------
@@ -5741,9 +4686,9 @@
      */
 
 
-    var NAME = 'mrReadingPosition';
+    var NAME = 'goblinReadingPosition';
     var VERSION = '1.0.0';
-    var DATA_KEY = 'mr.readingPosition';
+    var DATA_KEY = 'goblin.readingPosition';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -5820,7 +4765,7 @@
       };
 
       _proto.initBarValues = function initBarValues() {
-        mrUtil.forEach(this.progressBars, function (index, bar) {
+        goblinUtil.forEach(this.progressBars, function (index, bar) {
           bar.setAttribute(Selector.MAX, Value.BAR_MAX);
         });
       };
@@ -5829,13 +4774,13 @@
         var _this2 = this;
 
         this.recalculatePercentage(scrollPosition);
-        mrUtil.forEach(this.progressBars, function (index, bar) {
+        goblinUtil.forEach(this.progressBars, function (index, bar) {
           bar.setAttribute(Selector.VALUE, _this2.articlePositionPercent);
         });
       };
 
       _proto.toggleBars = function toggleBars(show) {
-        mrUtil.forEach(this.progressBars, function (index, bar) {
+        goblinUtil.forEach(this.progressBars, function (index, bar) {
           if (show) {
             bar.classList.remove(Css.HIDDEN);
           } else {
@@ -5951,7 +4896,7 @@
 
   //
 
-  var mrSmoothScroll = function ($) {
+  var goblinSmoothScroll = function ($) {
     var smoothScroll = new SmoothScroll('a[data-smooth-scroll]', {
       speedAsDuration: true,
       offset: $('body').attr('data-smooth-scroll-offset') || 0
@@ -5959,13 +4904,13 @@
     return smoothScroll;
   }(jQuery$1);
 
-  var mrSticky = function ($) {
+  var goblinSticky = function ($) {
     /**
      * Check for scrollMonitor dependency
      * scrollMonitor - https://github.com/stutrek/scrollMonitor
      */
     if (typeof scrollMonitor === 'undefined') {
-      throw new Error('mrSticky requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
+      throw new Error('goblinSticky requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
     }
     /**
      * ------------------------------------------------------------------------
@@ -5974,9 +4919,9 @@
      */
 
 
-    var NAME = 'mrSticky';
+    var NAME = 'goblinSticky';
     var VERSION = '1.4.0';
-    var DATA_KEY = 'mr.sticky';
+    var DATA_KEY = 'goblin.sticky';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -7238,212 +6183,20 @@
   svgInjector.SVGInjector(document.querySelectorAll('[data-inject-svg]'), {
     afterEach: function afterEach(err, svg) {
       if (typeof jarallax === 'function') {
-        svg.dispatchEvent(new CustomEvent('injected.mr.SVGInjector', {
+        svg.dispatchEvent(new CustomEvent('injected.goblin.SVGInjector', {
           bubbles: true
         }));
       }
     }
   });
 
-  var mrTwitterFetcher = function ($) {
-    /**
-     * Check for twitterFetcher dependency
-     * twitterFetcher - https://github.com/jasonmayes/Twitter-Post-Fetcher
-     */
-    if (typeof twitterFetcher === 'undefined') {
-      throw new Error('mrTwitterFetcher requires twitterFetcher.js (https://github.com/jasonmayes/Twitter-Post-Fetcher)');
-    }
-    /**
-     * ------------------------------------------------------------------------
-     * Constants
-     * ------------------------------------------------------------------------
-     */
-
-
-    var NAME = 'mrTwitterFetcher';
-    var VERSION = '1.0.0';
-    var DATA_KEY = 'mr.twitterFetcher';
-    var EVENT_KEY = "." + DATA_KEY;
-    var DATA_API_KEY = '.data-api';
-    var JQUERY_NO_CONFLICT = $.fn[NAME];
-    var Event = {
-      LOAD_DATA_API: "load" + EVENT_KEY + DATA_API_KEY,
-      RESIZE: "resize" + EVENT_KEY,
-      READY: "ready" + EVENT_KEY,
-      APPEND: "tweetAppended" + EVENT_KEY
-    };
-    var Selector = {
-      DATA_ATTR: 'twitter-fetcher',
-      DATA_TWITTER_FETCHER: '[data-twitter-fetcher]',
-      DATA_TWITTER: 'data-twitter',
-      USER: '.user',
-      TWEET: '.tweet',
-      TIME_POSTED: '.timePosted',
-      INTERACT: '.interact'
-    };
-    var Defaults = {
-      USERNAME: 'twitter',
-      MAX_TWEETS: 6
-    };
-    var Options = {
-      USERNAME: 'username',
-      MAX_TWEETS: 'max-tweets',
-      FLICKITY: 'flickity',
-      SLIDER: 'twitterFlickity',
-      ISOTOPE: 'isotope'
-    };
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
-    var TwitterFetcher = /*#__PURE__*/function () {
-      function TwitterFetcher(element) {
-        var $element = $(element);
-        this.element = element;
-        this.element.id = "tweets-" + new Date().getTime();
-        this.username = $element.data(Options.USERNAME).replace('@', '') || Defaults.USERNAME;
-        this.maxTweets = parseInt($element.data(Options.MAX_TWEETS), 10) || Defaults.MAX_TWEETS; // Check if data-twitter-slider is options object, plain attribute or not present.
-
-        this.slider = this.element.getAttribute(Selector.DATA_TWITTER + "-" + Options.FLICKITY) !== null;
-        this.slider = this.slider && typeof $element.data(Options.SLIDER) === 'object' ? $element.data(Options.SLIDER) : this.slider; // Check if data-twitter-isotope is present.
-
-        this.isotope = this.element.getAttribute(Selector.DATA_TWITTER + "-" + Options.ISOTOPE) !== null;
-        this.initTwitterFeed();
-      } // getters
-
-
-      var _proto = TwitterFetcher.prototype;
-
-      _proto.initTwitterFeed = function initTwitterFeed() {
-        var _this = this;
-
-        this.config = {
-          profile: {
-            screenName: this.username
-          },
-          domId: this.element.id,
-          maxTweets: this.maxTweets,
-          enableLinks: true,
-          showUser: true,
-          showTime: true,
-          dateFunction: '',
-          showRetweet: false,
-          customCallback: function customCallback(tweets) {
-            var $element = $(_this.element);
-            var html;
-            var template = $element.children().first().detach();
-            var x = tweets.length;
-            var n = 0;
-
-            while (n < x) {
-              var tweetContent = $('<div>').append($(tweets[n]));
-              var templateClone = template.clone();
-              templateClone.find(Selector.TWEET).html(tweetContent.find(Selector.TWEET).html());
-              templateClone.find(Selector.USER).html(tweetContent.find(Selector.USER).html());
-              templateClone.find(Selector.TIME_POSTED).html(tweetContent.find(Selector.TIME_POSTED).html());
-              templateClone.find(Selector.INTERACT).html(tweetContent.find(Selector.INTERACT).html());
-              $element.append(templateClone);
-              n += 1; // Fire an event when each tweet is added to the div
-
-              var appendEvent = $.Event(Event.APPEND);
-              appendEvent.appendedElement = templateClone;
-              appendEvent.mrTwitterFetcher = _this;
-              $(_this.element).trigger(appendEvent);
-            }
-
-            if (_this.slider === true || typeof _this.slider === 'object') {
-              // Check for Flickity dependency
-              if (typeof Flickity === 'undefined') {
-                throw new Error('mrTwitterFetcher requires flickity.js (https://github.com/metafizzy/flickity)');
-              } else {
-                $element.data('flickity', new Flickity(_this.element, _this.slider));
-              }
-            } else if (_this.isotope === true) {
-              // Check for Isotope dependency
-              if (typeof Isotope === 'undefined') {
-                throw new Error('mrTwitterFetcher requires isotope.js (https://github.com/metafizzy/isotope)');
-              } else {
-                $(_this.element).mrIsotope();
-              }
-            } // Fire an event for tweets ready
-
-
-            var readyEvent = $.Event(Event.READY);
-            readyEvent.mrTwitterFetcher = _this;
-            $(_this.element).trigger(readyEvent);
-            return html;
-          }
-        };
-        twitterFetcher.fetch(this.config);
-      };
-
-      TwitterFetcher.jQueryInterface = function jQueryInterface() {
-        return this.each(function jqEachTwitterFetcher() {
-          var $element = $(this);
-          var data = $element.data(DATA_KEY);
-
-          if (!data) {
-            data = new TwitterFetcher(this);
-            $element.data(DATA_KEY, data);
-          }
-        });
-      };
-
-      _createClass(TwitterFetcher, null, [{
-        key: "VERSION",
-        get: function get() {
-          return VERSION;
-        }
-      }]);
-
-      return TwitterFetcher;
-    }();
-    /**
-     * ------------------------------------------------------------------------
-     * Initialise by data attribute
-     * ------------------------------------------------------------------------
-     */
-
-
-    $(window).on(Event.LOAD_DATA_API, function () {
-      var twitterFetcherElements = $.makeArray($(Selector.DATA_TWITTER_FETCHER));
-      /* eslint-disable no-plusplus */
-
-      for (var i = twitterFetcherElements.length; i--;) {
-        var $twitterFetcher = $(twitterFetcherElements[i]);
-        TwitterFetcher.jQueryInterface.call($twitterFetcher, $twitterFetcher.data());
-      }
-    });
-    /**
-     * ------------------------------------------------------------------------
-     * jQuery
-     * ------------------------------------------------------------------------
-     */
-
-    /* eslint-disable no-param-reassign */
-
-    $.fn[NAME] = TwitterFetcher.jQueryInterface;
-    $.fn[NAME].Constructor = TwitterFetcher;
-
-    $.fn[NAME].noConflict = function TwitterFetcherNoConflict() {
-      $.fn[NAME] = JQUERY_NO_CONFLICT;
-      return TwitterFetcher.jQueryInterface;
-    };
-    /* eslint-enable no-param-reassign */
-
-
-    return TwitterFetcher;
-  }(jQuery$1);
-
-  var mrTypedText = function ($) {
+  var goblinTypedText = function ($) {
     /**
      * Check for typedText dependency
      * typedText - https://github.com/mattboldt/typed.js/
      */
     if (typeof Typed !== 'function') {
-      throw new Error('mrTypedText requires typed.js (https://github.com/mattboldt/typed.js/)');
+      throw new Error('goblinTypedText requires typed.js (https://github.com/mattboldt/typed.js/)');
     }
     /**
      * Check for scrollMonitor dependency
@@ -7452,7 +6205,7 @@
 
 
     if (typeof scrollMonitor === 'undefined') {
-      throw new Error('mrTypedText requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
+      throw new Error('goblinTypedText requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
     }
     /**
      * ------------------------------------------------------------------------
@@ -7461,9 +6214,9 @@
      */
 
 
-    var NAME = 'mrTypedText';
+    var NAME = 'goblinTypedText';
     var VERSION = '1.0.0';
-    var DATA_KEY = 'mr.typedText';
+    var DATA_KEY = 'goblin.typedText';
     var EVENT_KEY = "." + DATA_KEY;
     var DATA_API_KEY = '.data-api';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -7568,24 +6321,36 @@
     if (typeof $ === 'undefined') {
       throw new TypeError('Goblin JavaScript requires jQuery. jQuery must be included before theme.js.');
     }
-  })();
+  })(); // Elect Callback
 
-  exports.mrCountdown = mrCountdown;
-  exports.mrCountup = mrCountup;
-  exports.mrDropdownGrid = mrDropdownGrid;
-  exports.mrFlatpickr = mrFlatpickr;
-  exports.mrFormEmail = mrFormEmail;
-  exports.mrIonRangeSlider = mrIonRangeSlider;
-  exports.mrIsotope = mrIsotope;
-  exports.mrMaps = mrMaps;
-  exports.mrMapsStyle = mrMapStyle;
-  exports.mrOverlayNav = mrOverlayNav;
-  exports.mrReadingPosition = mrReadingPosition;
-  exports.mrSmoothScroll = mrSmoothScroll;
-  exports.mrSticky = mrSticky;
-  exports.mrTwitterFetcher = mrTwitterFetcher;
-  exports.mrTypedText = mrTypedText;
-  exports.mrUtil = mrUtil;
+
+  elect.ajaxify.fnAfterRedirect = function (url) {
+    console.log(goblinCountdown.DATA_API_KEY); // $(window).trigger(goblinCountdown.DATA_API_KEY);
+    // $(window).trigger(goblinCountup.DATA_API_KEY);
+    // $(window).trigger(goblinDropdownGrid.DATA_API_KEY);
+    // $(window).trigger(goblinFlatpickr.DATA_API_KEY);
+    // $(window).trigger(goblinIonRangeSlider.DATA_API_KEY);
+    // $(window).trigger(goblinIsotope.DATA_API_KEY);
+    // $(window).trigger(goblinOverlayNav.DATA_API_KEY);
+    // $(window).trigger(goblinReadingPosition.DATA_API_KEY);
+    // $(window).trigger(goblinSmoothScroll.DATA_API_KEY);
+    // $(window).trigger(goblinSticky.DATA_API_KEY);
+    // $(window).trigger(goblinTypedText.DATA_API_KEY);
+    // $(window).trigger(goblinUtil.DATA_API_KEY);
+  };
+
+  exports.goblinCountdown = goblinCountdown;
+  exports.goblinCountup = goblinCountup;
+  exports.goblinDropdownGrid = goblinDropdownGrid;
+  exports.goblinFlatpickr = goblinFlatpickr;
+  exports.goblinIonRangeSlider = goblinIonRangeSlider;
+  exports.goblinIsotope = goblinIsotope;
+  exports.goblinOverlayNav = goblinOverlayNav;
+  exports.goblinReadingPosition = goblinReadingPosition;
+  exports.goblinSmoothScroll = goblinSmoothScroll;
+  exports.goblinSticky = goblinSticky;
+  exports.goblinTypedText = goblinTypedText;
+  exports.goblinUtil = goblinUtil;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

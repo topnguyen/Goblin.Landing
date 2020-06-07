@@ -6,18 +6,18 @@
 // style to pull content up and add padding to first sibling element
 
 import jQuery from 'jquery';
-import mrUtil from './util';
+import goblinUtil from './util';
 
-const mrOverlayNav = (($) => {
+const goblinOverlayNav = (($) => {
   /**
    * ------------------------------------------------------------------------
    * Constants
    * ------------------------------------------------------------------------
    */
 
-  const NAME = 'mrOverlayNav';
+  const NAME = 'goblinOverlayNav';
   const VERSION = '1.1.0';
-  const DATA_KEY = 'mr.overlayNav';
+  const DATA_KEY = 'goblin.overlayNav';
   const EVENT_KEY = `.${DATA_KEY}`;
   const JQUERY_NO_CONFLICT = $.fn[NAME];
 
@@ -119,7 +119,7 @@ const mrOverlayNav = (($) => {
 
     setImageLoadEvent() {
       const images = this.container.querySelectorAll(Selector.IMAGE);
-      mrUtil.forEach(images, (index, image) => {
+      goblinUtil.forEach(images, (index, image) => {
         image.addEventListener(Event.IMAGE_LOAD, () => this.updateValues());
       });
     }
@@ -181,4 +181,4 @@ const mrOverlayNav = (($) => {
   return OverlayNav;
 })(jQuery);
 
-export default mrOverlayNav;
+export default goblinOverlayNav;

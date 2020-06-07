@@ -6,7 +6,7 @@
 
 import jQuery from 'jquery';
 import jarallax from 'jarallax';
-import mrUtil from './util';
+import goblinUtil from './util';
 
 (($) => {
   if (typeof jarallax === 'function') {
@@ -14,11 +14,11 @@ import mrUtil from './util';
       jarallax(document.querySelectorAll('[data-jarallax],[data-jarallax-video]'), 'onScroll');
     });
 
-    $(document).on('resized.mr.overlayNav', () => {
+    $(document).on('resized.goblin.overlayNav', () => {
       jarallax(document.querySelectorAll('[data-jarallax],[data-jarallax-video]'), 'onResize');
     });
 
-    document.addEventListener('injected.mr.SVGInjector', () => {
+    document.addEventListener('injected.goblin.SVGInjector', () => {
       jarallax(document.querySelectorAll('[data-jarallax],[data-jarallax-video]'), 'onResize');
     });
 
@@ -31,7 +31,7 @@ import mrUtil from './util';
       jarallax(document.querySelectorAll('[data-jarallax]'), jarallaxOptions);
 
       const jarallaxDelay = document.querySelectorAll('[data-jarallax-video-delay]');
-      mrUtil.forEach(jarallaxDelay, (index, elem) => {
+      goblinUtil.forEach(jarallaxDelay, (index, elem) => {
         const source = elem.getAttribute('data-jarallax-video-delay');
         elem.removeAttribute('data-jarallax-video-delay');
         elem.setAttribute('data-jarallax-video', source);

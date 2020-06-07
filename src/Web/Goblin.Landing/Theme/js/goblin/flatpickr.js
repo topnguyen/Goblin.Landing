@@ -9,12 +9,12 @@
 import jQuery from 'jquery';
 import flatpickr from 'flatpickr';
 
-const mrFlatpickr = (($) => {
+const goblinFlatpickr = (($) => {
   /**
    * Check for flatpickr dependency
    */
   if (typeof flatpickr === 'undefined') {
-    throw new Error('mrFlatpickr requires flatpickr.js (https://github.com/flatpickr/flatpickr)');
+    throw new Error('goblinFlatpickr requires flatpickr.js (https://github.com/flatpickr/flatpickr)');
   }
 
   /**
@@ -23,9 +23,9 @@ const mrFlatpickr = (($) => {
    * ------------------------------------------------------------------------
    */
 
-  const NAME = 'mrFlatpickr';
+  const NAME = 'goblinFlatpickr';
   const VERSION = '1.0.0';
-  const DATA_KEY = 'mr.flatpickr';
+  const DATA_KEY = 'goblin.flatpickr';
   const EVENT_KEY = `.${DATA_KEY}`;
   const DATA_API_KEY = '.data-api';
   const JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -109,4 +109,4 @@ const mrFlatpickr = (($) => {
   return Flatpickr;
 })(jQuery);
 
-export default mrFlatpickr;
+export default goblinFlatpickr;

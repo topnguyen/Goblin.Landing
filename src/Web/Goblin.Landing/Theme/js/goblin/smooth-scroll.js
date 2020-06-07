@@ -8,7 +8,7 @@
 import SmoothScroll from 'smooth-scroll';
 import jQuery from 'jquery';
 
-const mrSmoothScroll = (($) => {
+const goblinSmoothScroll = (($) => {
   const smoothScroll = new SmoothScroll('a[data-smooth-scroll]',
     {
       speedAsDuration: true,
@@ -18,4 +18,4 @@ const mrSmoothScroll = (($) => {
   return smoothScroll;
 })(jQuery);
 
-export default mrSmoothScroll;
+export default goblinSmoothScroll;

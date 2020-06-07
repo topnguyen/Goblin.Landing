@@ -9,13 +9,13 @@ import jQuery from 'jquery';
 import scrollMonitor from 'scrollmonitor';
 import { CountUp } from 'countup.js';
 
-const mrCountup = (($) => {
+const goblinCountup = (($) => {
   /**
    * Check for scrollMonitor dependency
    * scrollMonitor - https://github.com/stutrek/scrollMonitor
    */
   if (typeof scrollMonitor === 'undefined') {
-    throw new Error('mrCountup requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
+    throw new Error('goblinCountup requires scrollMonitor.js (https://github.com/stutrek/scrollMonitor)');
   }
 
   /**
@@ -24,9 +24,9 @@ const mrCountup = (($) => {
    * ------------------------------------------------------------------------
    */
 
-  const NAME = 'mrCountup';
+  const NAME = 'goblinCountup';
   const VERSION = '1.1.0';
-  const DATA_KEY = 'mr.countup';
+  const DATA_KEY = 'goblin.countup';
   const EVENT_KEY = `.${DATA_KEY}`;
   const DATA_API_KEY = '.data-api';
   const JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -142,6 +142,7 @@ const mrCountup = (($) => {
    */
 
   $(window).on(Event.LOAD_DATA_API, () => {
+    
     const countupElements = $.makeArray($(Selector.DATA_COUNTUP));
 
     /* eslint-disable no-plusplus */
@@ -168,4 +169,4 @@ const mrCountup = (($) => {
   return Countup;
 })(jQuery);
 
-export default mrCountup;
+export default goblinCountup;

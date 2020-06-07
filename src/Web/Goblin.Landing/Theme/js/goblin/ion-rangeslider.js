@@ -5,21 +5,21 @@
 // Initialize the Ion rangeSlider plugin
 
 import jQuery from 'jquery';
-import mrUtil from './util';
+import goblinUtil from './util';
 import 'ion-rangeslider';
 
-const mrIonRangeSlider = (($) => {
+const goblinIonRangeSlider = (($) => {
   /**
    * Check for Ion rangeSlider dependency
    * https://github.com/IonDen/ion.rangeSlider
    */
   if (typeof $.fn.ionRangeSlider !== 'function') {
-    throw new Error('mrIonRangeSlider requires ion.rangeSlider.js (https://github.com/IonDen/ion.rangeSlider)');
+    throw new Error('goblinIonRangeSlider requires ion.rangeSlider.js (https://github.com/IonDen/ion.rangeSlider)');
   }
 
-  // Check mrUtil is present and correct version
-  if (!(mrUtil && mrUtil.version >= '1.2.0')) {
-    throw new Error('mrUtil >= version 1.2.0 is required.');
+  // Check goblinUtil is present and correct version
+  if (!(goblinUtil && goblinUtil.version >= '1.2.0')) {
+    throw new Error('goblinUtil >= version 1.2.0 is required.');
   }
 
   /**
@@ -28,9 +28,9 @@ const mrIonRangeSlider = (($) => {
    * ------------------------------------------------------------------------
    */
 
-  const NAME = 'mrIonRangeSlider';
+  const NAME = 'goblinIonRangeSlider';
   const VERSION = '1.0.0';
-  const DATA_KEY = 'mr.ionRangeSlider';
+  const DATA_KEY = 'goblin.ionRangeSlider';
   const EVENT_KEY = `.${DATA_KEY}`;
   const DATA_API_KEY = '.data-api';
   const JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -91,11 +91,11 @@ const mrIonRangeSlider = (($) => {
 
       $(this.element).ionRangeSlider({
         skin: Options.SKIN_DEFAULT,
-        onStart: mrUtil.getFuncFromString(options.onStart),
-        onFinish: mrUtil.getFuncFromString(options.onFinish),
+        onStart: goblinUtil.getFuncFromString(options.onStart),
+        onFinish: goblinUtil.getFuncFromString(options.onFinish),
         onChange: this.handleChange,
         scope: this,
-        onUpdate: mrUtil.getFuncFromString(options.onUpdate),
+        onUpdate: goblinUtil.getFuncFromString(options.onUpdate),
       });
       this.rangeSlider = $(this.element).data(ION_RANGE_SLIDER_KEY);
     }
@@ -103,19 +103,19 @@ const mrIonRangeSlider = (($) => {
     // HandleChange then also calls the user's callback
     handleChange(data) {
       if (this.fromElement && this.fromElement.length > 0) {
-        mrIonRangeSlider.updateValue(this.fromElement, data.from_value || data.from);
+        goblinIonRangeSlider.updateValue(this.fromElement, data.from_value || data.from);
       }
       if (this.toElement && this.toElement.length > 0) {
-        mrIonRangeSlider.updateValue(this.toElement, data.to_value || data.to);
+        goblinIonRangeSlider.updateValue(this.toElement, data.to_value || data.to);
       }
       if (this.unitElement && this.unitElement.length > 0) {
         const value = parseInt(data.from_value, 10) || data.value;
-        mrIonRangeSlider.updateValue(this.unitElement, value > 1
+        goblinIonRangeSlider.updateValue(this.unitElement, value > 1
           ? this.options.unitPlural
           : this.options.unitSingle);
       }
 
-      const userChangeFunction = mrUtil.getFuncFromString(this.options.onChange);
+      const userChangeFunction = goblinUtil.getFuncFromString(this.options.onChange);
       if (userChangeFunction) {
         userChangeFunction(data);
       }
@@ -124,7 +124,7 @@ const mrIonRangeSlider = (($) => {
     // Takes a collection of "To" elements and attaches
     // a change event handler to update the rangeslider when user inputs a value
     setToUpdateEvent(collection) {
-      mrUtil.forEach(collection, (index, element) => {
+      goblinUtil.forEach(collection, (index, element) => {
         if (element.tagName.toUpperCase() === Selector.INPUT
           && element.type === Selector.TEXT) {
           element.addEventListener(Event.CHANGE, () => {
@@ -137,7 +137,7 @@ const mrIonRangeSlider = (($) => {
     // Takes a collection of "From" elements and attaches
     // a change event handler to update the rangeslider when user inputs a value
     setFromUpdateEvent(collection) {
-      mrUtil.forEach(collection, (index, element) => {
+      goblinUtil.forEach(collection, (index, element) => {
         if (element.tagName.toUpperCase() === Selector.INPUT
           && element.type === Selector.TEXT) {
           element.addEventListener(Event.CHANGE, () => {
@@ -148,7 +148,7 @@ const mrIonRangeSlider = (($) => {
     }
 
     static updateValue(collection, value) {
-      mrUtil.forEach(collection, (index, element) => {
+      goblinUtil.forEach(collection, (index, element) => {
         const updateElement = element;
         // If element is an input, set the value instead of textContent
         const updateMethod = element.tagName.toUpperCase() === Selector.INPUT
@@ -202,4 +202,4 @@ const mrIonRangeSlider = (($) => {
   return IonRangeSlider;
 })(jQuery);
 
-export default mrIonRangeSlider;
+export default goblinIonRangeSlider;

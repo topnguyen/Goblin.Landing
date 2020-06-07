@@ -37,7 +37,7 @@
 else
 {
     var isGoblinAjaxify = string.Compare(Context.Request.Headers[HeaderKey.XRequestedWith], "Elect.Web.Ajaxify", StringComparison.OrdinalIgnoreCase) == 0;
-    
+
     if (isGoblinAjaxify)
     {
         <text>
@@ -48,20 +48,17 @@ else
                 }
             </head>
             <body class="document-body">
-                <div id="document-content">
-                    @await RenderSectionAsync("Styles", false).ConfigureAwait(true)
-                    @{
-                        @RenderBody()
-                    }
-                    <div class="document-script">
-                        <div class="document-main-script-start"></div>
-                            @{
-                               await Html.RenderPartialAsync("Assets/_PerRequestScript").ConfigureAwait(true);
-                            }
-                            @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
-                        <div class="document-main-script-end"></div>
-                    </div>
+            <div id="document-content">
+                @await RenderSectionAsync("Styles", false).ConfigureAwait(true)
+                @{
+                    @RenderBody()
+                }
+                <div class="document-script">
+                    <div class="document-main-script-start"></div>
+                    @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
+                    <div class="document-main-script-end"></div>
                 </div>
+            </div>
             </body>
             </html>
         </text>
@@ -80,29 +77,26 @@ else
                 }
             </head>
             <body class="document-body">
-                <div class="loader">
-                    <div class="loading-animation"></div>
-                </div>
-                @{
-                    await Html.RenderPartialAsync("_Header").ConfigureAwait(true);
-                }
-                <div id="document-content">
-                    @await RenderSectionAsync("Styles", false).ConfigureAwait(true)
-                    @RenderBody()
+            <div class="loader">
+                <div class="loading-animation"></div>
+            </div>
+            @{
+                await Html.RenderPartialAsync("_Header").ConfigureAwait(true);
+            }
+            <div id="document-content">
+                @await RenderSectionAsync("Styles", false).ConfigureAwait(true)
+                @RenderBody()
 
-                    <div class="document-script">
-                        <div class="document-main-script-start"></div>
-                        @{
-                            await Html.RenderPartialAsync("Assets/_PerRequestScript").ConfigureAwait(true);
-                        }
-                        @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
-                        <div class="document-main-script-end"></div>
-                    </div>
+                <div class="document-script">
+                    <div class="document-main-script-start"></div>
+                    @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
+                    <div class="document-main-script-end"></div>
                 </div>
-                @{
-                    await Html.RenderPartialAsync("_Footer").ConfigureAwait(true);
-                    await Html.RenderPartialAsync("Assets/_BottomScript").ConfigureAwait(true);
-                }
+            </div>
+            @{
+                await Html.RenderPartialAsync("_Footer").ConfigureAwait(true);
+                await Html.RenderPartialAsync("Assets/_BottomScript").ConfigureAwait(true);
+            }
             </body>
             </html>
         </text>

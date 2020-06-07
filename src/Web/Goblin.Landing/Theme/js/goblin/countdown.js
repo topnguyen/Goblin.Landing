@@ -9,13 +9,13 @@
 import jQuery from 'jquery';
 import 'jquery-countdown';
 
-const mrCountdown = (($) => {
+const goblinCountdown = (($) => {
   /**
    * Check for countdown dependency
    * countdown - https://github.com/hilios/jQuery.countdown/
    */
   if (typeof $.fn.countdown !== 'function') {
-    throw new Error('mrCountdown requires jquery.countdown.js (https://github.com/hilios/jQuery.countdown/)');
+    throw new Error('goblinCountdown requires jquery.countdown.js (https://github.com/hilios/jQuery.countdown/)');
   }
 
   /**
@@ -24,9 +24,9 @@ const mrCountdown = (($) => {
    * ------------------------------------------------------------------------
    */
 
-  const NAME = 'mrCountdown';
+  const NAME = 'goblinCountdown';
   const VERSION = '1.1.0';
-  const DATA_KEY = 'mr.countdown';
+  const DATA_KEY = 'goblin.countdown';
   const EVENT_KEY = `.${DATA_KEY}`;
   const DATA_API_KEY = '.data-api';
   const JQUERY_NO_CONFLICT = $.fn[NAME];
@@ -300,4 +300,4 @@ const mrCountdown = (($) => {
   return Countdown;
 })(jQuery);
 
-export default mrCountdown;
+export default goblinCountdown;
