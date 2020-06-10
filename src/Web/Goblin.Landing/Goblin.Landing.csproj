@@ -52,7 +52,7 @@
         <Content Remove="wwwroot\node_modules\**\*" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\..\..\Goblin.Core\Goblin.Core.Web\Goblin.Core.Web.csproj" />
+        <ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core.Web\Goblin.Core.Web.csproj" />
         
         <ProjectReference Include="..\..\Cross\Goblin.Landing.Core\Goblin.Landing.Core.csproj" />
         <ProjectReference Include="..\..\Cross\Goblin.Landing.Mapper\Goblin.Landing.Mapper.csproj" />

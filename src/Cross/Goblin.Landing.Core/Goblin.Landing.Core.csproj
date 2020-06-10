@@ -13,6 +13,6 @@
     
     <ItemGroup>
 		<!-- Core -->
-		<ProjectReference Include="..\..\..\..\Goblin.Core\Goblin.Core\Goblin.Core.csproj" />
+		<ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core\Goblin.Core.csproj" />
 	</ItemGroup>
 </Project>
