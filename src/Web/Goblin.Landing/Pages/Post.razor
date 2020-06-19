@@ -1,0 +1,10 @@
+@page "/p/{Slug}"
+
+<div>
+    @Slug
+</div>
+
+@code{
+    [Parameter]
+    public string Slug { get; set; }
+}

@@ -34,6 +34,9 @@
         <Content Update="Shared\RoutingStateManager.razor">
           <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
         </Content>
+        <Content Update="Pages\Post.razor">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        </Content>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core.Web\Goblin.Core.Web.csproj" />

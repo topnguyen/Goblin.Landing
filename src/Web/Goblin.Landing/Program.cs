@@ -11,7 +11,7 @@ namespace Goblin.Landing
                 {
                     // https://stackoverflow.com/questions/58862932/blazor-server-static-files-dont-link-in-non-dev-environments
                     webHostBuilder.UseStaticWebAssets();
-                    
+
                     webHostBuilder.UseStartup<Startup>();
                 }, scope =>
                 {
