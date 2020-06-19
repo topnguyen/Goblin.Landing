@@ -1,7 +1,4 @@
-﻿using Blazorise;
-using Blazorise.Bootstrap;
-using Blazorise.Icons.FontAwesome;
-using Elect.Core.ConfigUtils;
+﻿using Elect.Core.ConfigUtils;
 using Goblin.Core.Web.Setup;
 using Goblin.Landing.Core;
 using Microsoft.AspNetCore.Hosting;
@@ -18,25 +15,6 @@ namespace Goblin.Landing
                 // Setting
 
                 SystemSetting.Current = Configuration.GetSection<SystemSetting>("Setting");
-
-                // Blazorise Theme
-
-                services
-                    .AddBlazorise(options =>
-                    {
-                        options.ChangeTextOnKeyPress = true; // optional
-                    })
-                    .AddBootstrapProviders();
-                // .AddFontAwesomeIcons();
-            };
-
-            BeforeConfigureAppEndpoint = (app, environment, lifetime) =>
-            {
-                // Blazorise Theme
-
-                app.ApplicationServices
-                    .UseBootstrapProviders();
-                // .UseFontAwesomeIcons();
             };
         }
     }

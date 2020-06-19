@@ -6668,6 +6668,7 @@
   var from_1 = path.Array.from;
 
   //
+  window.SVGInjector = svgInjector.SVGInjector;
   svgInjector.SVGInjector(document.querySelectorAll('[data-inject-svg]'), {
     afterEach: function afterEach(err, svg) {
       if (typeof jarallax === 'function') {

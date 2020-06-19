@@ -1,0 +1,39 @@
+@implements IDisposable
+@inject IJSRuntime JsRuntime
+@inject NavigationManager NavigationManager
+
+@code {
+    protected override void OnInitialized()
+    {
+        // Subscribe to the event
+        NavigationManager.LocationChanged += LocationChanged;
+        base.OnInitialized();
+    }
+    
+    void IDisposable.Dispose()
+    {
+        // Unsubscribe from the event when our component is disposed
+        NavigationManager.LocationChanged -= LocationChanged;
+    }
+    
+    private void LocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        var navigationMethod = e.IsNavigationIntercepted ? "HTML" : "Code";
+        
+        #if DEBUG
+        
+        Console.WriteLine($"Notified of navigation via {navigationMethod} to {e.Location}");
+        
+        #endif
+
+        JsRuntime.InvokeVoidAsync("triggerEvents").ConfigureAwait(true);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JsRuntime.InvokeVoidAsync("triggerEvents").ConfigureAwait(true);
+        }
+    }
+}
