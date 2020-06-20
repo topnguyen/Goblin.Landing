@@ -15,6 +15,9 @@
     <!-- Copy to Output -->
     <ItemGroup>
         <Content Remove="wwwroot\**\*.scss" />
+        <Content Update="Pages\NavigatorHub.razor">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        </Content>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core.Web\Goblin.Core.Web.csproj" />
