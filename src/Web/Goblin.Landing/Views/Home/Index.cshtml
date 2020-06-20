@@ -1,0 +1,40 @@
+@{
+    await Html.RenderPartialAsync("~/Views/Home/_Index/_Banner.cshtml").ConfigureAwait(true);
+    
+    <div class="divider divider-bottom bg-primary-3 mt-5"></div>
+    
+    await Html.RenderPartialAsync("~/Views/Home/_Index/_Intro.cshtml").ConfigureAwait(true);
+    
+    await Html.RenderPartialAsync("~/Views/Home/_Index/_StayInTheLoop.cshtml").ConfigureAwait(true);
+    
+    <section class="bg-light p-0 row no-gutters">
+        <div class="col-sm-4">
+            <div class="h-100 border-top border-left border-thick border-white p-3 p-xl-4">
+                <div class="p-3 p-md-5">
+                    <div class="display-4 text-dark mb-3" data-countup data-start="" data-end="97" data-duration="" data-decimal-places="" data-prefix="" data-separator="" data-grouping="" data-suffix="%" data-easing="">
+                    </div>
+                    <div>Average satisfaction rating received in the past year</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="h-100 border-top border-left border-thick border-white p-3 p-xl-4">
+                <div class="p-3 p-md-5">
+                    <div class="display-4 text-dark mb-3" data-countup data-start="20" data-end="24" data-duration="1" data-decimal-places="" data-prefix="" data-separator="" data-grouping="" data-suffix="/7" data-easing="false">
+                    </div>
+                    <div>Our support experts are ready to assist anytime</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="h-100 border-top border-left border-thick border-white p-3 p-xl-4">
+                <div class="p-3 p-md-5">
+                    <div class="display-4 text-dark mb-3" data-countup data-start="" data-end="142" data-duration="" data-decimal-places="" data-prefix="" data-separator="" data-grouping="" data-suffix="k+" data-easing="">
+                    </div>
+                    <div>App installs from the two major mobile app stores</div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+}

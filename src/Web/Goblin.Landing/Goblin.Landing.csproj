@@ -6,6 +6,29 @@
         <LangVersion>latest</LangVersion>
         <TargetFramework>netcoreapp3.1</TargetFramework>
 
+        <!-- Document File -->
+        <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+        <DocumentationFile>Goblin.Landing.xml</DocumentationFile>
+        <NoWarn>1701;1702;1705;1591</NoWarn>
+
+        <!-- UI -->
+        <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+
+        <!-- Very Important to enable Razor Recompile Feature, turn is to false cannot get Views.dll in build folder -->
+        <EnableDefaultContentItems>true</EnableDefaultContentItems>
+
+        <!-- Mvc Razor Compile -->
+        <RazorCompileOnPublish>true</RazorCompileOnPublish>
+        <RazorCompileOnBuild>true</RazorCompileOnBuild>
+
+        <!-- 
+            As far as I know, this is primarily used for Razor pages. 
+            They are compiled at runtime, and the compiler needs access to reference assemblies, to make sure it compiles correctly. 
+            So, to use Razor pages, you need to set preserveCompilationContext, which then includes all the necessary files in the published output.
+            If you don't need runtime compilation, you don't have to set preserveCompilationContext.
+        -->
+        <PreserveCompilationContext>true</PreserveCompilationContext>
+
         <!-- Output -->
         <OutputPath>.\bin\</OutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
@@ -14,21 +37,21 @@
     </PropertyGroup>
     <!-- Copy to Output -->
     <ItemGroup>
-        <Content Remove="wwwroot\**\*.scss" />
-        <Content Update="Pages\NavigatorHub.razor">
-          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <Content Include="Goblin.Landing.xml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Remove="wwwroot\**\*.scss"/>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core.Web\Goblin.Core.Web.csproj" />
+        <ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core.Web\Goblin.Core.Web.csproj"/>
 
-        <ProjectReference Include="..\..\Cross\Goblin.Landing.Core\Goblin.Landing.Core.csproj" />
-        <ProjectReference Include="..\..\Cross\Goblin.Landing.Mapper\Goblin.Landing.Mapper.csproj" />
+        <ProjectReference Include="..\..\Cross\Goblin.Landing.Core\Goblin.Landing.Core.csproj"/>
+        <ProjectReference Include="..\..\Cross\Goblin.Landing.Mapper\Goblin.Landing.Mapper.csproj"/>
 
-        <ProjectReference Include="..\..\Service\Goblin.Landing.Contract.Service\Goblin.Landing.Contract.Service.csproj" />
-        <ProjectReference Include="..\..\Service\Goblin.Landing.Service\Goblin.Landing.Service.csproj" />
+        <ProjectReference Include="..\..\Service\Goblin.Landing.Contract.Service\Goblin.Landing.Contract.Service.csproj"/>
+        <ProjectReference Include="..\..\Service\Goblin.Landing.Service\Goblin.Landing.Service.csproj"/>
 
-        <ProjectReference Include="..\..\Repository\Goblin.Landing.Contract.Repository\Goblin.Landing.Contract.Repository.csproj" />
-        <ProjectReference Include="..\..\Repository\Goblin.Landing.Repository\Goblin.Landing.Repository.csproj" />
+        <ProjectReference Include="..\..\Repository\Goblin.Landing.Contract.Repository\Goblin.Landing.Contract.Repository.csproj"/>
+        <ProjectReference Include="..\..\Repository\Goblin.Landing.Repository\Goblin.Landing.Repository.csproj"/>
     </ItemGroup>
 </Project>

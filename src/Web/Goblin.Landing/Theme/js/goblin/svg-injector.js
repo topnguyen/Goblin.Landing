@@ -8,8 +8,6 @@
 import 'core-js/features/array/from';
 import { SVGInjector } from '@tanem/svg-injector';
 
-window.SVGInjector = SVGInjector;
-
 SVGInjector(document.querySelectorAll('[data-inject-svg]'), {
   afterEach(err, svg) {
     if (typeof jarallax === 'function') {

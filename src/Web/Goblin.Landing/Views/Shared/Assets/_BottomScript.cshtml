@@ -58,12 +58,13 @@
 <!-- Required theme scripts (Do not remove) -->
 <script type="text/javascript" src="~/js/goblin.js"></script>
 
-<script type="text/javascript">  
-    // Removes page load animation when window is finished loading
-    window.addEventListener("load",function(){document.querySelector('body').classList.add('loaded');});
-   
-    // Event Key
-    
+<!-- Removes page load animation when window is finished loading -->
+<script type="text/javascript">
+  window.addEventListener("load",function(){document.querySelector('body').classList.add('loaded');});
+  
+  // Elect Callback
+  elect.ajaxify.fnAfterRedirect = function(url)
+  {
     var DATA_API_KEY = "data-api";
     var baseKey = "load.goblin";
     
@@ -79,31 +80,18 @@
     goblinSticky = "sticky";
     goblinTwitterFetcher = "twitterFetcher";
     goblinTypedText = "typedText";
-    
-    goblinSVGInject = "SVGInject";
-     
-    // Define More Event out of Theme > js > goblin folder
-    
-    $(window).on(baseKey + "." + goblinSVGInject + "." + DATA_API_KEY, () => {
-       SVGInjector(document.querySelectorAll('[data-inject-svg]'));
-     });
-    
-    // Trigger all needed event
-    
-    window.triggerEvents = function()
-    {
-        $(window).trigger(baseKey + "." + goblinCountdown + "." + DATA_API_KEY);
-        $(window).trigger(baseKey + "." + goblinCountup + "." + DATA_API_KEY);
-        $(window).trigger(baseKey + "." + goblinDropdownGrid + "." + DATA_API_KEY);
-        $(window).trigger(baseKey + "." + goblinFlatpickr + "." + DATA_API_KEY);
-        $(window).trigger(baseKey + "." + goblinIonRangeSlider + "." + DATA_API_KEY);
-        $(window).trigger(baseKey + "." + goblinIsotope + "." + DATA_API_KEY);
-        $(window).trigger(baseKey + "." + goblinMapsStyle + "." + DATA_API_KEY);
-        $(window).trigger(baseKey + "." + goblinOverlayNav + "." + DATA_API_KEY);
-        $(window).trigger(baseKey + "." + goblinReadingPosition + "." + DATA_API_KEY);
-        $(window).trigger(baseKey + "." + goblinSticky + "." + DATA_API_KEY);
-        $(window).trigger(baseKey + "." + goblinTwitterFetcher + "." + DATA_API_KEY);
-        $(window).trigger(baseKey + "." + goblinTypedText + "." + DATA_API_KEY);
-        $(window).trigger(baseKey + "." + goblinSVGInject + "." + DATA_API_KEY);
-    }
+      
+    $(window).trigger(baseKey + "." + goblinCountdown + "." + DATA_API_KEY);
+    $(window).trigger(baseKey + "." + goblinCountup + "." + DATA_API_KEY);
+    $(window).trigger(baseKey + "." + goblinDropdownGrid + "." + DATA_API_KEY);
+    $(window).trigger(baseKey + "." + goblinFlatpickr + "." + DATA_API_KEY);
+    $(window).trigger(baseKey + "." + goblinIonRangeSlider + "." + DATA_API_KEY);
+    $(window).trigger(baseKey + "." + goblinIsotope + "." + DATA_API_KEY);
+    $(window).trigger(baseKey + "." + goblinMapsStyle + "." + DATA_API_KEY);
+    $(window).trigger(baseKey + "." + goblinOverlayNav + "." + DATA_API_KEY);
+    $(window).trigger(baseKey + "." + goblinReadingPosition + "." + DATA_API_KEY);
+    $(window).trigger(baseKey + "." + goblinSticky + "." + DATA_API_KEY);
+    $(window).trigger(baseKey + "." + goblinTwitterFetcher + "." + DATA_API_KEY);
+    $(window).trigger(baseKey + "." + goblinTypedText + "." + DATA_API_KEY);
+  };
 </script>
