@@ -234,8 +234,13 @@ elect.ajaxify = {
                     // Update the title
 
                     document.title = $data.find('.document-title:first').text();
+                    
+                    document.favicon = $data.find('#favicon-ico:first').attr("href");
+                    
                     try {
                         document.getElementsByTagName('title')[0].innerHTML = document.title.replace('<', '&lt;').replace('>', '&gt;').replace(' & ', ' &amp; ');
+
+                        $("#favicon-ico").attr("href", document.favicon)
                     } catch (Exception) {
                         // Ignore
                     }

@@ -1,0 +1,66 @@
+@using Goblin.Landing.Core
+@{
+    string title = ViewData[MetadataKeys.Title]?.ToString();
+    
+    if (string.IsNullOrWhiteSpace(title))
+    {
+        title =  SystemSetting.Current.ApplicationName;
+    }
+    else
+    {
+        title += $" | {SystemSetting.Current.ApplicationName}";
+    }
+    
+    string description = ViewData[MetadataKeys.Description]?.ToString();
+
+    if (string.IsNullOrWhiteSpace(description))
+    {
+        description = SystemSetting.Current.ApplicationDescription;
+    }
+    
+    string imageUrl = ViewData[MetadataKeys.ImageUrl]?.ToString();
+    string type = ViewData[MetadataKeys.Type]?.ToString() ?? "website";
+
+    string pageUrl = Url.ActionContext.HttpContext.Request.GetDisplayUrl();
+
+    var websiteAuthorUrl = "http://topnguyen.com";
+}
+<meta name="google-site-verification" content="" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="@SystemSetting.Current.ApplicationName" />
+<meta name="application-name" content="@SystemSetting.Current.ApplicationName" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="referrer" content="origin" />
+<meta name="robots" content="noodp" />
+
+<!-- Web Author -->
+<meta name="web_author" content="@websiteAuthorUrl" />
+<meta name="designer" content="@websiteAuthorUrl" />
+
+<meta property="og:locale" content="vi" />
+
+<!-- Title -->
+<title>@title</title>
+<meta name="title" content="@title" />
+<meta property="og:title" content="@title" />
+<meta property="og:site_name" content="@SystemSetting.Current.ApplicationName" />
+
+<!-- Description -->
+<meta name="description" content="@description" />
+<meta property="og:description" content="@description" />
+
+<!-- URL -->
+<link rel="canonical" href="@pageUrl" />
+<meta property="og:url" content="@pageUrl" />
+
+<!-- Type -->
+<meta property="og:type" content="@type" />
+
+@if (!string.IsNullOrWhiteSpace(imageUrl))
+{
+    <!-- Image -->
+    <link rel="image_src" href="@imageUrl" />
+    <meta property="og:image" content="@imageUrl" />
+}
