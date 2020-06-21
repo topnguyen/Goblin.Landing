@@ -3,4 +3,26 @@
     ViewData[MetadataKeys.FaviconUrl] = "~/icons/work.ico";
 }
 
-Work
+<section class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                @{
+                    await Html.RenderPartialAsync("~/Views/Work/_CaseStudy.cshtml").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Work/_CaseStudy.cshtml").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Work/_CaseStudy.cshtml").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Work/_CaseStudy.cshtml").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Work/_CaseStudy.cshtml").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Work/_CaseStudy.cshtml").ConfigureAwait(true);
+                }
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-auto">
+                @{
+                    await Html.RenderPartialAsync("~/Views/Work/_Paging.cshtml").ConfigureAwait(true);
+                }
+            </div>
+        </div>
+    </div>
+</section>

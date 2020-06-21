@@ -1,0 +1,26 @@
+@{
+    ViewData[MetadataKeys.Title] = "Post";
+    ViewData[MetadataKeys.FaviconUrl] = "~/icons/openings.ico";
+}
+
+@{          
+    await Html.RenderPartialAsync("~/Views/Shared/_Header.cshtml").ConfigureAwait(true);
+    await Html.RenderPartialAsync("~/Views/Post/_Header.cshtml").ConfigureAwait(true);
+}
+
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-10">
+                @{
+                    await Html.RenderPartialAsync("~/Views/Post/_Post.cshtml").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("_BreadcrumbAndShare.cshtml").ConfigureAwait(true);
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@{
+    await Html.RenderPartialAsync("~/Views/Post/_MorePost.cshtml").ConfigureAwait(true);
+}

@@ -13,8 +13,8 @@
     <html>
     <head>
         @{
-            await Html.RenderPartialAsync("_Metadata").ConfigureAwait(true);
-            await Html.RenderPartialAsync("_Favicon").ConfigureAwait(true);
+            await Html.RenderPartialAsync("~/Views/Shared/_Metadata.cshtml").ConfigureAwait(true);
+            await Html.RenderPartialAsync("~/Views/Shared/_Favicon.cshtml").ConfigureAwait(true);
         }
     </head>
     <body class="document-body">
@@ -45,12 +45,15 @@ else
             <html>
             <head>
                 @{
-                    await Html.RenderPartialAsync("_Metadata").ConfigureAwait(true);
-                    await Html.RenderPartialAsync("_Favicon").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Shared/_Metadata.cshtml").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Shared/_Favicon.cshtml").ConfigureAwait(true);
                 }
             </head>
             <body class="document-body">
             <div id="document-content">
+                @{
+                    await Html.RenderPartialAsync("~/Views/Shared/_Header.cshtml").ConfigureAwait(true);
+                }
                 @await RenderSectionAsync("Styles", false).ConfigureAwait(true)
                 @{
                     @RenderBody()
@@ -72,20 +75,20 @@ else
             <html lang="en-US">
             <head>
                 @{
-                    await Html.RenderPartialAsync("_Metadata").ConfigureAwait(true);
-                    await Html.RenderPartialAsync("_Favicon").ConfigureAwait(true);
-                    await Html.RenderPartialAsync("Assets/_TopScript").ConfigureAwait(true);
-                    await Html.RenderPartialAsync("Assets/_Style").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Shared/_Metadata.cshtml").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Shared/_Favicon.cshtml").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Shared/Assets/_TopScript.cshtml").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Shared/Assets/_Style.cshtml").ConfigureAwait(true);
                 }
             </head>
             <body class="document-body">
             <div class="loader">
                 <div class="loading-animation"></div>
             </div>
-            @{
-                await Html.RenderPartialAsync("_Header").ConfigureAwait(true);
-            }
             <div id="document-content">
+                @{
+                    await Html.RenderPartialAsync("~/Views/Shared/_Header.cshtml").ConfigureAwait(true);
+                }
                 @await RenderSectionAsync("Styles", false).ConfigureAwait(true)
                 @RenderBody()
 
@@ -96,8 +99,8 @@ else
                 </div>
             </div>
             @{
-                await Html.RenderPartialAsync("_Footer").ConfigureAwait(true);
-                await Html.RenderPartialAsync("Assets/_BottomScript").ConfigureAwait(true);
+                await Html.RenderPartialAsync("~/Views/Shared/_Footer.cshtml").ConfigureAwait(true);
+                await Html.RenderPartialAsync("~/Views/Shared/Assets/_BottomScript.cshtml").ConfigureAwait(true);
             }
             </body>
             </html>

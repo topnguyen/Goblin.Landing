@@ -5441,7 +5441,7 @@
     var Selector = {
       DATA_ATTR: 'sticky',
       DATA_STICKY: '[data-sticky]',
-      NAV_STICKY: 'body > div.navbar-container [data-sticky="top"]',
+      NAV_STICKY: 'body > div#document-content > div.navbar-container [data-sticky="top"]',
       ALERT: '.alert-dismissible'
     };
     /**

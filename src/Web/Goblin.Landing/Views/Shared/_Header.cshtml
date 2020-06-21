@@ -1,16 +1,30 @@
+@{
+    var headerNavContent =
+        ViewData[ContentKeys.HeaderNavTagContent]?.ToString()
+        ?? "class='navbar navbar-expand-lg navbar-light' data-sticky='top'";
+
+    var isShowLogoStr = ViewData[ContentKeys.IsShowLogo]?.ToString() ?? "true";
+    var isShowLogo = isShowLogoStr == "true";
+    
+    var logoTagContent = ViewData[ContentKeys.LogoTagContent]?.ToString() ?? string.Empty;
+}
+
 @using Goblin.Landing.Core.Constants
 <div class="navbar-container">
-    <nav class="navbar navbar-expand-lg navbar-light" data-sticky="top">
+    <nav @Html.Raw(headerNavContent)>
         <div class="container">
-            <a href="@Url.Content(Endpoints.Home)">
-                <h3 class="d-inline">
-                   Top Nguyen
-                </h3>
-            </a>
+            @if (isShowLogo)
+            {
+                <a href="@Url.Content(Endpoints.Home)">
+                    <h3 class="d-inline @Html.Raw(logoTagContent)">
+                        Top Nguyen
+                    </h3>
+                </a>
+            }
             <div class="d-flex align-items-center order-lg-3">
                 <button aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target=".navbar-collapse" data-toggle="collapse" type="button">
-                    <img alt="Navbar Toggler Open Icon" class="navbar-toggler-open icon icon-sm" data-inject-svg src="img/icons/interface/icon-menu.svg">
-                    <img alt="Navbar Toggler Close Icon" class="navbar-toggler-close icon icon-sm" data-inject-svg src="img/icons/interface/icon-x.svg">
+                    <img alt="Navbar Toggler Open Icon" class="navbar-toggler-open icon icon-sm" data-inject-svg src="/img/icons/interface/icon-menu.svg">
+                    <img alt="Navbar Toggler Close Icon" class="navbar-toggler-close icon icon-sm" data-inject-svg src="/img/icons/interface/icon-x.svg">
                 </button>
             </div>
             <div class="collapse navbar-collapse order-3 order-lg-2 justify-content-lg-end" id="navigation-menu">
