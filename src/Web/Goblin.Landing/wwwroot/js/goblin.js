@@ -4902,7 +4902,7 @@
         if (apiKey !== '') {
           var script = document.createElement('script');
           script.type = 'text/javascript';
-          script.src = "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&callback=theme.goblinMaps.init";
+          script.src = "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&callback=goblin.goblinMaps.init";
           script.className = 'gMapsAPI';
           document.body.appendChild(script);
         }

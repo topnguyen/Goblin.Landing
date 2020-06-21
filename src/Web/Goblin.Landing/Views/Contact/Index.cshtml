@@ -1,0 +1,10 @@
+@{
+    ViewData[MetadataKeys.Title] = "Contact";
+    ViewData[MetadataKeys.FaviconUrl] = "~/icons/about.ico";
+}
+<section class="row no-gutters p-0">
+    @{
+        await Html.RenderPartialAsync("~/Views/Contact/_Info.cshtml").ConfigureAwait(true);
+        await Html.RenderPartialAsync("~/Views/Contact/_Map.cshtml").ConfigureAwait(true);
+    }
+</section>

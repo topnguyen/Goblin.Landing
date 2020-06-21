@@ -73,7 +73,6 @@
   goblinFlatpickr = "flatpickr";
   goblinIonRangeSlider = "ionRangeSlider";
   goblinIsotope = "isotope";
-  goblinMapsStyle = "maps";
   goblinOverlayNav = "overlayNav";
   goblinReadingPosition = "readingPosition";
   goblinSticky = "sticky";
@@ -94,12 +93,14 @@
     $(window).trigger(baseKey + "." + goblinFlatpickr + "." + DATA_API_KEY);
     $(window).trigger(baseKey + "." + goblinIonRangeSlider + "." + DATA_API_KEY);
     $(window).trigger(baseKey + "." + goblinIsotope + "." + DATA_API_KEY);
-    $(window).trigger(baseKey + "." + goblinMapsStyle + "." + DATA_API_KEY);
     $(window).trigger(baseKey + "." + goblinOverlayNav + "." + DATA_API_KEY);
     $(window).trigger(baseKey + "." + goblinReadingPosition + "." + DATA_API_KEY);
     $(window).trigger(baseKey + "." + goblinSticky + "." + DATA_API_KEY);
     $(window).trigger(baseKey + "." + goblinTwitterFetcher + "." + DATA_API_KEY);
     $(window).trigger(baseKey + "." + goblinTypedText + "." + DATA_API_KEY);
     $(window).trigger(baseKey + "." + goblinSVGInject + "." + DATA_API_KEY);
+    
+    goblin.goblinMaps.init();
   };
+ 
 </script>
