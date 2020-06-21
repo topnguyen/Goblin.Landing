@@ -7,5 +7,7 @@ namespace Goblin.Landing.Models
         public const string IsShowLogo = nameof(IsShowLogo);
         
         public const string LogoTagContent = nameof(LogoTagContent);
+        
+        public const string BlogButtonClass = nameof(BlogButtonClass);
     }
 }
