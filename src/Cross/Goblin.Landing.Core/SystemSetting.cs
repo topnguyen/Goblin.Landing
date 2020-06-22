@@ -7,5 +7,7 @@ namespace Goblin.Landing.Core
         public string ApplicationName { get; set; }
 
         public string ApplicationDescription { get; set; }
+
+        public string GoogleMapKey { get; set; }
     }
 }

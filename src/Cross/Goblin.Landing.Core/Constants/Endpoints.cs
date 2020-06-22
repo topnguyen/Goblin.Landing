@@ -10,7 +10,7 @@
         
         public const string Blog = "~/blog";
         
-        public const string Post = "~/post/{slug}";
+        public const string Post = "~/blog/{slug}";
         
         public const string Contact = "~/contact";
     }

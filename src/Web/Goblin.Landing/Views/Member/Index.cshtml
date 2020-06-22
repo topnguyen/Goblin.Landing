@@ -5,6 +5,18 @@
     ViewData[ContentKeys.HeaderNavTagContent] = "class='navbar navbar-expand-lg navbar-dark' data-overlay";
     ViewData[ContentKeys.LogoTagContent] = "text-white";
     ViewData[ContentKeys.BlogButtonClass] = "btn-warning";
+    
+    var members = new List<MemberModel>
+    {
+        new MemberModel
+        {
+            Name = "Top Nguyen",
+            Position = "Fonder & CEO",
+            AvatarUrl = "https://avatars0.githubusercontent.com/u/15808788",
+            GithubId = "topnguyen",
+            SkypeId = "live:vodanh_pp"
+        }
+    };
 }
 
 @{
@@ -26,13 +38,9 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-10">
                             <div class="row">
-                                @{
-                                    await Html.RenderPartialAsync("~/Views/Member/_Member.cshtml").ConfigureAwait(true);
-                                    await Html.RenderPartialAsync("~/Views/Member/_Member.cshtml").ConfigureAwait(true);
-                                    await Html.RenderPartialAsync("~/Views/Member/_Member.cshtml").ConfigureAwait(true);
-                                    await Html.RenderPartialAsync("~/Views/Member/_Member.cshtml").ConfigureAwait(true);
-                                    await Html.RenderPartialAsync("~/Views/Member/_Member.cshtml").ConfigureAwait(true);
-                                    await Html.RenderPartialAsync("~/Views/Member/_Member.cshtml").ConfigureAwait(true);
+                                @foreach (var member in members)
+                                {
+                                    await Html.RenderPartialAsync("~/Views/Member/_Member.cshtml", member).ConfigureAwait(true);
                                 }
                             </div>
                         </div>

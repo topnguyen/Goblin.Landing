@@ -1,32 +1,57 @@
+@using Goblin.Landing.Core
 <div class="col-lg-6">
     <div class="divider divider-side d-none d-lg-block transform-flip-y"></div>
-    <div class="min-vh-30 h-100 w-100" data-marker-image="/img/icons/theme/map/marker-2.svg"
-         data-maps-api-key=""
-         data-address="Số 2 Đường C18, Phường 12, Tân Bình, Hồ Chí Minh" 
-         data-map-zoom="14">
-        <div class="map-marker" data-address="Số 2 Đường C18, Phường 12, Tân Bình, Hồ Chí Minh">
-            <div class="info-window" data-max-width="400">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <h5>Top nguyen</h5>
-                        </div>
-                        <div class="col-4">
-                            <img alt="Top Nguyen Logo" class="w-100" src="~/favicons/android-chrome-192x192.png">
-                        </div>
-                        <div class="col-8 pb-2">
-                            <p>
-                                ASP.NET Core developer since it moved to beta in 2014. 🤔 Worked on projects of all sizes from the smallest of apps/start-up to the largest enterprise systems.
-                            </p>
-                            <h6 class="mb-0">Address</h6>
-                            <address>
-                                02 C18 Street, Ward 12, Tan Binh District, Ho chi Minh City. Viet Nam.
-                            </address>
-                            <a target="_blank" href="https://goo.gl/maps/vPVTbgRN7kRY3Vy46">... More Info</a>
+
+    @if (string.IsNullOrWhiteSpace(SystemSetting.Current.GoogleMapKey))
+    {
+        <div class="min-vh-30 h-100 w-100">
+            
+            <iframe width="100%"
+                    height="100%"
+                    frameborder="0"
+                    scrolling="no" 
+                    marginheight="0"
+                    marginwidth="0"
+                    style="border:0;" 
+                    allowfullscreen=""
+                    aria-hidden="false"
+                    tabindex="0"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d979.7840428518714!2d106.65213292922216!3d10.80088109951906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ4JzAzLjIiTiAxMDbCsDM5JzA5LjciRQ!5e0!3m2!1sen!2s!4v1592842220609!5m2!1sen!2s">
+            </iframe>
+        </div>
+    }
+    else
+    {
+        var contactAddress = "Trung tâm thương mại Pico Plaza";
+        
+        <div class="min-vh-30 h-100 w-100" data-marker-image="/img/icons/theme/map/marker-2.svg"
+             data-maps-api-key="@SystemSetting.Current.GoogleMapKey"
+             data-address="@contactAddress"
+             data-map-zoom="14">
+            <div class="map-marker" data-address="@contactAddress">
+                <div class="info-window" data-max-width="400">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>Top nguyen</h5>
+                            </div>
+                            <div class="col-4">
+                                <img alt="Top Nguyen Logo" class="w-100" src="~/favicons/android-chrome-192x192.png">
+                            </div>
+                            <div class="col-8 pb-2">
+                                <p>
+                                    ASP.NET Core developer since it moved to beta in 2014. 🤔 Worked on projects of all sizes from the smallest of apps/start-up to the largest enterprise systems.
+                                </p>
+                                <h6 class="mb-0">Address</h6>
+                                <address>
+                                    @contactAddress
+                                </address>
+                                <a target="_blank" href="https://goo.gl/maps/HbWVHcr8GwaX2dS58">... More Info</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 </div>
