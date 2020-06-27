@@ -34,6 +34,7 @@
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+        <DisableImplicitComponentsAnalyzers>true</DisableImplicitComponentsAnalyzers>
     </PropertyGroup>
     <!-- Copy to Output -->
     <ItemGroup>
@@ -43,8 +44,6 @@
         <Content Remove="wwwroot\**\*.scss" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core.Web\Goblin.Core.Web.csproj" />
-
         <ProjectReference Include="..\..\Cross\Goblin.Landing.Core\Goblin.Landing.Core.csproj" />
         <ProjectReference Include="..\..\Cross\Goblin.Landing.Mapper\Goblin.Landing.Mapper.csproj" />
 

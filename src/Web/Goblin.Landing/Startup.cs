@@ -2,6 +2,7 @@
 using Goblin.Core.Web.Setup;
 using Goblin.Landing.Core.Validators;
 using Goblin.Landing.Core;
+using Goblin.Landing.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
@@ -18,6 +19,10 @@ namespace Goblin.Landing
                 // Setting
 
                 SystemSetting.Current = Configuration.GetSection<SystemSetting>("Setting");
+                
+                // Database
+
+                services.AddGoblinDbContext();
             };
         }
     }

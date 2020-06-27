@@ -1,7 +1,19 @@
 ﻿{
-  "ConnectionStrings": {
-    "Development": "Data Source=localhost,1433;Initial Catalog=Landing;User ID=sa;Password=Password123;Application Name=Goblin.Landing;Trusted_Connection=False;MultipleActiveResultSets=True",
-    "Staging": "Data Source=.;Initial Catalog=Landing;User ID=Goblin.Landing;Password=Goblin.Landing;Application Name=Goblin.Landing;Trusted_Connection=False;MultipleActiveResultSets=True",
-    "Production": "Data Source=.;Initial Catalog=Landing;User ID=Landing;Password=Goblin.Landing;Application Name=Goblin.Landing;Trusted_Connection=False;MultipleActiveResultSets=True"
+  "ConnectionString": {
+    "Development": "Data Source=.;Initial Catalog=Landing;User ID=sa;Password=Password123;Application Name=Goblin.Landing;Trusted_Connection=False;MultipleActiveResultSets=True;Min Pool Size=100",
+    "Staging": "Data Source=.;Initial Catalog=Landing;User ID=sa;Password=Password123;Application Name=Goblin.Landing;Trusted_Connection=False;MultipleActiveResultSets=True;Min Pool Size=100",
+    "Production": "Data Source=.;Initial Catalog=Landing;User ID=sa;Password=Password123;Application Name=Goblin.Landing;Trusted_Connection=False;MultipleActiveResultSets=True;Min Pool Size=100"
+  },
+  
+  "CommandTimeoutInSecond": {
+    "Development": 300,
+    "Staging": 300,
+    "Production": 300
+  },
+  
+  "DbContextPoolSize": {
+    "Development": 128,
+    "Staging": 128,
+    "Production": 128
   }
 }
