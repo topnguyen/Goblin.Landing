@@ -6,7 +6,7 @@ namespace Goblin.Landing.Repository
     {
         public static IServiceCollection AddGoblinDbContext(this IServiceCollection services)
         {
-            GoblinDbContextSetup.Build(services, null);
+            GoblinDbContextFactoryHelper.Build(services, null);
             
             return services;
         }
