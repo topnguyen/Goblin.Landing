@@ -49,8 +49,5 @@
 
         <ProjectReference Include="..\..\Service\Goblin.Landing.Contract.Service\Goblin.Landing.Contract.Service.csproj" />
         <ProjectReference Include="..\..\Service\Goblin.Landing.Service\Goblin.Landing.Service.csproj" />
-
-        <ProjectReference Include="..\..\Repository\Goblin.Landing.Contract.Repository\Goblin.Landing.Contract.Repository.csproj" />
-        <ProjectReference Include="..\..\Repository\Goblin.Landing.Repository\Goblin.Landing.Repository.csproj" />
     </ItemGroup>
 </Project>

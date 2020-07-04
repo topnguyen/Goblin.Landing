@@ -13,6 +13,5 @@
     <ItemGroup>
         <ProjectReference Include="..\..\Cross\Goblin.Landing.Core\Goblin.Landing.Core.csproj" />
         <ProjectReference Include="..\..\Service\Goblin.Landing.Contract.Service\Goblin.Landing.Contract.Service.csproj" />
-        <ProjectReference Include="..\..\Repository\Goblin.Landing.Contract.Repository\Goblin.Landing.Contract.Repository.csproj" />
     </ItemGroup>
 </Project>
