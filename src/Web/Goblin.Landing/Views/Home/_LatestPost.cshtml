@@ -40,6 +40,10 @@
                                 @if (!string.IsNullOrWhiteSpace(postModel.Description))
                                 {
                                     <p>
+                                        @if (postModel.Description.Length > 200)
+                                        {
+                                            postModel.Description = postModel.Description.Substring(0, 200) + "...";
+                                        }
                                         @postModel.Description
                                     </p>
                                 }

@@ -23,6 +23,10 @@
             @if (!string.IsNullOrWhiteSpace(Model.Description))
             {
                 <p>
+                    @if (Model.Description.Length > 200)
+                    {
+                        Model.Description = Model.Description.Substring(0, 200) + "...";
+                    }
                     @Model.Description
                 </p>
             }
