@@ -1,3 +1,5 @@
+@model BlogModel
+
 @{
     ViewData[MetadataKeys.FaviconUrl] = "~/icons/home.ico";
     
@@ -7,5 +9,5 @@
     
     await Html.RenderPartialAsync("~/Views/Home/_Intro.cshtml").ConfigureAwait(true);
     
-    await Html.RenderPartialAsync("~/Views/Home/_LatestPost.cshtml").ConfigureAwait(true);
+    await Html.RenderPartialAsync("~/Views/Home/_LatestPost.cshtml", Model).ConfigureAwait(true);
 }

@@ -46,7 +46,7 @@ namespace Goblin.Landing.Service
             
             blogModel.TotalPost = response.Total;
             
-            blogModel.TotalPage = (int) Math.Ceiling((double) response.Total / take) - 1;
+            blogModel.TotalPage = (int) Math.Ceiling((double) response.Total / take);
 
             if (blogModel.CurrentPageNo < blogModel.TotalPage)
             {
