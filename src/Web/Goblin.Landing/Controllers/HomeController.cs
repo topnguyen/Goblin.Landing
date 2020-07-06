@@ -24,10 +24,12 @@ namespace Goblin.Landing.Controllers
             return View(blogModel);
         }   
         
-        [Route(Endpoints.NotFound)]
+        [Route("{*url}", Order = 999)]
         [HttpGet]
         public IActionResult NotFound(CancellationToken cancellationToken = default)
         {
+            Response.StatusCode = 404;
+            
             return View();
         }
     }
