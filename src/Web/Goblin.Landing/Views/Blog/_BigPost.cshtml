@@ -29,13 +29,17 @@
                 <div class="text-small text-muted">@(Model.PublishTime.ToString("dd MMM yy"))</div>
             </div>
 
-            <a href="@Model.Url">
+            <a href="@Model.Url" target="_blank">
                 <h1>@title</h1>
             </a>
 
             @if (!string.IsNullOrWhiteSpace(Model.Description))
             {
                 <p class="lead">
+                    @if (Model.Description.Length > 200)
+                    {
+                        Model.Description = Model.Description.Substring(0, 200) + "...";
+                    }
                     @Model.Description
                 </p>
             }
