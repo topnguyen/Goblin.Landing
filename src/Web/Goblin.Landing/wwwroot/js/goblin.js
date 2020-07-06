@@ -6672,9 +6672,12 @@
   svgInjector.SVGInjector(document.querySelectorAll('[data-inject-svg]'), {
     afterEach: function afterEach(err, svg) {
       if (typeof jarallax === 'function') {
-        svg.dispatchEvent(new CustomEvent('injected.goblin.SVGInjector', {
-          bubbles: true
-        }));
+        try {
+          svg.dispatchEvent(new CustomEvent('injected.goblin.SVGInjector', {
+            bubbles: true
+          }));
+        } catch (error) {// ignore
+        }
       }
     }
   });

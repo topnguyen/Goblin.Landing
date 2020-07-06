@@ -13,5 +13,7 @@
         public const string Post = "~/blog/{slug}";
         
         public const string Contact = "~/contact";
+        
+        public const string NotFound = "~/404";
     }
 }

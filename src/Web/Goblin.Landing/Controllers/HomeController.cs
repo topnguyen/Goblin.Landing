@@ -22,6 +22,13 @@ namespace Goblin.Landing.Controllers
             var blogModel = await _blogService.GetBlog(1, cancellationToken).ConfigureAwait(true);
             
             return View(blogModel);
+        }   
+        
+        [Route(Endpoints.NotFound)]
+        [HttpGet]
+        public IActionResult NotFound(CancellationToken cancellationToken = default)
+        {
+            return View();
         }
     }
 }

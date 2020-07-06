@@ -6,14 +6,18 @@
 
 // SVGInjector uses Array.from() which IE does not support.
 import 'core-js/features/array/from';
-import { SVGInjector } from '@tanem/svg-injector';
+import {SVGInjector} from '@tanem/svg-injector';
 
 window.SVGInjector = SVGInjector;
 
 SVGInjector(document.querySelectorAll('[data-inject-svg]'), {
-  afterEach(err, svg) {
-    if (typeof jarallax === 'function') {
-      svg.dispatchEvent(new CustomEvent('injected.goblin.SVGInjector', { bubbles: true }));
-    }
-  },
+    afterEach(err, svg) {
+        if (typeof jarallax === 'function') {
+            try {
+                svg.dispatchEvent(new CustomEvent('injected.goblin.SVGInjector', {bubbles: true}));
+            } catch (error) {
+                // ignore
+            }
+        }
+    },
 });
