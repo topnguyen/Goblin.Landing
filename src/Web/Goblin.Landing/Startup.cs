@@ -3,6 +3,7 @@ using Goblin.BlogCrawler.Share;
 using Goblin.Core.Web.Setup;
 using Goblin.Landing.Core.Validators;
 using Goblin.Landing.Core;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
@@ -25,6 +26,11 @@ namespace Goblin.Landing
                 GoblinBlogCrawlerHelper.Domain = SystemSetting.Current.BlogCrawlerServiceDomain;
                 
                 GoblinBlogCrawlerHelper.AuthorizationKey = SystemSetting.Current.BlogCrawlerServiceAuthorizationKey;
+            };
+
+            BeforeUseMvc = (app, env, lifetime) =>
+            {
+                app.UseStatusCodePagesWithReExecute("/error/{0}");
             };
         }
     }

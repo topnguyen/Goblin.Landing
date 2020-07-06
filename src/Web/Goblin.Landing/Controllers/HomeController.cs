@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Goblin.Landing.Contract.Service;
 using Goblin.Landing.Core.Constants;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Goblin.Landing.Controllers
@@ -24,13 +25,18 @@ namespace Goblin.Landing.Controllers
             return View(blogModel);
         }   
         
-        [Route("{*url}", Order = 999)]
+        [Route(Endpoints.Error)]
         [HttpGet]
-        public IActionResult NotFound(CancellationToken cancellationToken = default)
+        public IActionResult Error(int code)
         {
-            Response.StatusCode = 404;
+            Response.StatusCode = code;
+
+            if (code == StatusCodes.Status404NotFound)
+            {
+                return View("NotFound");
+            }
             
-            return View();
+            return View("NotFound");
         }
     }
 }

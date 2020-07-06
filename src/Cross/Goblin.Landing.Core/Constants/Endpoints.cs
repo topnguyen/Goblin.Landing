@@ -14,6 +14,6 @@
         
         public const string Contact = "~/contact";
         
-        public const string NotFound = "~/404";
+        public const string Error = "~/error/{code}";
     }
 }
