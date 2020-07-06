@@ -19,6 +19,6 @@
     </ItemGroup>
     
     <ItemGroup>
-      <PackageReference Include="Goblin.BlogCrawler" Version="1.0.0" />
+      <PackageReference Include="Goblin.BlogCrawler" Version="1.0.1" />
     </ItemGroup>
 </Project>

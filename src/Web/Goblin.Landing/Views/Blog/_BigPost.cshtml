@@ -22,15 +22,6 @@
     <div class="p-4 p-md-5 col-xl-7 d-flex align-items-center">
         <div class="p-lg-4 p-xl-5">
             <div class="d-flex justify-content-between align-items-center mb-3 mb-xl-4">
-                @if (!string.IsNullOrWhiteSpace(Model.Tags))
-                {
-                    var tags = Model.Tags.Split(",").ToList();
-
-                    foreach (var tag in tags)
-                    {
-                        <a href="@Model.Url" target="_blank" class="badge badge-pill badge-danger">@tag</a>
-                    }
-                }
                 <div class="text-small text-muted">@(Model.PublishTime.ToString("dd MMM yy"))</div>
             </div>
 

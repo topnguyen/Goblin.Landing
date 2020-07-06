@@ -47,15 +47,6 @@
                                 <a href="@postModel.Url" target="_blank">Read Story</a>
                             </div>
                             <div class="card-footer d-flex justify-content-between align-items-center">
-                                @if (!string.IsNullOrWhiteSpace(postModel.Tags))
-                                {
-                                    var tags = postModel.Tags.Split(",").ToList();
-
-                                    foreach (var tag in tags)
-                                    {
-                                        <a href="@postModel.Url" target="_blank" class="badge badge-pill badge-primary">@tag</a>
-                                    }
-                                }
                                 <div class="text-small text-muted">@(postModel.PublishTime.ToString("dd MMM yy"))</div>
                             </div>
                         </div>
