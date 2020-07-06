@@ -5,7 +5,7 @@
         @if (Model.CurrentPageNo > 1)
         {
             <li class="page-item">
-                <a class="page-link rounded" href="@Url.Action("Index", "Blog")" aria-label="Previous">
+                <a class="page-link rounded" href="@Url.Action("Index", "Blog", new {pageNo = 1})" aria-label="Previous">
                     <img src="/img/icons/interface/icon-arrow-left.svg" alt="Arrow Left" class="icon icon-xs bg-primary" data-inject-svg>
                 </a>
             </li>
