@@ -31,7 +31,7 @@
         <div class="card-footer d-flex justify-content-between align-items-center">
             @if (!string.IsNullOrWhiteSpace(Model.AuthorName))
             {
-                <label class="badge badge-pill badge-primary">@Model.AuthorName</label>
+                <label class="badge badge-pill badge-warning">@Model.AuthorName</label>
             }
             <div class="text-small text-muted">@(Model.PublishTime.ToString("dd MMM yy"))</div>
         </div>
