@@ -1,4 +1,5 @@
 ﻿using Elect.Core.ConfigUtils;
+using Goblin.BlogCrawler.Share;
 using Goblin.Core.Web.Setup;
 using Goblin.Landing.Core.Validators;
 using Goblin.Landing.Core;
@@ -18,6 +19,12 @@ namespace Goblin.Landing
                 // Setting
 
                 SystemSetting.Current = Configuration.GetSection<SystemSetting>("Setting");
+                
+                // Blog Crawler Service
+                
+                GoblinBlogCrawlerHelper.Domain = SystemSetting.Current.BlogCrawlerServiceDomain;
+                
+                GoblinBlogCrawlerHelper.AuthorizationKey = SystemSetting.Current.BlogCrawlerServiceAuthorizationKey;
             };
         }
     }

@@ -1,43 +1,58 @@
+@using Goblin.BlogCrawler.Share.Models
+@model BlogModel
 @{
     ViewData[MetadataKeys.Title] = "Blog";
     ViewData[MetadataKeys.FaviconUrl] = "~/icons/openings.ico";
+
+    var postList = new List<GoblinBlogCrawlerPostModel>();
+
+    if (Model.CurrentPageNo == 1 && Model.Posts.Count > 4)
+    {
+        for (int i = 4; i < Model.Posts.Count; i++)
+        {
+            postList.Add(Model.Posts[i]);
+        }
+    }
+    else
+    {
+        postList = Model.Posts;
+    }
 }
 
-<section class="bg-light py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col">
+@if (Model.CurrentPageNo == 1 && Model.Posts.Count > 4)
+{
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    @{
+                        await Html.RenderPartialAsync("~/Views/Blog/_BigPost.cshtml", Model.Posts[0]).ConfigureAwait(true);
+                    }
+                </div>
+            </div>
+            <div class="row mt-3 mt-lg-5">
                 @{
-                    await Html.RenderPartialAsync("~/Views/Blog/_BigPost.cshtml").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Blog/_MiniPost.cshtml", Model.Posts[1]).ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Blog/_MiniPost.cshtml", Model.Posts[2]).ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Blog/_MiniPost.cshtml", Model.Posts[3]).ConfigureAwait(true);
                 }
             </div>
         </div>
-        <div class="row mt-3 mt-lg-5">
-            @{
-                await Html.RenderPartialAsync("~/Views/Blog/_MiniPost.cshtml").ConfigureAwait(true);
-                await Html.RenderPartialAsync("~/Views/Blog/_MiniPost.cshtml").ConfigureAwait(true);
-                await Html.RenderPartialAsync("~/Views/Blog/_MiniPost.cshtml").ConfigureAwait(true);
-            }
-        </div>
-    </div>
-</section>
+    </section>
+}
 
 <section>
     <div class="container">
         <div class="row">
-            @{
-                await Html.RenderPartialAsync("~/Views/Blog/_Post.cshtml").ConfigureAwait(true);
-                await Html.RenderPartialAsync("~/Views/Blog/_Post.cshtml").ConfigureAwait(true);
-                await Html.RenderPartialAsync("~/Views/Blog/_Post.cshtml").ConfigureAwait(true);
-                await Html.RenderPartialAsync("~/Views/Blog/_Post.cshtml").ConfigureAwait(true);
-                await Html.RenderPartialAsync("~/Views/Blog/_Post.cshtml").ConfigureAwait(true);
-                await Html.RenderPartialAsync("~/Views/Blog/_Post.cshtml").ConfigureAwait(true);
+            @foreach (var postModel in postList)
+            {
+                await Html.RenderPartialAsync("~/Views/Blog/_Post.cshtml", postModel).ConfigureAwait(true);
             }
         </div>
         <div class="row justify-content-center mt-4">
             <div class="col-auto">
                 @{
-                    await Html.RenderPartialAsync("~/Views/Blog/_Paging.cshtml").ConfigureAwait(true);
+                    await Html.RenderPartialAsync("~/Views/Blog/_Paging.cshtml", Model).ConfigureAwait(true);
                 }
             </div>
         </div>

@@ -9,5 +9,9 @@ namespace Goblin.Landing.Core
         public string ApplicationDescription { get; set; }
 
         public string GoogleMapKey { get; set; }
+        
+        public string BlogCrawlerServiceDomain { get; set; }
+
+        public string BlogCrawlerServiceAuthorizationKey { get; set; }
     }
 }

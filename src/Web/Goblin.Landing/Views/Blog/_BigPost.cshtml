@@ -1,21 +1,51 @@
+@model Goblin.BlogCrawler.Share.Models.GoblinBlogCrawlerPostModel
+@{
+    var title = Model.Title;
+
+    if (string.IsNullOrWhiteSpace(title))
+    {
+        title = Model.Url;
+    }
+}
+
 <div class="d-flex flex-column flex-lg-row no-gutters border rounded bg-white o-hidden">
-    <a href="/post/1-2-3" class="d-block position-relative bg-gradient col-xl-5">
-        <img class="flex-fill hover-fade-out" src="/img/blog/thumb-2.jpg" alt="blog.1.image">
-        <div class="divider divider-side bg-white d-none d-lg-block"></div>
-    </a>
+    @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+    {
+        <a href="@Model.Url" target="_blank" class="d-block position-relative bg-gradient col-xl-5">
+
+            <img class="flex-fill hover-fade-out" src="@Model.ImageUrl" alt="@title">
+            <div class="divider divider-side bg-white d-none d-lg-block"></div>
+        </a>
+    }
+
+
     <div class="p-4 p-md-5 col-xl-7 d-flex align-items-center">
         <div class="p-lg-4 p-xl-5">
             <div class="d-flex justify-content-between align-items-center mb-3 mb-xl-4">
-                <a href="#" class="badge badge-pill badge-danger">Design</a>
-                <div class="text-small text-muted">October 10th</div>
+                @if (!string.IsNullOrWhiteSpace(Model.Tags))
+                {
+                    var tags = Model.Tags.Split(",").ToList();
+
+                    foreach (var tag in tags)
+                    {
+                        <a href="@Model.Url" target="_blank" class="badge badge-pill badge-danger">@tag</a>
+                    }
+                }
+                <div class="text-small text-muted">@(Model.PublishTime.ToString("dd MMM yy"))</div>
             </div>
-            <a href="#">
-                <h1>Unveiling our new vision for Jumpstart</h1>
+
+            <a href="@Model.Url">
+                <h1>@title</h1>
             </a>
-            <p class="lead">
-                Volantis vitae unuch sed velit sodales. Sandor imperdiet proin fermentum leo vel Hodor.
-            </p>
-            <a href="#" class="lead">Read Story</a>
+
+            @if (!string.IsNullOrWhiteSpace(Model.Description))
+            {
+                <p class="lead">
+                    @Model.Description
+                </p>
+            }
+
+            <a href="@Model.Url" target="_blank" class="lead">Read Story</a>
         </div>
     </div>
 </div>

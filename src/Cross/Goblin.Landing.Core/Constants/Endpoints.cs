@@ -8,7 +8,7 @@
         
         public const string Member = "~/member";
         
-        public const string Blog = "~/blog";
+        public const string Blog = "~/blog/{pageNo?}";
         
         public const string Post = "~/blog/{slug}";
         

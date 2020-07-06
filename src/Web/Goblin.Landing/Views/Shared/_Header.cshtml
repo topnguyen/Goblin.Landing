@@ -30,9 +30,9 @@
             </div>
             <div class="collapse navbar-collapse order-3 order-lg-2 justify-content-lg-end" id="navigation-menu">
                 <ul class="navbar-nav my-3 my-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Content(Endpoints.Work)">Work</a>
-                    </li>
+                    @* <li class="nav-item"> *@
+                    @*     <a class="nav-link" href="@Url.Content(Endpoints.Work)">Work</a> *@
+                    @* </li> *@
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Content(Endpoints.Member)">Member</a>
                     </li>
@@ -40,7 +40,7 @@
                         <a class="nav-link" href="@Url.Content(Endpoints.Contact)">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn @Html.Raw(blogButtonClass) ml-lg-4 mr-3 mr-md-4 mr-lg-0 d-sm-block order-lg-3" href="@Url.Content(Endpoints.Blog)">Blog</a>
+                        <a class="btn @Html.Raw(blogButtonClass) ml-lg-4 mr-3 mr-md-4 mr-lg-0 d-sm-block order-lg-3" href="@Url.Action("Index", "Blog")">Blog</a>
                     </li>
                 </ul>
             </div>

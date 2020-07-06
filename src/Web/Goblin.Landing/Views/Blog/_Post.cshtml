@@ -1,20 +1,44 @@
+@model Goblin.BlogCrawler.Share.Models.GoblinBlogCrawlerPostModel
+@{
+    var title = Model.Title;
+
+    if (string.IsNullOrWhiteSpace(title))
+    {
+        title = Model.Url;
+    }
+}
+
 <div class="col-md-6 col-lg-4 mb-3 mb-md-4">
     <div class="card h-100 hover-box-shadow">
-        <a href="#" class="d-block bg-gradient rounded-top">
-            <img class="card-img-top hover-fade-out" src="/img/blog/thumb-5.jpg" alt="blog.5.image">
-        </a>
-        <div class="card-body">
-            <a href="#">
-                <h3>Why social ROI is impossible to measure</h3>
+        @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+        {
+            <a href="@Model.Url" target="_blank" class="d-block bg-gradient rounded-top">
+                <img class="card-img-top hover-fade-out" src="@Model.ImageUrl" alt="@title">
             </a>
-            <p>
-                Sed arcu Jon odio Oberyn lacinia at quis. Brienne fermentum vel porta Jon pulvinar neque.
-            </p>
-            <a href="#">Read Story</a>
+        }
+        <div class="card-body">
+            <a href="@Model.Url" target="_blank">
+                <h3>@title</h3>
+            </a>
+            @if (!string.IsNullOrWhiteSpace(Model.Description))
+            {
+                <p>
+                    @Model.Description
+                </p>
+            }
+            <a href="@Model.Url" target="_blank">Read Story</a>
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
-            <a href="#" class="badge badge-pill badge-info">Finance</a>
-            <div class="text-small text-muted">July 21st</div>
+            @if (!string.IsNullOrWhiteSpace(Model.Tags))
+            {
+                var tags = Model.Tags.Split(",").ToList();
+
+                foreach (var tag in tags)
+                {
+                    <a href="@Model.Url" target="_blank" class="badge badge-pill badge-info">@tag</a>
+                }
+            }
+            <div class="text-small text-muted">@(Model.PublishTime.ToString("dd MMM yy"))</div>
         </div>
     </div>
 </div>

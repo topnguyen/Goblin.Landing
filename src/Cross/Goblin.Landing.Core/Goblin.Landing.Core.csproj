@@ -17,4 +17,8 @@
 
         <ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core.Web\Goblin.Core.Web.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="Goblin.BlogCrawler" Version="1.0.0" />
+    </ItemGroup>
 </Project>
