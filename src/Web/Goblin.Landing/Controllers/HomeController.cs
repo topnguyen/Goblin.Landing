@@ -29,8 +29,6 @@ namespace Goblin.Landing.Controllers
         [HttpGet]
         public IActionResult Error(int code)
         {
-            Response.StatusCode = code;
-
             if (code == StatusCodes.Status404NotFound)
             {
                 return View("NotFound");

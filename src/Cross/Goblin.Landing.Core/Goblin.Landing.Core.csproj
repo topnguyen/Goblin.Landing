@@ -5,20 +5,23 @@
         <LangVersion>latest</LangVersion>
         <TargetFramework>netcoreapp3.1</TargetFramework>
 
-		<!-- Output -->
+        <!-- Output -->
         <OutputPath>.\bin\</OutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     </PropertyGroup>
-    
-    <ItemGroup>
-		<!-- Core -->
-		<ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core\Goblin.Core.csproj" />
 
-        <ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core.Web\Goblin.Core.Web.csproj" />
-    </ItemGroup>
-    
     <ItemGroup>
-      <PackageReference Include="Goblin.BlogCrawler" Version="1.0.1" />
+        <!-- Core -->
+
+        <ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core\Goblin.Core.csproj"/>
+
+        <ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core.Web\Goblin.Core.Web.csproj"/>
+
+        <!-- Services -->
+
+        <PackageReference Include="Goblin.BlogCrawler" Version="1.0.1" ExcludeAssets="Private"/>
+
+        <PackageReference Include="Goblin.Identity" Version="1.0.2" ExcludeAssets="Private"/>
     </ItemGroup>
 </Project>
