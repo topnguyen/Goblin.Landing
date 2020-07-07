@@ -27,7 +27,7 @@ namespace Goblin.Landing
                 
                 GoblinBlogCrawlerHelper.AuthorizationKey = SystemSetting.Current.BlogCrawlerServiceAuthorizationKey;
             };
-
+            
             BeforeUseMvc = (app, env, lifetime) =>
             {
                 app.UseStatusCodePagesWithReExecute("/error/{0}");
