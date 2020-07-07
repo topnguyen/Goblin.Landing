@@ -4,6 +4,8 @@ namespace Goblin.Landing.Core
 {
     public class LoggedInUser
     {
+        public long Id { get; set; }
+
         public LoggedInUser()
         {
         }
@@ -28,7 +30,5 @@ namespace Goblin.Landing.Core
         {
             SingletonPerHttpRequest<LoggedInUser>.Current = value;
         }
-
-        public long Id { get; set; }
     }
 }

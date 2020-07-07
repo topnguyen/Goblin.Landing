@@ -6,6 +6,7 @@ using Goblin.Core.Constants;
 using Goblin.Core.Utils;
 using Goblin.Identity.Share;
 using Goblin.Identity.Share.Models.UserModels;
+using Goblin.Landing.Core;
 using Goblin.Landing.Core.Constants;
 using Goblin.Landing.Core.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,16 @@ namespace Goblin.Landing.Controllers
         [HttpGet]
         public IActionResult Login(string @continue)
         {
+            if (LoggedInUser<GoblinIdentityUserModel>.Current?.Data != null)
+            {
+                if (!string.IsNullOrWhiteSpace(@continue))
+                {
+                    return Redirect(@continue);
+                }
+                
+                return RedirectToAction("Index", "Home");
+            }
+            
             var loginModel = new LoginModel
             {
                 Continue = @continue
@@ -31,6 +42,16 @@ namespace Goblin.Landing.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitLogin([FromForm] LoginModel model, CancellationToken cancellationToken = default)
         {
+            if (LoggedInUser<GoblinIdentityUserModel>.Current?.Data != null)
+            {
+                if (!string.IsNullOrWhiteSpace(model.Continue))
+                {
+                    return Redirect(model.Continue);
+                }
+                
+                return RedirectToAction("Index", "Home");
+            }
+            
             if (!ModelState.IsValid)
             {
                 return View("Login", model);
