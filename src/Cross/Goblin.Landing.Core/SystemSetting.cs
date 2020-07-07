@@ -13,5 +13,9 @@ namespace Goblin.Landing.Core
         public string BlogCrawlerServiceDomain { get; set; }
 
         public string BlogCrawlerServiceAuthorizationKey { get; set; }
+        
+        public string IdentityServiceDomain { get; set; }
+
+        public string IdentityServiceAuthorizationKey { get; set; }
     }
 }

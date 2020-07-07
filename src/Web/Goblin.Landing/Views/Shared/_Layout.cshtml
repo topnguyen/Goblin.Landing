@@ -58,6 +58,9 @@ else
                 @{
                     @RenderBody()
                 }
+                @{
+                    await Html.RenderPartialAsync("~/Views/Shared/_Footer.cshtml").ConfigureAwait(true);
+                }
                 <div class="document-script">
                     <div class="document-main-script-start"></div>
                     @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
@@ -91,7 +94,9 @@ else
                 }
                 @await RenderSectionAsync("Styles", false).ConfigureAwait(true)
                 @RenderBody()
-
+                @{
+                    await Html.RenderPartialAsync("~/Views/Shared/_Footer.cshtml").ConfigureAwait(true);
+                }
                 <div class="document-script">
                     <div class="document-main-script-start"></div>
                     @await RenderSectionAsync("Scripts", false).ConfigureAwait(true)
@@ -99,7 +104,6 @@ else
                 </div>
             </div>
             @{
-                await Html.RenderPartialAsync("~/Views/Shared/_Footer.cshtml").ConfigureAwait(true);
                 await Html.RenderPartialAsync("~/Views/Shared/Assets/_BottomScript.cshtml").ConfigureAwait(true);
             }
             </body>

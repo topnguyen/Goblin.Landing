@@ -1,4 +1,8 @@
-<footer class="bg-primary-3 text-white links-white pb-4 pt-4 p0 footer-1">
+@{
+    var footerStyle = ViewData[ContentKeys.FooterStyle]?.ToString() ?? string.Empty;
+}
+
+<footer class="bg-primary-3 text-white links-white pb-4 pt-4 p0 footer-1" style="@Html.Raw(footerStyle)">
     <div class="container">
         <div class="row flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-between text-center text-lg-left">
             <div class="col-auto">

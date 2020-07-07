@@ -4,6 +4,8 @@ namespace Goblin.Landing.Models
     {
         public const string HeaderNavTagContent = nameof(HeaderNavTagContent);
         
+        public const string FooterStyle = nameof(FooterStyle);
+        
         public const string IsShowLogo = nameof(IsShowLogo);
         
         public const string LogoTagContent = nameof(LogoTagContent);

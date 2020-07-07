@@ -1,39 +1,35 @@
-@using Goblin.Landing.Core
+@model LoginModel
 @{
-    ViewData[MetadataKeys.Title] = "Logged In";
-
+    ViewData[MetadataKeys.Title] = "Login";
     ViewData[MetadataKeys.FaviconUrl] = "~/icons/home.ico";
+
+    ViewData[ContentKeys.HeaderNavTagContent] = "class='navbar navbar-expand-lg navbar-light' data-overlay";
+    ViewData[ContentKeys.FooterStyle] = "position: fixed; bottom: 0; width: 100%; z-index: 1;";
 }
 
 @section Scripts
 {
     <script type="text/javascript">
         $(function(){
-            $(".navbar-container").remove();
-            $("footer").remove();
+            setTimeout(function(){
+                var continueUri = '@ViewBag.ContinueUrl';
+                
+                window.location.replace(continueUri);
+            }, 500);
         })
     </script>
 }
 
-<section class="row no-gutters p-0 bg-light min-vh-100">
-    <div class="col-lg-6 d-none d-lg-block order-lg-2">
-        <img class="flex-fill" src="https://source.unsplash.com/collection/236802/1024x768" alt="@SystemSetting.Current.ApplicationName">
-    </div>
-    <div class="col-lg-6">
-        <section class="p-0 bg-gradient text-white">
-            <div class="container min-vh-lg-100 d-flex flex-column justify-content-between text-center py-4 py-md-5">
-                <a href="@Url.Action("Index", "Home")" class="fade-page">
-                    <img src="~/favicons/android-chrome-192x192.png" width="100" alt="@SystemSetting.Current.ApplicationName">
-                </a>
-                <div class="row justify-content-center my-5">
-                    <div class="col-xl-7 col-lg-8">
-                        <h1 class="h2 text-center mb-lg-5">Logged In</h1>
-                        <div class="card card-body shadow text-left text-dark">
-                            Redirect to destination url...
-                        </div>
+<div data-overlay class="min-vh-100 bg-light d-flex flex-column justify-content-md-center">
+    <section>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="text-center lead">
+                        You are loggedin, redirecting to <a href="@ViewBag.ContinueUrl">destination url</a> ...
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
-</section>
+        </div>
+    </section>
+</div>

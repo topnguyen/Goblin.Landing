@@ -1,6 +1,7 @@
 ﻿using Elect.Core.ConfigUtils;
 using Goblin.BlogCrawler.Share;
 using Goblin.Core.Web.Setup;
+using Goblin.Identity.Share;
 using Goblin.Landing.Core.Validators;
 using Goblin.Landing.Core;
 using Microsoft.AspNetCore.Builder;
@@ -26,8 +27,14 @@ namespace Goblin.Landing
                 GoblinBlogCrawlerHelper.Domain = SystemSetting.Current.BlogCrawlerServiceDomain;
                 
                 GoblinBlogCrawlerHelper.AuthorizationKey = SystemSetting.Current.BlogCrawlerServiceAuthorizationKey;
+                
+                // Identity Service
+                
+                GoblinIdentityHelper.Domain = SystemSetting.Current.IdentityServiceDomain;
+                
+                GoblinIdentityHelper.AuthorizationKey = SystemSetting.Current.IdentityServiceAuthorizationKey;
             };
-            
+
             BeforeUseMvc = (app, env, lifetime) =>
             {
                 app.UseStatusCodePagesWithReExecute("/error/{0}");

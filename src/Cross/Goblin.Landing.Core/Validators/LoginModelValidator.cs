@@ -7,10 +7,10 @@ namespace Goblin.Landing.Core.Validators
     {
         public LoginModelValidator()
         {
-            RuleFor(x => x.Email)
+            RuleFor(x => x.UserName)
                 .NotEmpty()
-                .EmailAddress()
-                .MaximumLength(500);
+                .Length(3, 100)
+                .WithMessage("UserName must between 3 and 100 characters");
 
             RuleFor(x => x.Password)
                 .NotEmpty()

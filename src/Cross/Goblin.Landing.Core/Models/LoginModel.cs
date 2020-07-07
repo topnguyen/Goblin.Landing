@@ -9,7 +9,7 @@ namespace Goblin.Landing.Core.Models
         /// </summary>
         public string Continue { get; set; }
         
-        public string Email { get; set; }
+        public string UserName { get; set; }
 
         /// <summary>
         ///     Hint - pre-enter Password

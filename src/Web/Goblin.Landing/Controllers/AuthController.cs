@@ -1,4 +1,11 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Elect.Web.IUrlHelperUtils;
+using Goblin.Core.Constants;
+using Goblin.Core.Utils;
+using Goblin.Identity.Share;
+using Goblin.Identity.Share.Models.UserModels;
 using Goblin.Landing.Core.Constants;
 using Goblin.Landing.Core.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -22,14 +29,12 @@ namespace Goblin.Landing.Controllers
         
         [Route(Endpoints.Login)]
         [HttpPost]
-        public IActionResult SubmitLogin([FromForm] LoginModel model)
+        public async Task<IActionResult> SubmitLogin([FromForm] LoginModel model, CancellationToken cancellationToken = default)
         {
             if (!ModelState.IsValid)
             {
                 return View("Login", model);
             }
-            
-            // TODO Login
             
             if (string.IsNullOrWhiteSpace(model.Continue))
             {
@@ -37,8 +42,29 @@ namespace Goblin.Landing.Controllers
             }
 
             ViewBag.ContinueUrl = model.Continue;
-
-            return View("LoggedIn");
+            
+            try
+            {
+                var generateAccessTokenModel = new GoblinIdentityGenerateAccessTokenModel
+                {
+                    UserName = model.UserName,
+                    Password = model.Password
+                };
+                
+                var accessToken = await GoblinIdentityHelper.GenerateAccessTokenAsync(generateAccessTokenModel, cancellationToken);
+                
+                accessToken = accessToken?.Trim('"');
+                
+                CookieHelper.SetShare(HttpContext, GoblinCookieKeys.AccessToken, accessToken);
+                
+                return View("LoggedIn");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                
+                return View("Login", model);
+            }
         }
 
         [Route(Endpoints.Logout)]
