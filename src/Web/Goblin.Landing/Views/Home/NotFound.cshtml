@@ -2,7 +2,7 @@
 @model BlogModel
 
 @{
-    ViewData[MetadataKeys.Title] = "[404] Page not found";
+    ViewData[MetadataKeys.Title] = $"[{ViewBag.ErrorCode}] Error";
 
     ViewData[MetadataKeys.FaviconUrl] = "~/icons/about.ico";
 }
@@ -29,8 +29,15 @@
                     <img src="~/img/illustrations/illustration-4.svg" alt="404 Page Not Found" class="img-fluid">
                 </div>
                 <div class="col-12">
-                    <h1>404 - Page Not Found</h1>
-                    <div class="lead">Whoops, it looks like the page you request wasn't found.</div>
+                    <h1>@ViewBag.ErrorCode</h1>
+                    @if (ViewBag.ErrorCode == StatusCodes.Status404NotFound)
+                    {
+                        <div class="lead">Whoops, it looks like the page you request wasn't found.</div>
+                    }
+                    else
+                    {
+                        <div class="lead">Whoops, something went wrong...</div>
+                    }
                 </div>
             </div>
         </div>

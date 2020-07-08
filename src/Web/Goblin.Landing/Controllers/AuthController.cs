@@ -9,15 +9,17 @@ using Goblin.Identity.Share.Models.UserModels;
 using Goblin.Landing.Core;
 using Goblin.Landing.Core.Constants;
 using Goblin.Landing.Core.Models;
+using Goblin.Landing.Models.Attributes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Goblin.Landing.Controllers
 {
-    public class AuthController : BaseController
+    public class AuthController : BaseAuthController
     {
-        
         [Route(Endpoints.Login)]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login(string @continue)
         {
             if (LoggedInUser<GoblinIdentityUserModel>.Current?.Data != null)
@@ -40,6 +42,7 @@ namespace Goblin.Landing.Controllers
         
         [Route(Endpoints.Login)]
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> SubmitLogin([FromForm] LoginModel model, CancellationToken cancellationToken = default)
         {
             if (LoggedInUser<GoblinIdentityUserModel>.Current?.Data != null)
@@ -90,6 +93,7 @@ namespace Goblin.Landing.Controllers
 
         [Route(Endpoints.Logout)]
         [HttpGet]
+        [Auth]
         public IActionResult Logout(string @continue)
         {
             if (string.IsNullOrWhiteSpace(@continue))

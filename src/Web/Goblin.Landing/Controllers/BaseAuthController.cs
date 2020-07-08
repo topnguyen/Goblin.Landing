@@ -5,7 +5,8 @@ namespace Goblin.Landing.Controllers
 {
     [ServiceFilter(typeof(GoblinUiExceptionFilterAttribute))]
     [ServiceFilter(typeof(GoblinUiLoggedInUserFilter))]
-    public class BaseController : Controller
+    [ServiceFilter(typeof(GoblinUiAuthFilter))]
+    public class BaseAuthController : BaseController
     {
     }
 }

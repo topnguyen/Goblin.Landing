@@ -2,11 +2,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using Goblin.Landing.Contract.Service;
 using Goblin.Landing.Core.Constants;
+using Goblin.Landing.Models.Attributes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Goblin.Landing.Controllers
 {
-    public class BlogController : BaseController
+    public class BlogController : BaseAuthController
     {
         private readonly IBlogService _blogService;
 
@@ -17,6 +19,7 @@ namespace Goblin.Landing.Controllers
         
         [Route(Endpoints.Blog)]
         [HttpGet]
+        [Auth("Abc")]
         public async Task<IActionResult> Index(int? pageNo, CancellationToken cancellationToken = default)
         {
             pageNo ??= 1;

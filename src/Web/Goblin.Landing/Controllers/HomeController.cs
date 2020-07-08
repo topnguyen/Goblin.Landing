@@ -33,6 +33,8 @@ namespace Goblin.Landing.Controllers
             {
                 return View("NotFound");
             }
+
+            ViewBag.ErrorCode = code;
             
             return View("NotFound");
         }

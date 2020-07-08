@@ -4,5 +4,19 @@
         <name>Goblin.Landing</name>
     </assembly>
     <members>
+        <member name="M:Goblin.Landing.Filters.GoblinUiAuthHelper.IsAuthorized(Microsoft.AspNetCore.Mvc.Filters.FilterContext)">
+            <summary>
+                Check user is authorization. Please call <see cref="M:Goblin.Landing.Filters.GoblinUiAuthHelper.IsAuthenticated(Microsoft.AspNetCore.Mvc.Filters.FilterContext)" /> to check
+                authenticated before call this method.
+            </summary>
+            <param name="context">  </param>
+            <returns>  </returns>
+        </member>
+        <member name="T:Goblin.Landing.Models.Attributes.CombineAuthAttribute">
+            <inheritdoc />
+            <summary>
+                Attribute to mark combine (OR conditional) with higher level AuthorizeAttribute
+            </summary>
+        </member>
     </members>
 </doc>
