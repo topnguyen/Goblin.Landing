@@ -131,7 +131,7 @@ namespace Goblin.Landing.Controllers
         }
 
         [Route(Endpoints.ForgotPassword)]
-        [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> SubmitForgotPassword(ForgotPasswordModel model,
             CancellationToken cancellationToken = default)
@@ -191,7 +191,7 @@ namespace Goblin.Landing.Controllers
         }
 
         [Route(Endpoints.ResetPassword)]
-        [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> SubmitResetPassword(ResetPasswordModel model, CancellationToken cancellationToken = default)
         {
