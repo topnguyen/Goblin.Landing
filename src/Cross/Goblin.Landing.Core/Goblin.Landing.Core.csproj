@@ -13,15 +13,18 @@
 
     <ItemGroup>
         <!-- Core -->
-
+        
         <ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core\Goblin.Core.csproj" />
 
         <ProjectReference Include="..\..\..\Goblin.Core\Goblin.Core.Web\Goblin.Core.Web.csproj" />
 
         <!-- Services -->
 
-        <PackageReference Include="Goblin.BlogCrawler" Version="1.0.5" ExcludeAssets="Private" />
+        <PackageReference Include="Goblin.BlogCrawler" Version="1.0.5" />
 
-        <PackageReference Include="Goblin.Identity" Version="1.0.5" ExcludeAssets="Private" />
+        <PackageReference Include="Goblin.Identity" Version="1.0.6" />
+
+        <PackageReference Include="Goblin.Notification" Version="1.0.5" />
+
     </ItemGroup>
 </Project>

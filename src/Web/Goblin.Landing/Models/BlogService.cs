@@ -1,19 +1,16 @@
-﻿using System;
+using System;
 using System.Linq;
-using Elect.DI.Attributes;
-using Goblin.Landing.Contract.Service;
 using System.Threading;
 using System.Threading.Tasks;
 using Goblin.BlogCrawler.Share;
 using Goblin.BlogCrawler.Share.Models;
 using Goblin.Landing.Core.Models;
 
-namespace Goblin.Landing.Service
+namespace Goblin.Landing.Models
 {
-    [ScopedDependency(ServiceType = typeof(IBlogService))]
-    public class BlogService : Base.Service, IBlogService
+    public static class BlogService
     {
-        public async Task<BlogModel> GetBlog(int pageNo, CancellationToken cancellationToken = default)
+        public static async Task<BlogModel> GetBlogAsync(int pageNo, CancellationToken cancellationToken = default)
         {
             var blogModel = new BlogModel
             {
@@ -55,5 +52,6 @@ namespace Goblin.Landing.Service
             
             return blogModel;
         }
+
     }
 }

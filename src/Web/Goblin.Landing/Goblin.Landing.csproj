@@ -58,16 +58,16 @@
           <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </Content>
-        <Content Update="Views\Shared\_ErrorMessage.cshtml">
+        <Content Update="Views\Shared\_Message.cshtml">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+        <Content Update="Views\Auth\ResetPassword.cshtml">
           <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
           <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </Content>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\Cross\Goblin.Landing.Core\Goblin.Landing.Core.csproj" />
-        <ProjectReference Include="..\..\Cross\Goblin.Landing.Mapper\Goblin.Landing.Mapper.csproj" />
-
-        <ProjectReference Include="..\..\Service\Goblin.Landing.Contract.Service\Goblin.Landing.Contract.Service.csproj" />
-        <ProjectReference Include="..\..\Service\Goblin.Landing.Service\Goblin.Landing.Service.csproj" />
     </ItemGroup>
 </Project>

@@ -10,12 +10,22 @@ namespace Goblin.Landing.Core
 
         public string GoogleMapKey { get; set; }
         
+        // Blog Crawler
+
         public string BlogCrawlerServiceDomain { get; set; }
 
         public string BlogCrawlerServiceAuthorizationKey { get; set; }
         
+        // Identity
+        
         public string IdentityServiceDomain { get; set; }
 
         public string IdentityServiceAuthorizationKey { get; set; }
+        
+        // Notification
+
+        public string NotificationServiceDomain { get; set; }
+
+        public string NotificationServiceAuthorizationKey { get; set; }
     }
 }

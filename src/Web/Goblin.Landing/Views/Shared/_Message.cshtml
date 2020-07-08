@@ -1,0 +1,39 @@
+@{
+    Layout = null;
+}
+
+@if (ViewBag.SuccessMessage != null)
+{
+    var message = ViewBag.SuccessMessage.ToString();
+
+    <div class="alert alert-success" role="alert">
+        @Html.Raw(message)
+    </div>
+}
+
+@if (ViewBag.WarningMessage != null)
+{
+    var message = ViewBag.WarningMessage.ToString();
+
+    <div class="alert alert-warning" role="alert">
+        @Html.Raw(message)
+    </div>
+}
+
+@if (ViewBag.InfoMessage != null)
+{
+    var message = ViewBag.WarningMessage.ToString();
+
+    <div class="alert alert-info" role="alert">
+        @Html.Raw(message)
+    </div>
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    var message = ViewBag.ErrorMessage.ToString();
+
+    <div class="alert alert-danger" role="alert">
+        @Html.Raw(message)
+    </div>
+}

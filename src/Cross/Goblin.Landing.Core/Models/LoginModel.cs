@@ -11,9 +11,6 @@ namespace Goblin.Landing.Core.Models
         
         public string UserName { get; set; }
 
-        /// <summary>
-        ///     Hint - pre-enter Password
-        /// </summary>
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

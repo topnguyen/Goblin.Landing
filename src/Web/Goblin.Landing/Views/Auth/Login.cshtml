@@ -23,7 +23,7 @@
                     <div class="card card-body shadow">
                         <h1 class="h5 text-center">Sign In</h1>
                         @{
-                            await Html.RenderPartialAsync("_ErrorMessage");
+                            await Html.RenderPartialAsync("_Message");
                         }
                         <form asp-controller="Auth" asp-action="SubmitLogin" method="post" enctype="multipart/form-data" role="form">
 

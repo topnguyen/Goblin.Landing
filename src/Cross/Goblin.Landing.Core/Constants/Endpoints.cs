@@ -21,5 +21,7 @@
         public const string Logout = "~/logout";
         
         public const string ForgotPassword = "~/forgot-password";
+        
+        public const string ResetPassword = "~/reset-password";
     }
 }
