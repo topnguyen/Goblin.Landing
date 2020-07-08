@@ -5,12 +5,16 @@
 
     var isShowLogoStr = ViewData[ContentKeys.IsShowLogo]?.ToString() ?? "true";
     var isShowLogo = isShowLogoStr == "true";
-    
+
     var logoTagContent = ViewData[ContentKeys.LogoTagContent]?.ToString() ?? string.Empty;
     var blogButtonClass = ViewData[ContentKeys.BlogButtonClass]?.ToString() ?? "btn-primary";
+
+    var loggedInUser = LoggedInUser<GoblinIdentityUserModel>.Current?.Data;
 }
 
 @using Goblin.Landing.Core.Constants
+@using Goblin.Landing.Core
+@using Goblin.Identity.Share.Models.UserModels
 <div class="navbar-container">
     <nav @Html.Raw(headerNavContent)>
         <div class="container">
@@ -42,6 +46,13 @@
                     <li class="nav-item">
                         <a class="btn @Html.Raw(blogButtonClass) ml-lg-4 mr-3 mr-md-4 mr-lg-0 d-sm-block order-lg-3" href="@Url.Action("Index", "Blog")">Blog</a>
                     </li>
+
+                    @if (loggedInUser != null)
+                    {
+                        <li class="nav-item">
+                            <a class="btn btn-warning ml-lg-4 mr-3 mr-md-4 mr-lg-0 d-sm-block order-lg-3" href="@Url.Content(Endpoints.Portal)">Portal</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

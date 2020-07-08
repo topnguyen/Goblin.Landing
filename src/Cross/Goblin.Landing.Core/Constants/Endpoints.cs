@@ -3,7 +3,7 @@
     public static class Endpoints
     {
         public const string Home = "~/";
-        
+                
         public const string Error = "~/error/{code}";
 
         public const string Work = "~/work";
@@ -23,5 +23,7 @@
         public const string ForgotPassword = "~/forgot-password";
         
         public const string ResetPassword = "~/reset-password";
+        
+        public const string Portal = "~/portal";
     }
 }
