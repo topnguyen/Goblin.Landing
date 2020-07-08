@@ -1,0 +1,41 @@
+@using Goblin.Identity.Share.Models.UserModels
+@using Goblin.Landing.Core
+@{
+    var loggedInUser = LoggedInUser<GoblinIdentityUserModel>.Current.Data;
+
+    var avatarUrl = loggedInUser.AvatarUrl;
+
+    if (string.IsNullOrWhiteSpace(avatarUrl))
+    {
+        avatarUrl = "https://cfl.dropboxstatic.com/static/images/avatar/faceholder-vflGRnT85.svg";
+    }
+}
+
+<section class="pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col d-flex align-items-center">
+                <div class="d-inline-block p-3 p-md-4 rounded-circle bg-primary-alt">
+                    <img src="@avatarUrl" alt="Confirmation Icon" class="icon bg-primary avatar avatar-lg"/>
+                </div>
+                <div class="ml-4">
+                    <h1 class="mb-2">Welcome to Portal</h1>
+                    <div class="lead">Manage your profile, works.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <ul class="nav nav-tabs border-0">
+                    <menu-item menu-name="Profile" menu-url="@Url.AbsoluteAction("Profile", "Portal")"></menu-item>
+                    <menu-item menu-name="Account" menu-url="@Url.AbsoluteAction("Account", "Portal")"></menu-item>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

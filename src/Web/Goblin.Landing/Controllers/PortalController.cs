@@ -5,11 +5,18 @@ namespace Goblin.Landing.Controllers
 {
     public class PortalController : BaseAuthController
     {
-        [Route(Endpoints.Portal)]
+        [Route(Endpoints.Profile)]
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Profile()
         {
             return View();
         }  
+        
+        [Route(Endpoints.Account)]
+        [HttpGet]
+        public IActionResult Account()
+        {
+            return View();
+        } 
     }
 }

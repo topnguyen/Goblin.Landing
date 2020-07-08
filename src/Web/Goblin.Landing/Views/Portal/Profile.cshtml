@@ -1,0 +1,85 @@
+@using Goblin.Identity.Share.Models.UserModels
+@using Goblin.Landing.Core
+@{
+    ViewData[MetadataKeys.Title] = "Profile";
+
+    ViewData[ContentKeys.HeaderNavTagContent] = "class='navbar navbar-expand-lg navbar-light' data-overlay";
+
+    var loggedInUser = LoggedInUser<GoblinIdentityUserModel>.Current.Data;
+
+    var avatarUrl = loggedInUser.AvatarUrl;
+
+    if (string.IsNullOrWhiteSpace(avatarUrl))
+    {
+        avatarUrl = "https://cfl.dropboxstatic.com/static/images/avatar/faceholder-vflGRnT85.svg";
+    }
+}
+
+@{
+    await  Html.RenderPartialAsync("_Menu");
+}
+
+<section class="bg-light tab-content pt-5">
+    <div class="container">
+        <div class="row mb-4 mb-md-5 align-items-start">
+            <div class="col-lg-4 order-lg-2 mb-4 mb-lg-0 sticky-lg-top pl-lg-5">
+                <div class="alert alert-primary">
+                    Some of this information will appear on your public profile. A detailed public profile helps users with similar professional interests and location to connect with you.
+                    <a href="#">View your Public Profile</a>
+                </div>
+            </div>
+            <div class="col-lg-8 border-lg-right pr-lg-5">
+                <div class="row mb-lg-5">
+                    <div class="col">
+                        <h3>Profile Information</h3>
+                    </div>
+                </div>
+                <form>
+                    <div class="row form-row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" value="Melbourne" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" class="form-control" id="country" value="Australia" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="birthday">Birthday</label>
+                                <input type="text" id="birthday" class="form-control" data-flatpickr="data-flatpickr" data-alt-input="true" placeholder="Select a date" />
+                                <small>This will never be made public</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="country">Website</label>
+                                <input type="url" class="form-control" id="website" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Twitter Handle</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">@@</span>
+                            </div>
+                            <input class="form-control" placeholder="Username" type="text" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">Profile Text</label>
+                        <textarea id="bio" rows="6" class="form-control"></textarea>
+                    </div>
+                    <button class="btn btn-primary" disabled="disabled" type="submit">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

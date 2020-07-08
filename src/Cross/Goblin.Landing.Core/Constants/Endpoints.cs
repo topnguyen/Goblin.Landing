@@ -24,6 +24,8 @@
         
         public const string ResetPassword = "~/reset-password";
         
-        public const string Portal = "~/portal";
+        public const string Profile = "~/profile";
+        
+        public const string Account = "~/account";
     }
 }

@@ -49,8 +49,16 @@
 
                     @if (loggedInUser != null)
                     {
+                        var avatarUrl = loggedInUser.AvatarUrl;
+
+                        @if (string.IsNullOrWhiteSpace(avatarUrl))
+                        {
+                            avatarUrl = "https://cfl.dropboxstatic.com/static/images/avatar/faceholder-vflGRnT85.svg";
+                        }
                         <li class="nav-item">
-                            <a class="btn btn-warning ml-lg-4 mr-3 mr-md-4 mr-lg-0 d-sm-block order-lg-3" href="@Url.Content(Endpoints.Portal)">Portal</a>
+                            <a class="ml-lg-4 mr-3 mr-md-4 mr-lg-0 d-sm-block order-lg-3" href="@Url.Content(Endpoints.Profile)">
+                                <img src="@avatarUrl" alt="Avatar" class="avatar avatar-sm shadow-lg"/>
+                            </a>
                         </li>
                     }
                 </ul>
