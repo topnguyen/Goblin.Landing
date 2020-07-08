@@ -156,7 +156,7 @@ namespace Goblin.Landing.Controllers
                 if (resetPasswordToken.SetPasswordTokenExpireTime.HasValue)
                 {
                     resetPasswordMessage +=
-                        $"<br />Code will expire at {resetPasswordToken.SetPasswordTokenExpireTime.Value:f)}";
+                        $"<br />Code will expire at {resetPasswordToken.SetPasswordTokenExpireTime.Value.ToString("f")}";
                 }
 
                 var newEmailModel = new GoblinNotificationNewEmailModel
