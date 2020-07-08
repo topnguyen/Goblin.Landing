@@ -20,8 +20,8 @@
 
         <!-- Services -->
 
-        <PackageReference Include="Goblin.BlogCrawler" Version="1.0.2" ExcludeAssets="Private" />
+        <PackageReference Include="Goblin.BlogCrawler" Version="1.0.5" ExcludeAssets="Private" />
 
-        <PackageReference Include="Goblin.Identity" Version="1.0.3" ExcludeAssets="Private" />
+        <PackageReference Include="Goblin.Identity" Version="1.0.5" ExcludeAssets="Private" />
     </ItemGroup>
 </Project>

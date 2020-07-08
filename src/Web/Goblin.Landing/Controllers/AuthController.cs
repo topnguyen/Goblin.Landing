@@ -90,8 +90,17 @@ namespace Goblin.Landing.Controllers
 
         [Route(Endpoints.Logout)]
         [HttpGet]
-        public IActionResult Logout()
+        public IActionResult Logout(string @continue)
         {
+            if (string.IsNullOrWhiteSpace(@continue))
+            {
+                @continue = Url.AbsoluteAction("Index", "Home");
+            }
+
+            ViewBag.ContinueUrl = @continue;
+            
+            CookieHelper.ExpireShare(HttpContext, GoblinCookieKeys.AccessToken);
+
             return View();
         }
     }
