@@ -10,7 +10,7 @@ namespace Goblin.Landing.Core.Validators
             RuleFor(x => x.UserName)
                 .NotEmpty()
                 .Length(3, 100)
-                .WithMessage("UserName must between 3 and 100 characters");
+                .WithMessage("Username must between 3 and 100 characters");
 
             RuleFor(x => x.Password)
                 .NotEmpty()

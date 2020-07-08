@@ -19,5 +19,7 @@
         public const string Login = "~/login";
         
         public const string Logout = "~/logout";
+        
+        public const string ForgotPassword = "~/forgot-password";
     }
 }

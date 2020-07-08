@@ -2,7 +2,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Goblin.Landing.Contract.Service;
 using Goblin.Landing.Core.Constants;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Goblin.Landing.Controllers
@@ -29,14 +28,9 @@ namespace Goblin.Landing.Controllers
         [HttpGet]
         public IActionResult Error(int code)
         {
-            if (code == StatusCodes.Status404NotFound)
-            {
-                return View("NotFound");
-            }
-
             ViewBag.ErrorCode = code;
             
-            return View("NotFound");
+            return View("Error");
         }
     }
 }

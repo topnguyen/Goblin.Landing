@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Elect.Web.IUrlHelperUtils;
 using Goblin.Core.Constants;
+using Goblin.Core.Errors;
 using Goblin.Core.Utils;
 using Goblin.Identity.Share;
 using Goblin.Identity.Share.Models.UserModels;
@@ -83,10 +84,16 @@ namespace Goblin.Landing.Controllers
                 
                 return View("LoggedIn");
             }
+            catch (GoblinException e)
+            {
+                ViewBag.ErrorMessage = e.ErrorModel.Message; 
+                    
+                return View("Login", model);
+            }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                
+                ViewBag.ErrorMessage = e.Message; 
+                    
                 return View("Login", model);
             }
         }
@@ -107,5 +114,40 @@ namespace Goblin.Landing.Controllers
 
             return View();
         }
+        
+        [Route(Endpoints.ForgotPassword)]
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ForgotPassword()
+        {
+            var forgotPasswordModel = new ForgotPasswordModel();
+
+            return View(forgotPasswordModel);
+        }         
+        
+        [Route(Endpoints.ForgotPassword)]
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult SubmitForgotPassword(ForgotPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("ForgotPassword", model);
+            }
+            
+            try
+            {
+                // TODO
+                
+                return View("Login");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                
+                return View("ForgotPassword", model);
+            }
+
+        }   
     }
 }

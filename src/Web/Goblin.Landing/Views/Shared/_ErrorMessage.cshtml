@@ -1,0 +1,12 @@
+@{
+    Layout = null;
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    var errorMessage = ViewBag.ErrorMessage.ToString();
+
+    <div class="alert alert-danger" role="alert">
+        @Html.Raw(errorMessage)
+    </div>
+}

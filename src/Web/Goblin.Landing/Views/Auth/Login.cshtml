@@ -1,8 +1,7 @@
 @model LoginModel
 @{
     ViewData[MetadataKeys.Title] = "Login";
-    ViewData[MetadataKeys.FaviconUrl] = "~/icons/home.ico";
-    
+
     ViewData[ContentKeys.HeaderNavTagContent] = "class='navbar navbar-expand-lg navbar-light' data-overlay";
     ViewData[ContentKeys.FooterStyle] = "position: fixed; bottom: 0; width: 100%; z-index: 1;";
 }
@@ -23,18 +22,27 @@
                 <div class="col-xl-4 col-lg-5 col-md-6">
                     <div class="card card-body shadow">
                         <h1 class="h5 text-center">Sign In</h1>
+                        @{
+                            await Html.RenderPartialAsync("_ErrorMessage");
+                        }
                         <form asp-controller="Auth" asp-action="SubmitLogin" method="post" enctype="multipart/form-data" role="form">
 
                             <input asp-for="Continue" type="hidden"/>
 
                             <div class="form-group">
-                                <input asp-for="UserName" class="form-control" placeholder="UserName"/>
+                                <label asp-for="UserName">Username</label>
+                                <input asp-for="UserName" class="form-control" placeholder="Enter your Username"/>
                                 <span asp-validation-for="UserName" class="form-control-feedback text-warning"></span>
                             </div>
 
                             <div class="form-group">
-                                <input asp-for="Password" class="form-control" placeholder="Password"/>
+                                <label asp-for="Password">Password</label>
+                                <input asp-for="Password" class="form-control" placeholder="Enter your Password"/>
                                 <span asp-validation-for="Password" class="form-control-feedback text-warning"></span>
+
+                                <div class="text-right text-small mt-2">
+                                    <a href="@Url.Action("ForgotPassword", "Auth")">Forgot Password?</a>
+                                </div>
                             </div>
 
                             <button class="btn btn-primary btn-block" type="submit">Sign In</button>
