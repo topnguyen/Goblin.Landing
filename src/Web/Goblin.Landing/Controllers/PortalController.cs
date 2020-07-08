@@ -1,3 +1,6 @@
+using Elect.Mapper.AutoMapper.ObjUtils;
+using Goblin.Identity.Share.Models.UserModels;
+using Goblin.Landing.Core;
 using Goblin.Landing.Core.Constants;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +12,9 @@ namespace Goblin.Landing.Controllers
         [HttpGet]
         public IActionResult Profile()
         {
-            return View();
+            var userProfileModel = LoggedInUser<GoblinIdentityUserModel>.Current.Data.MapTo<GoblinIdentityUpdateProfileModel>();
+            
+            return View(userProfileModel);
         }  
         
         [Route(Endpoints.Account)]
