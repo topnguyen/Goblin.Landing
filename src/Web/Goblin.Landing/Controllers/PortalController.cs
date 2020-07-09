@@ -127,7 +127,7 @@ namespace Goblin.Landing.Controllers
 
                 ViewBag.SuccessMessage = "Account Updated Successfully.";
 
-                if (string.IsNullOrWhiteSpace(model.NewPassword))
+                if (!string.IsNullOrWhiteSpace(model.NewPassword))
                 {
                     return View("~/Views/Auth/Login.cshtml", new LoginModel
                     {
