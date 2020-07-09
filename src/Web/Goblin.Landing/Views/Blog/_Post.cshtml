@@ -12,8 +12,13 @@
     <div class="card h-100 hover-box-shadow">
         @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
         {
+            if (Model.ImageUrl.EndsWith(".mp4"))
+            {
+                Model.ImageUrl = NoImageHelper.GetRandomNoImageUrl();
+            }
+            
             <a href="@Model.Url" target="_blank" class="d-block bg-gradient rounded-top">
-                <div class="rounded hover-fade-out" style="background: url(@Model.ImageUrl) no-repeat center /cover; width: 100%; height: 200px"></div>
+                <div class="rounded hover-fade-out" style="background: url(@Model.ImageUrl) no-repeat center /cover; width: 100%; height: 250px"></div>
             </a>
         }
         <div class="card-body">
@@ -33,10 +38,6 @@
             <a href="@Model.Url" target="_blank">Read Story</a>
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
-@*              @if (!string.IsNullOrWhiteSpace(Model.AuthorName)) *@
-@*              { *@
-@*                  <label class="badge badge-pill badge-warning">@Model.AuthorName</label> *@
-@*              } *@
             <div class="text-small text-muted">@(Model.PublishTime.ToString("dd MMM yy"))</div>
         </div>
     </div>

@@ -11,13 +11,17 @@
 <div class="d-flex flex-column flex-lg-row no-gutters border rounded bg-white o-hidden">
     @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
     {
+        if (Model.ImageUrl.EndsWith(".mp4"))
+        {
+            Model.ImageUrl = NoImageHelper.GetRandomNoImageUrl();
+        }
+        
         <a href="@Model.Url" target="_blank" class="d-block position-relative bg-gradient col-xl-5">
 
             <img class="flex-fill hover-fade-out" src="@Model.ImageUrl" alt="@title">
             <div class="divider divider-side bg-white d-none d-lg-block"></div>
         </a>
     }
-
 
     <div class="p-4 p-md-5 col-xl-7 d-flex align-items-center">
         <div class="p-lg-4 p-xl-5">

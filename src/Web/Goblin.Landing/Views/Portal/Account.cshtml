@@ -5,7 +5,7 @@
 }
 
 @{
-    await  Html.RenderPartialAsync("_Menu");
+    await Html.RenderPartialAsync("_Menu");
 }
 
 <section class="bg-light tab-content pt-5">
@@ -14,7 +14,6 @@
             <div class="col-lg-4 order-lg-2 mb-4 mb-lg-0 sticky-lg-top pl-lg-5">
                 <div class="alert alert-primary">
                     Your information is always kept encrypted and can never be accessed by third parties.
-                    <a href="#">View our Privacy Policy</a>
                 </div>
             </div>
             <div class="col-lg-8 border-lg-right pr-lg-5">
@@ -23,30 +22,19 @@
                         <h3>Account Details</h3>
                     </div>
                 </div>
+                @{
+                    await Html.RenderPartialAsync("_Message");
+                }
                 <form>
-                    <div class="row form-row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="first-name">First Name</label>
-                                <input type="text" class="form-control" id="first-name" value="Andrew" />
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="last-name">Last Name</label>
-                                <input type="text" class="form-control" id="last-name" value="Smith" />
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" id="username" class="form-control" />
-                        <small>This will be displayed on your public profile</small>
+                        <input type="text" id="username" class="form-control"/>
+                        <small>Used to log in to your account</small>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control" />
-                        <small>Used to log in to your account</small>
+                        <input type="email" id="email" class="form-control"/>
+                        <small>Verify your email to reset your password when you lost it</small>
                     </div>
                     <button class="btn btn-primary" disabled="disabled" type="submit">Save changes</button>
                 </form>

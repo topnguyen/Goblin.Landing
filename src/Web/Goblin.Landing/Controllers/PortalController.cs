@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Elect.Mapper.AutoMapper.ObjUtils;
+using Goblin.Core.DateTimeUtils;
 using Goblin.Core.Errors;
 using Goblin.Identity.Share;
 using Goblin.Identity.Share.Models.UserModels;
@@ -46,27 +47,36 @@ namespace Goblin.Landing.Controllers
                 
                 if (model.AvatarFile != null)
                 {
-                    string base64;
-
-                    await using (var memoryStream = new MemoryStream())
-                    {
-                        await model.AvatarFile.CopyToAsync(memoryStream, cancellationToken);
-                        
-                        var fileBytes = memoryStream.ToArray();
-                        
-                        base64 = Convert.ToBase64String(fileBytes);
-                    }
+                    await using var memoryStream = new MemoryStream();
                     
+                    await model.AvatarFile.CopyToAsync(memoryStream, cancellationToken);
+                        
+                    var fileBytes = memoryStream.ToArray();
+                        
+                    var base64 = Convert.ToBase64String(fileBytes);
+
+                    var fileName = model.AvatarFile.FileName ?? model.AvatarFile.Name ?? GoblinDateTimeHelper.SystemTimeNow.ToString("ddMMyyHHmmss");
+                        
                     var uploadResourceModel = new GoblinResourceUploadFileModel
                     {
                         LoggedInUserId = LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id,
                         Folder = "avatars",
-                        ContentBase64 = base64
+                        Name = $"user-{LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id}-avatar-{fileName}",
+                        ContentBase64 = base64,
+                        ImageMaxHeightPx = 800,
+                        ImageMaxWidthPx = 800,
+                        IsEnableCompressImage = true
                     };
                     
                     var fileModel = await GoblinResourceHelper.UploadAsync(uploadResourceModel, cancellationToken).ConfigureAwait(true);
 
-                    goblinIdentityUploadProfileUserModel.AvatarUrl = fileModel.Url;
+                    goblinIdentityUploadProfileUserModel.AvatarUrl = fileModel.Slug;
+
+                    // Update Model
+                    
+                    LoggedInUser<GoblinIdentityUserModel>.Current.Data.AvatarUrl = model.AvatarUrl = goblinIdentityUploadProfileUserModel.AvatarUrl;
+                    
+                    model.AvatarFile = null;
                 }
 
                 // Update Profile
