@@ -16,6 +16,9 @@ namespace Goblin.Landing
         public Startup(IWebHostEnvironment env, IConfiguration configuration) : base(env, configuration)
         {
             RegisterValidators.Add(typeof(IValidator));
+            RegisterValidators.Add(typeof(BlogCrawler.Share.Validators.IValidator));
+            RegisterValidators.Add(typeof(Identity.Share.Validators.IValidator));
+            RegisterValidators.Add(typeof(Notification.Share.Validators.IValidator));
 
             BeforeConfigureServices = services =>
             {

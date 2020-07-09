@@ -20,11 +20,11 @@
 
         <!-- Services -->
 
-        <PackageReference Include="Goblin.BlogCrawler" Version="1.0.5" />
+        <PackageReference Include="Goblin.BlogCrawler" Version="1.0.6" />
 
-        <PackageReference Include="Goblin.Identity" Version="1.0.6" />
+        <PackageReference Include="Goblin.Identity" Version="1.0.7" />
 
-        <PackageReference Include="Goblin.Notification" Version="1.0.5" />
+        <PackageReference Include="Goblin.Notification" Version="1.0.6" />
 
     </ItemGroup>
 </Project>
