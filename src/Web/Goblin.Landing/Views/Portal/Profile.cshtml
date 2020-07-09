@@ -51,7 +51,7 @@
                 @{
                     await Html.RenderPartialAsync("_Message");
                 }
-                <form>
+                <form asp-controller="Portal" asp-action="SubmitUpdateProfile" method="post" enctype="multipart/form-data" role="form">
                     <div class="form-group">
                         <label asp-for="FullName">Name</label>
                         <input asp-for="FullName" class="form-control" placeholder="Enter your name"/>

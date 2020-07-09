@@ -62,6 +62,8 @@ namespace Goblin.Landing.Controllers
 
             if (!ModelState.IsValid)
             {
+                ViewBag.WarningMessage = Messages.InvalidData;
+
                 return View("Login", model);
             }
 
@@ -138,6 +140,8 @@ namespace Goblin.Landing.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.WarningMessage = Messages.InvalidData;
+
                 return View("ForgotPassword", model);
             }
 
@@ -197,9 +201,11 @@ namespace Goblin.Landing.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.WarningMessage = Messages.InvalidData;
+
                 return View("ResetPassword", model);
             }
-
+            
             try
             {
                 var resetPasswordModel = new GoblinIdentityResetPasswordModel
