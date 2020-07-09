@@ -1,0 +1,46 @@
+@model Goblin.Identity.Share.Models.UserModels.GoblinIdentityConfirmEmailModel
+
+@{
+    ViewData[MetadataKeys.Title] = "Verify Email";
+
+    ViewData[ContentKeys.HeaderNavTagContent] = "class='navbar navbar-expand-lg navbar-light' data-overlay";
+}
+
+@{
+    await Html.RenderPartialAsync("_Menu");
+}
+
+<section class="bg-light tab-content pt-5">
+    <form asp-controller="Portal" asp-action="SubmitVerifyEmail" method="post" enctype="multipart/form-data" role="form">
+        <div class="container">
+            <div class="row mb-4 mb-md-5 align-items-start">
+                <div class="col-lg-4 order-lg-2 mb-4 mb-lg-0 sticky-lg-top pl-lg-5">
+                    <div class="alert alert-primary">
+                        Verify your email to reset your password when you lost it.
+                    </div>
+                </div>
+                <div class="col-lg-8 border-lg-right pr-lg-5">
+                    <div class="row mb-lg-5">
+                        <div class="col">
+                            <h3>Verify Your Email</h3>
+                            @{
+                                await Html.RenderPartialAsync("_Message");
+                            }
+                            <p>
+                                If you did not get verify code, please <a href="@Url.Action("VerifyEmail", "Portal")" class="no-ajaxify text-warning">click here</a> to try again.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EmailConfirmToken">Verify Code</label>
+                        <br/>
+                        <input asp-for="EmailConfirmToken" class="form-control" placeholder="Enter the verify code"/>
+                        <span asp-validation-for="EmailConfirmToken" class="form-control-feedback text-warning"></span>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit">Verify</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>

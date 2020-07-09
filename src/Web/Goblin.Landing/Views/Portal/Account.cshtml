@@ -30,14 +30,14 @@
                             }
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label asp-for="CurrentPassword">Current Password</label>
                         <br/>
                         <input asp-for="CurrentPassword" type="password" class="form-control" placeholder="Enter your new Current Password"/>
                         <span asp-validation-for="CurrentPassword" class="form-control-feedback text-warning"></span>
                     </div>
-                    
+
                     <div class="form-group">
                         <label asp-for="NewPassword">New Password</label>
                         <br/>
@@ -48,7 +48,7 @@
                             Password must at least 6 characters
                         </small>
                     </div>
-                    
+
                     <div class="form-group">
                         <label asp-for="NewUserName">New Username</label>
                         <br/>
@@ -72,6 +72,12 @@
                             {
                                 <text>
                                     Verified at @($"{LoggedInUser<GoblinIdentityUserModel>.Current.Data.EmailConfirmedTime.Value.ToString("f")}")
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <a href="@Url.Action("VerifyEmail", "Portal")" class="text-warning">Verify your email!</a>
                                 </text>
                             }
                         </small>

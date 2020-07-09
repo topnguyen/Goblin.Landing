@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Elect.Core.DateTimeUtils;
 using Elect.Mapper.AutoMapper.ObjUtils;
 using Elect.Web.IUrlHelperUtils;
 using Goblin.Core.DateTimeUtils;
@@ -145,6 +146,75 @@ namespace Goblin.Landing.Controllers
             }
             
             return View("Account", model);
+        }
+        
+        [Route(Endpoints.VerifyEmail)]
+        [HttpGet]
+        public async Task<IActionResult> VerifyEmail(CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                // await GoblinIdentityHelper.(LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id, model, cancellationToken).ConfigureAwait(true);
+
+                ViewBag.WarningMessage = "Please check your email inbox to get the Verify Code.";
+
+                return View();
+            }
+            catch (GoblinException e)
+            {
+                ViewBag.ErrorMessage = e.ErrorModel.Message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+            }
+            
+            var updateIdentityModel = new GoblinIdentityUpdateIdentityModel
+            {
+                NewUserName = LoggedInUser<GoblinIdentityUserModel>.Current.Data.UserName,
+                NewEmail = LoggedInUser<GoblinIdentityUserModel>.Current.Data.Email
+            };
+
+            return View("Account", updateIdentityModel);
+        }
+        
+        [Route(Endpoints.VerifyEmail)]
+        [HttpPost]
+        public async Task<IActionResult> SubmitVerifyEmail(GoblinIdentityConfirmEmailModel model, CancellationToken cancellationToken = default)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.WarningMessage = Messages.InvalidData;
+
+                return View("VerifyEmail", model);
+            }
+            
+            try
+            {
+                model.LoggedInUserId = model.Id = LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id;
+                
+                await GoblinIdentityHelper.ConfirmEmailAsync(model, cancellationToken).ConfigureAwait(true);
+
+                ViewBag.SuccessMessage = "Your email is verified.";
+
+                LoggedInUser<GoblinIdentityUserModel>.Current.Data.EmailConfirmedTime = GoblinDateTimeHelper.SystemTimeNow;
+            }
+            catch (GoblinException e)
+            {
+                ViewBag.ErrorMessage = e.ErrorModel.Message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+            }
+            
+            var updateIdentityModel = new GoblinIdentityUpdateIdentityModel
+            {
+                NewUserName = LoggedInUser<GoblinIdentityUserModel>.Current.Data.UserName,
+                NewEmail = LoggedInUser<GoblinIdentityUserModel>.Current.Data.Email
+            };
+
+            return View("Account", updateIdentityModel);
         }
     }
 }

@@ -42,6 +42,10 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Remove="wwwroot\**\*.scss" />
+        <Content Update="Views\Portal\VerifyEmail.cshtml">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\..\Cross\Goblin.Landing.Core\Goblin.Landing.Core.csproj" />

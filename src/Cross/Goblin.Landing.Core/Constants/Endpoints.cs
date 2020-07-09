@@ -27,5 +27,7 @@
         public const string Profile = "~/profile";
         
         public const string Account = "~/account";
+        
+        public const string VerifyEmail = "~/verify-email";
     }
 }
