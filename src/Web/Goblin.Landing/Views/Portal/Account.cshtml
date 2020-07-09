@@ -1,3 +1,7 @@
+@using Goblin.Landing.Core
+@using Goblin.Identity.Share.Models.UserModels
+@model Goblin.Identity.Share.Models.UserModels.GoblinIdentityUpdateIdentityModel
+
 @{
     ViewData[MetadataKeys.Title] = "Account";
 
@@ -9,36 +13,72 @@
 }
 
 <section class="bg-light tab-content pt-5">
-    <div class="container">
-        <div class="row mb-4 mb-md-5 align-items-start">
-            <div class="col-lg-4 order-lg-2 mb-4 mb-lg-0 sticky-lg-top pl-lg-5">
-                <div class="alert alert-primary">
-                    Your information is always kept encrypted and can never be accessed by third parties.
-                </div>
-            </div>
-            <div class="col-lg-8 border-lg-right pr-lg-5">
-                <div class="row mb-lg-5">
-                    <div class="col">
-                        <h3>Account Details</h3>
+    <form asp-controller="Portal" asp-action="SubmitUpdateAccount" method="post" enctype="multipart/form-data" role="form">
+        <div class="container">
+            <div class="row mb-4 mb-md-5 align-items-start">
+                <div class="col-lg-4 order-lg-2 mb-4 mb-lg-0 sticky-lg-top pl-lg-5">
+                    <div class="alert alert-primary">
+                        Your information is always kept encrypted and can never be accessed by third parties.
                     </div>
                 </div>
-                @{
-                    await Html.RenderPartialAsync("_Message");
-                }
-                <form>
+                <div class="col-lg-8 border-lg-right pr-lg-5">
+                    <div class="row mb-lg-5">
+                        <div class="col">
+                            <h3>Account Details</h3>
+                            @{
+                                await Html.RenderPartialAsync("_Message");
+                            }
+                        </div>
+                    </div>
+                    
                     <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" class="form-control"/>
+                        <label asp-for="CurrentPassword">Current Password</label>
+                        <br/>
+                        <input asp-for="CurrentPassword" type="password" class="form-control" placeholder="Enter your new Current Password"/>
+                        <span asp-validation-for="CurrentPassword" class="form-control-feedback text-warning"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label asp-for="NewPassword">New Password</label>
+                        <br/>
                         <small>Used to log in to your account</small>
+                        <input asp-for="NewPassword" type="password" class="form-control" placeholder="Enter your new Password"/>
+                        <span asp-validation-for="NewPassword" class="form-control-feedback text-warning"></span>
+                        <small class="text-info">
+                            Password must at least 6 characters
+                        </small>
                     </div>
+                    
                     <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control"/>
-                        <small>Verify your email to reset your password when you lost it</small>
+                        <label asp-for="NewUserName">New Username</label>
+                        <br/>
+                        <small>Used to log in to your account</small>
+                        <input asp-for="NewUserName" class="form-control" placeholder="Enter your new Username"/>
+                        <span asp-validation-for="NewUserName" class="form-control-feedback text-warning"></span>
+                        <small class="text-info">
+                            Current Username is @(LoggedInUser<GoblinIdentityUserModel>.Current.Data.UserName)
+                        </small>
                     </div>
-                    <button class="btn btn-primary" disabled="disabled" type="submit">Save changes</button>
-                </form>
+
+                    <div class="form-group">
+                        <label asp-for="NewEmail">New Email</label>
+                        <br/>
+                        <small>Verify your email to reset your password when you lost it</small>
+                        <input asp-for="NewEmail" class="form-control" placeholder="Enter your new Email"/>
+                        <span asp-validation-for="NewEmail" class="form-control-feedback text-warning"></span>
+                        <small class="text-info">
+                            Current Email is @(LoggedInUser<GoblinIdentityUserModel>.Current.Data.Email)
+                            @if (LoggedInUser<GoblinIdentityUserModel>.Current.Data.EmailConfirmedTime != null)
+                            {
+                                <text>
+                                    Verified at @($"{LoggedInUser<GoblinIdentityUserModel>.Current.Data.EmailConfirmedTime.Value.ToString("f")}")
+                                </text>
+                            }
+                        </small>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Save changes</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </section>

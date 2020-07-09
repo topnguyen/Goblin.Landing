@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Elect.Mapper.AutoMapper.ObjUtils;
+using Elect.Web.IUrlHelperUtils;
 using Goblin.Core.DateTimeUtils;
 using Goblin.Core.Errors;
 using Goblin.Identity.Share;
@@ -29,8 +30,7 @@ namespace Goblin.Landing.Controllers
 
         [Route(Endpoints.Profile)]
         [HttpPost]
-        public async Task<IActionResult> SubmitUpdateProfile(UpdateProfileModel model,
-            CancellationToken cancellationToken = default)
+        public async Task<IActionResult> SubmitUpdateProfile(UpdateProfileModel model, CancellationToken cancellationToken = default)
         {
             if (!ModelState.IsValid)
             {
@@ -101,7 +101,50 @@ namespace Goblin.Landing.Controllers
         [HttpGet]
         public IActionResult Account()
         {
-            return View();
+            var updateIdentityModel = new GoblinIdentityUpdateIdentityModel
+            {
+                NewUserName = LoggedInUser<GoblinIdentityUserModel>.Current.Data.UserName,
+                NewEmail = LoggedInUser<GoblinIdentityUserModel>.Current.Data.Email
+            };
+            
+            return View(updateIdentityModel);
+        }
+        
+        [Route(Endpoints.Account)]
+        [HttpPost]
+        public async Task<IActionResult> SubmitUpdateAccount(GoblinIdentityUpdateIdentityModel model, CancellationToken cancellationToken = default)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.WarningMessage = Messages.InvalidData;
+
+                return View("Account", model);
+            }
+
+            try
+            {
+                await GoblinIdentityHelper.UpdateIdentityAsync(LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id, model, cancellationToken).ConfigureAwait(true);
+
+                ViewBag.SuccessMessage = "Account Updated Successfully.";
+
+                if (string.IsNullOrWhiteSpace(model.NewPassword))
+                {
+                    return View("~/Views/Auth/Login.cshtml", new LoginModel
+                    {
+                        Continue = Url.AbsoluteAction("Account", "Portal")
+                    });
+                }
+            }
+            catch (GoblinException e)
+            {
+                ViewBag.ErrorMessage = e.ErrorModel.Message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+            }
+            
+            return View("Account", model);
         }
     }
 }

@@ -57,8 +57,8 @@
 
 <section class="bg-light tab-content pt-5">
     <form asp-controller="Portal" asp-action="SubmitUpdateProfile" method="post" enctype="multipart/form-data" role="form">
-        <input asp-for="AvatarUrl" type="hidden" />
-        
+        <input asp-for="AvatarUrl" type="hidden"/>
+
         <div class="container">
             <div class="row mb-4 mb-lg-5">
                 <div class="col">
@@ -87,11 +87,11 @@
                     <div class="row mb-lg-5">
                         <div class="col">
                             <h3>Profile Information</h3>
+                            @{
+                                await Html.RenderPartialAsync("_Message");
+                            }
                         </div>
                     </div>
-                    @{
-                        await Html.RenderPartialAsync("_Message");
-                    }
                     <div class="form-group">
                         <label asp-for="FullName">Name</label>
                         <input asp-for="FullName" class="form-control" placeholder="Enter your name"/>
