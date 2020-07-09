@@ -27,5 +27,11 @@ namespace Goblin.Landing.Core
         public string NotificationServiceDomain { get; set; }
 
         public string NotificationServiceAuthorizationKey { get; set; }
+        
+        // Resource
+
+        public string ResourceServiceDomain { get; set; }
+
+        public string ResourceServiceAuthorizationKey { get; set; }
     }
 }

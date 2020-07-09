@@ -1,11 +1,16 @@
 using System;
+using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using Elect.Mapper.AutoMapper.ObjUtils;
 using Goblin.Core.Errors;
 using Goblin.Identity.Share;
 using Goblin.Identity.Share.Models.UserModels;
 using Goblin.Landing.Core;
 using Goblin.Landing.Core.Constants;
+using Goblin.Landing.Core.Models;
+using Goblin.Resource.Share;
+using Goblin.Resource.Share.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Goblin.Landing.Controllers
@@ -16,14 +21,15 @@ namespace Goblin.Landing.Controllers
         [HttpGet]
         public IActionResult Profile()
         {
-            var userProfileModel = LoggedInUser<GoblinIdentityUserModel>.Current.Data.MapTo<GoblinIdentityUpdateProfileModel>();
-            
+            var userProfileModel = LoggedInUser<GoblinIdentityUserModel>.Current.Data.MapTo<UpdateProfileModel>();
+
             return View(userProfileModel);
-        }  
-        
+        }
+
         [Route(Endpoints.Profile)]
         [HttpPost]
-        public IActionResult SubmitUpdateProfile(GoblinIdentityUpdateProfileModel model, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> SubmitUpdateProfile(UpdateProfileModel model,
+            CancellationToken cancellationToken = default)
         {
             if (!ModelState.IsValid)
             {
@@ -31,14 +37,42 @@ namespace Goblin.Landing.Controllers
 
                 return View("Profile", model);
             }
-            
+
             try
             {
-                GoblinIdentityHelper
-                    .UpdateProfileAsync(LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id, model, 
-                        cancellationToken)
-                    .ConfigureAwait(true);
+                var goblinIdentityUploadProfileUserModel = model.MapTo<GoblinIdentityUpdateProfileModel>();
+
+                // Upload Avatar File if have
                 
+                if (model.AvatarFile != null)
+                {
+                    string base64;
+
+                    await using (var memoryStream = new MemoryStream())
+                    {
+                        await model.AvatarFile.CopyToAsync(memoryStream, cancellationToken);
+                        
+                        var fileBytes = memoryStream.ToArray();
+                        
+                        base64 = Convert.ToBase64String(fileBytes);
+                    }
+                    
+                    var uploadResourceModel = new GoblinResourceUploadFileModel
+                    {
+                        LoggedInUserId = LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id,
+                        Folder = "avatars",
+                        ContentBase64 = base64
+                    };
+                    
+                    var fileModel = await GoblinResourceHelper.UploadAsync(uploadResourceModel, cancellationToken).ConfigureAwait(true);
+
+                    goblinIdentityUploadProfileUserModel.AvatarUrl = fileModel.Slug;
+                }
+
+                // Update Profile
+
+                await GoblinIdentityHelper.UpdateProfileAsync(LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id, goblinIdentityUploadProfileUserModel, cancellationToken).ConfigureAwait(true);
+
                 ViewBag.SuccessMessage = "Profile Updated Successfully.";
             }
             catch (GoblinException e)
@@ -49,14 +83,15 @@ namespace Goblin.Landing.Controllers
             {
                 ViewBag.ErrorMessage = e.Message;
             }
+
             return View("Profile", model);
-        }  
-        
+        }
+
         [Route(Endpoints.Account)]
         [HttpGet]
         public IActionResult Account()
         {
             return View();
-        } 
+        }
     }
 }

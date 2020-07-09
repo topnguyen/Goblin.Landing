@@ -1,6 +1,6 @@
 @using Goblin.Identity.Share.Models.UserModels
 @using Goblin.Landing.Core
-@model GoblinIdentityUpdateProfileModel
+@model UpdateProfileModel
 @{
     ViewData[MetadataKeys.Title] = "Profile";
 
@@ -16,42 +16,82 @@
     }
 }
 
+@section Styles{
+    <style>
+        input[type="file"] {
+            display: none;
+        }
+        
+        .cursor-pointer{
+          cursor: pointer;
+        }
+    </style>
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        function previewImageFile(input, previewSelector) {
+          if (input.files && input.files[0]) {
+              
+            let reader = new FileReader();
+            
+            reader.onload = function(e) {
+              $(previewSelector).attr('src', e.target.result);
+            }
+            
+             // convert to base64 string
+            reader.readAsDataURL(input.files[0]);
+          }
+        }
+        
+        $("#AvatarFile").change(function() {
+            previewImageFile(this, "#avatarImg");
+        });
+    </script>
+}
+
 @{
     await Html.RenderPartialAsync("_Menu");
 }
 
 <section class="bg-light tab-content pt-5">
-    <div class="container">
-        <div class="row mb-4 mb-lg-5">
-            <div class="col">
-                <div class="d-flex align-items-md-center">
-                    <img src="@avatarUrl" alt="Avatar" class="avatar avatar-lg flex-shrink-0">
-                    <div class="ml-4">
-                        <button class="btn btn-sm btn-primary">Upload Avatar</button>
-                        <div class="text-small mt-3">For best results, use an image at least 256px by 256px in either .jpg or .png format</div>
+    <form asp-controller="Portal" asp-action="SubmitUpdateProfile" method="post" enctype="multipart/form-data" role="form">
+        <input asp-for="AvatarUrl" type="hidden" />
+        
+        <div class="container">
+            <div class="row mb-4 mb-lg-5">
+                <div class="col">
+                    <div class="d-flex align-items-md-center">
+                        <img id="avatarImg" src="@avatarUrl" alt="Avatar" class="avatar avatar-lg flex-shrink-0">
+                        <div class="ml-4">
+                            <label class="btn btn-sm btn-primary cursor-pointer">
+                                <input asp-for="AvatarFile" type="file" accept="image/*"/>
+                                Upload Avatar
+                            </label>
+                            <div class="text-small mt-3">For best results, use an image at least 256px by 256px in either .jpg or .png format</div>
+                        </div>
                     </div>
+                    <hr class="mt-lg-5">
                 </div>
-                <hr class="mt-lg-5">
             </div>
-        </div>
 
-        <div class="row mb-4 mb-md-5 align-items-start">
-            <div class="col-lg-4 order-lg-2 mb-4 mb-lg-0 sticky-lg-top pl-lg-5">
-                <div class="alert alert-primary">
-                    Some of this information will appear on your public profile. A detailed public profile helps users with similar professional interests and location to connect with you.
-                    <a href="@Url.Action("Index", "Member")">View your Public Profile</a>
-                </div>
-            </div>
-            <div class="col-lg-8 border-lg-right pr-lg-5">
-                <div class="row mb-lg-5">
-                    <div class="col">
-                        <h3>Profile Information</h3>
+            <div class="row mb-4 mb-md-5 align-items-start">
+                <div class="col-lg-4 order-lg-2 mb-4 mb-lg-0 sticky-lg-top pl-lg-5">
+                    <div class="alert alert-primary">
+                        Some of this information will appear on your public profile. A detailed public profile helps users with similar professional interests and location to connect with you.
+                        <a href="@Url.Action("Index", "Member")">View your Public Profile</a>
                     </div>
                 </div>
-                @{
-                    await Html.RenderPartialAsync("_Message");
-                }
-                <form asp-controller="Portal" asp-action="SubmitUpdateProfile" method="post" enctype="multipart/form-data" role="form">
+                <div class="col-lg-8 border-lg-right pr-lg-5">
+                    <div class="row mb-lg-5">
+                        <div class="col">
+                            <h3>Profile Information</h3>
+                        </div>
+                    </div>
+                    @{
+                        await Html.RenderPartialAsync("_Message");
+                    }
                     <div class="form-group">
                         <label asp-for="FullName">Name</label>
                         <input asp-for="FullName" class="form-control" placeholder="Enter your name"/>
@@ -145,8 +185,9 @@
                     </div>
 
                     <button class="btn btn-primary mt-lg-5" type="submit">Save changes</button>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+
 </section>

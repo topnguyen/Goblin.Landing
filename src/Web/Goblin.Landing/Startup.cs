@@ -5,6 +5,7 @@ using Goblin.Identity.Share;
 using Goblin.Landing.Core.Validators;
 using Goblin.Landing.Core;
 using Goblin.Notification.Share;
+using Goblin.Resource.Share;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -43,6 +44,12 @@ namespace Goblin.Landing
                 GoblinNotificationHelper.Domain = SystemSetting.Current.NotificationServiceDomain;
                 
                 GoblinNotificationHelper.AuthorizationKey = SystemSetting.Current.NotificationServiceAuthorizationKey;
+                
+                // Resource Service
+                
+                GoblinResourceHelper.Domain = SystemSetting.Current.ResourceServiceDomain;
+                
+                GoblinResourceHelper.AuthorizationKey = SystemSetting.Current.ResourceServiceAuthorizationKey;
             };
 
             BeforeUseMvc = (app, env, lifetime) =>

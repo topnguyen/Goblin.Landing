@@ -1,6 +1,7 @@
 using AutoMapper;
 using Elect.Mapper.AutoMapper.IMappingExpressionUtils;
 using Goblin.Identity.Share.Models.UserModels;
+using Goblin.Landing.Core.Models;
 
 namespace Goblin.Landing.Core.Mappers
 {
@@ -8,7 +9,11 @@ namespace Goblin.Landing.Core.Mappers
     {
         public UserProfile()
         {
-            CreateMap<GoblinIdentityUserModel, GoblinIdentityUpdateProfileModel>().IgnoreAllNonExisting();
+            CreateMap<GoblinIdentityUserModel, UpdateProfileModel>().IgnoreAllNonExisting();
+            
+            CreateMap<UpdateProfileModel, GoblinIdentityUpdateProfileModel>().IgnoreAllNonExisting();
+            
+            CreateMap<GoblinIdentityUpdateProfileModel, UpdateProfileModel>().IgnoreAllNonExisting();
         }
     }
 }
