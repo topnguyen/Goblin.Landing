@@ -66,7 +66,7 @@ namespace Goblin.Landing.Controllers
                     
                     var fileModel = await GoblinResourceHelper.UploadAsync(uploadResourceModel, cancellationToken).ConfigureAwait(true);
 
-                    goblinIdentityUploadProfileUserModel.AvatarUrl = fileModel.Slug;
+                    goblinIdentityUploadProfileUserModel.AvatarUrl = fileModel.Url;
                 }
 
                 // Update Profile

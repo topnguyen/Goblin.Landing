@@ -26,7 +26,7 @@
 
         <PackageReference Include="Goblin.Notification" Version="1.0.6" />
 
-        <PackageReference Include="Goblin.Resource" Version="1.0.6" />
+        <PackageReference Include="Goblin.Resource" Version="1.0.7" />
 
     </ItemGroup>
 </Project>
