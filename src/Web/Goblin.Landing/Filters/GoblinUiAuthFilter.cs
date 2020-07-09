@@ -14,7 +14,7 @@ namespace Goblin.Landing.Filters
 
             if (!isAuthenticate)
             {
-                context.Result = new RedirectToActionResult("Index", "Home", null, false);
+                context.Result = new RedirectToActionResult("Login", "Auth", null, false);
 
                 return;
             }
