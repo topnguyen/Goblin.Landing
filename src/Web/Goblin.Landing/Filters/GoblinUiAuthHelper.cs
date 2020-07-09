@@ -171,13 +171,6 @@ namespace Goblin.Landing.Filters
                 return true;
             }
 
-            if (!isActionHaveAnyPermission)
-            {
-                var isControllerHaveAnyRole = controllerActionDescriptor.ControllerTypeInfo.GetCustomAttributes<AuthAttribute>(true).Any();
-
-                return !isControllerHaveAnyRole;
-            }
-
             return false;
         }
     }

@@ -112,7 +112,7 @@ namespace Goblin.Landing.Controllers
         {
             if (string.IsNullOrWhiteSpace(@continue))
             {
-                @continue = Url.AbsoluteAction("Index", "Home");
+                @continue = Url.AbsoluteAction("Login", "Auth");
             }
 
             ViewBag.ContinueUrl = @continue;
