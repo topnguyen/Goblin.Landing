@@ -153,7 +153,20 @@ namespace Goblin.Landing.Controllers
         [Route(Endpoints.VerifyEmail)]
         [HttpGet]
         public async Task<IActionResult> VerifyEmail(CancellationToken cancellationToken = default)
-        {
+        { 
+            var updateIdentityModel = new GoblinIdentityUpdateIdentityModel
+            {
+                NewUserName = LoggedInUser<GoblinIdentityUserModel>.Current.Data.UserName,
+                NewEmail = LoggedInUser<GoblinIdentityUserModel>.Current.Data.Email
+            };
+            
+            if (LoggedInUser<GoblinIdentityUserModel>.Current.Data.EmailConfirmedTime.HasValue)
+            {
+                ViewBag.ErrorMessage = "Your email already verified!";
+
+                return View("Account", updateIdentityModel);
+            }
+            
             try
             {
                 var emailConfirmationModel = await GoblinIdentityHelper.RequestConfirmEmailAsync(LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id, cancellationToken).ConfigureAwait(true);
@@ -173,7 +186,7 @@ namespace Goblin.Landing.Controllers
                     {
                         LoggedInUser<GoblinIdentityUserModel>.Current.Data.Email
                     },
-                    Subject = $"{SystemSetting.Current.ApplicationName} | Reset Password Code",
+                    Subject = $"{SystemSetting.Current.ApplicationName} | Verify Your Email",
                     HtmlBody = confirmEmailMessage
                 };
 
@@ -192,12 +205,6 @@ namespace Goblin.Landing.Controllers
                 ViewBag.ErrorMessage = e.Message;
             }
             
-            var updateIdentityModel = new GoblinIdentityUpdateIdentityModel
-            {
-                NewUserName = LoggedInUser<GoblinIdentityUserModel>.Current.Data.UserName,
-                NewEmail = LoggedInUser<GoblinIdentityUserModel>.Current.Data.Email
-            };
-
             return View("Account", updateIdentityModel);
         }
         
