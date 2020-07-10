@@ -1,8 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Elect.Core.DateTimeUtils;
 using Elect.Mapper.AutoMapper.ObjUtils;
 using Elect.Web.IUrlHelperUtils;
 using Goblin.Core.DateTimeUtils;
@@ -12,6 +12,8 @@ using Goblin.Identity.Share.Models.UserModels;
 using Goblin.Landing.Core;
 using Goblin.Landing.Core.Constants;
 using Goblin.Landing.Core.Models;
+using Goblin.Notification.Share;
+using Goblin.Notification.Share.Models;
 using Goblin.Resource.Share;
 using Goblin.Resource.Share.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -154,7 +156,28 @@ namespace Goblin.Landing.Controllers
         {
             try
             {
-                // await GoblinIdentityHelper.(LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id, model, cancellationToken).ConfigureAwait(true);
+                var emailConfirmationModel = await GoblinIdentityHelper.RequestConfirmEmailAsync(LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id, cancellationToken).ConfigureAwait(true);
+                
+                // Send Email
+                
+                var confirmEmailMessage = $"Your verify email code is {emailConfirmationModel.EmailConfirmToken}.";
+
+                if (emailConfirmationModel.EmailConfirmTokenExpireTime.HasValue)
+                {
+                    confirmEmailMessage += $"<br />Code will expire at {emailConfirmationModel.EmailConfirmTokenExpireTime.Value.ToString("f")}";
+                }
+
+                var newEmailModel = new GoblinNotificationNewEmailModel
+                {
+                    ToEmails = new List<string>
+                    {
+                        LoggedInUser<GoblinIdentityUserModel>.Current.Data.Email
+                    },
+                    Subject = $"{SystemSetting.Current.ApplicationName} | Reset Password Code",
+                    HtmlBody = confirmEmailMessage
+                };
+
+                await GoblinNotificationHelper.SendAsync(newEmailModel, cancellationToken);
 
                 ViewBag.WarningMessage = "Please check your email inbox to get the Verify Code.";
 
@@ -191,9 +214,9 @@ namespace Goblin.Landing.Controllers
             
             try
             {
-                model.LoggedInUserId = model.Id = LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id;
+                model.LoggedInUserId = LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id;
                 
-                await GoblinIdentityHelper.ConfirmEmailAsync(model, cancellationToken).ConfigureAwait(true);
+                await GoblinIdentityHelper.ConfirmEmailAsync(LoggedInUser<GoblinIdentityUserModel>.Current.Data.Id, model, cancellationToken).ConfigureAwait(true);
 
                 ViewBag.SuccessMessage = "Your email is verified.";
 
